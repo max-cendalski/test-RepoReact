@@ -7,21 +7,35 @@ export default class Form extends React.Component {
       countryInput : '',
       cityInput: ''
     }
+    this.handleCountryChange = this.handleCountryChange.bind(this)
+    this.handleCityChange = this.handleCityChange.bind(this)
   }
+  handleCountryChange(event) {
+    this.setState({
+      countryInput: event.target.value
+    })
+  }
+
+  handleCityChange(event) {
+    this.setState({
+      cityInput: event.target.value
+    })
+  }
+
   handleFormSubmit(event) {
     this.setState({
-      countryInput: event.target.value.country
-      cityInput: event.target.value.city
+      countryInput: event.target.country.value,
+      cityInput: event.target.city.value
     })
   }
   render() {
     return (
-      <div>
-        <form onSubmit={handleFormSubmit}>
+      <div className='form-container'>
+        <form onSubmit={this.handleFormSubmit}>
           <label>Country</label>
-          <input id="country-input" value="country"></input>
+          <input id="country-input" onChange={this.handleCountryChange} name="country"></input>
           <label>City</label>
-          <input id="city-input" value="city"></input>
+          <input id="city-input" onChange={this.handleCityChange} name="city"></input>
           <button>Submit</button>
         </form>
       </div>
