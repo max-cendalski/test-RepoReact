@@ -4,29 +4,38 @@ export default class Form extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      countryInput : '',
-      cityInput: ''
+      country : '',
+      city: '',
+      placesArray: []
     }
     this.handleCountryChange = this.handleCountryChange.bind(this)
     this.handleCityChange = this.handleCityChange.bind(this)
+    this.handleFormSubmit= this.handleFormSubmit.bind(this)
   }
   handleCountryChange(event) {
     this.setState({
-      countryInput: event.target.value
+      country: event.target.value
     })
   }
 
   handleCityChange(event) {
     this.setState({
-      cityInput: event.target.value
+      city: event.target.value
     })
   }
 
   handleFormSubmit(event) {
+    event.preventDefault()
+    let places = []
+    let place = {
+      country: this.state.country,
+      city: this.state.city
+    }
+    places.push(place)
     this.setState({
-      countryInput: event.target.country.value,
-      cityInput: event.target.city.value
+      placesArray: places
     })
+    console.log('places',places)
   }
   render() {
     return (
