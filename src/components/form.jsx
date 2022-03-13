@@ -1,4 +1,5 @@
 import React from 'react'
+import List from "./list"
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export default class Form extends React.Component {
           <button>Submit</button>
         </form>
         <div>
-          <div className='places-container'>
+          <div className='list-container'>
             <h1>Places to visit</h1>
           </div>
         </div>
