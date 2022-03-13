@@ -47,6 +47,11 @@ export default class Form extends React.Component {
           <input id="city-input" onChange={this.handleCityChange} name="city"></input>
           <button>Submit</button>
         </form>
+        <div>
+          <div className='places-container'>
+            <h1>Places to visit</h1>
+          </div>
+        </div>
       </div>
     )
   }
