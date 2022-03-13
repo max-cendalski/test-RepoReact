@@ -6,7 +6,6 @@ function App() {
       <header className="App-header">
       <Navbar />
 
-
       </header>
     </div>
   );

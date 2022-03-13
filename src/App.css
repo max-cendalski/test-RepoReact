@@ -42,6 +42,8 @@
 }
 .navbar-container {
   display: fixed;
-  height: 50px;
+  height: 60px;
   width: 100%;
+  text-align: center;
+  background-color: antiquewhite;
 }
