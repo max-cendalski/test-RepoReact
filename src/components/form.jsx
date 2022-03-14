@@ -42,9 +42,9 @@ export default class Form extends React.Component {
     return (
       <div className='form-container'>
         <form onSubmit={this.handleFormSubmit}>
-          <label>Country</label>
+          <label htmlFor='country-input'>Country</label>
           <input id="country-input" onChange={this.handleCountryChange} name="country"></input>
-          <label>City</label>
+          <label htmlFor='city-input'>City</label>
           <input id="city-input" onChange={this.handleCityChange} name="city"></input>
           <button>Submit</button>
         </form>
