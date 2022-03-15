@@ -1,5 +1,4 @@
 import React from 'react'
-import List from "./list"
 
 export default class Form extends React.Component {
   constructor(props) {
