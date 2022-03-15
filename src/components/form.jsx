@@ -43,7 +43,6 @@ export default class Form extends React.Component {
       city: '',
       placesArray: placesToSave
     })
-    console.log('placesArrau',placesToSave)
     localStorage.setItem('list-of-places',JSON.stringify(placesToSave))
   }
   render() {
