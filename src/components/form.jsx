@@ -26,25 +26,34 @@ export default class Form extends React.Component {
 
   handleFormSubmit(event) {
     event.preventDefault()
-    let places = []
-    let place = {
+    let localStorageData = JSON.parse(localStorage.getItem('list-of-places'))
+    let placesToSave;
+    if (!localStorageData) {
+    placesToSave = []
+    } else {
+      placesToSave = localStorageData
+    }
+      let place = {
       country: this.state.country,
       city: this.state.city
     }
-    places.push(place)
+    placesToSave.push(place)
     this.setState({
-      placesArray: places
+      country: '',
+      city: '',
+      placesArray: placesToSave
     })
-    console.log('places',places)
+    console.log('placesArrau',placesToSave)
+    localStorage.setItem('list-of-places',JSON.stringify(placesToSave))
   }
   render() {
     return (
       <div className='form-container'>
         <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='country-input'>Country</label>
-          <input id="country-input" onChange={this.handleCountryChange} name="country"></input>
+          <input id="country-input" onChange={this.handleCountryChange} value={this.state.country} type="text" name="country"></input>
           <label htmlFor='city-input'>City</label>
-          <input id="city-input" onChange={this.handleCityChange} name="city"></input>
+          <input id="city-input" onChange={this.handleCityChange} value={this.state.city}type="text" name="city"></input>
           <button>Submit</button>
         </form>
         <div>
