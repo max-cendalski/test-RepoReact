@@ -1,10 +1,9 @@
 import React from "react";
 
-export default class List extends React.Component {
-  render() {
+export default function List(props) {
     return (
       <div className="list-element">
       </div>
     )
-  }
+
 }
