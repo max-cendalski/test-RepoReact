@@ -1,16 +1,23 @@
-import Navbar from "../src/components/navbar.jsx"
-import Form from "./components/form.jsx";
+import Navbar from "../src/components/Navbar.jsx"
+import Form from "./components/Form.jsx";
+import Header from "./components/Header.jsx"
+import List from "./components/List"
+import {useState} from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      <Navbar title="Test App"/>
-      <Form />
+export default function App() {
+  const appTitle = "Test App"
+  const [places, setPlaces] = useState(['Poland'])
 
-      </header>
-    </div>
-  );
+function addPlace(place) {
+  setPlaces([place, ...places])
 }
 
-export default App;
+  return (
+    <div className="App">
+      <Header title={appTitle}/>
+      <Navbar />
+      <Form place={places[0]} addPlace={addPlace} />
+      <List  places={places}/>
+      </div>
+  );
+}

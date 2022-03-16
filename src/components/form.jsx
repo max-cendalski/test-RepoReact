@@ -1,17 +1,18 @@
 import React from 'react'
 
-export default function Form()  {
+export default function Form(props)  {
 
   function handleCountryChange(event) {
     console.log(event.target.value)
   }
 
   function handleCityChange(event) {
-  console.log(event.target.value)
+    console.log(event.target.value)
   }
 
   function handleFormSubmit(event) {
     event.preventDefault()
+    props.addPlace(event.target['country'].value);
     /* let localStorageData = JSON.parse(localStorage.getItem('list-of-places'))
     let placesToSave;
     if (!localStorageData) {
@@ -42,14 +43,9 @@ export default function Form()  {
             type="text"
             name="country">
           </input>
-          <label htmlFor='city-input'>City</label>
-          <input
-            id="city-input"
-            onChange={handleCityChange}
-            name="city">
-          </input>
           <button
-            type='Submit'
+            type='submit'
+            name="save-button"
           >
           Submit
           </button>
@@ -57,3 +53,12 @@ export default function Form()  {
       </section>
     )
 }
+
+
+/*   <label htmlFor='city-input'>City</label>
+          <input
+            id="city-input"
+            onChange={handleCityChange}
+            type="text"
+            name="city">
+          </input> */
