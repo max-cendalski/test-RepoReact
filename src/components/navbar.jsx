@@ -6,5 +6,4 @@ export default function Navbar(props) {
         <h1>{props.title}</h1>
       </div>
     )
-
 }
