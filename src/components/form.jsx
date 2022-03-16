@@ -1,30 +1,18 @@
 import React from 'react'
 
-export default class Form extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      country : '',
-      city: '',
-      placesArray: []
-    }
-    this.handleCountryChange = this.handleCountryChange.bind(this)
-    this.handleCityChange = this.handleCityChange.bind(this)
-    this.handleFormSubmit= this.handleFormSubmit.bind(this)
-  }
-  handleCountryChange(event) {
-    this.setState({
-      country: event.target.value
-    })
+export default function Form()  {
+
+  function handleCountryChange(event) {
+    event.preventDefault()
   }
 
-  handleCityChange(event) {
+  function handleCityChange(event) {
     this.setState({
       city: event.target.value
     })
   }
 
-  handleFormSubmit(event) {
+  function handleFormSubmit(event) {
     event.preventDefault()
     let localStorageData = JSON.parse(localStorage.getItem('list-of-places'))
     let placesToSave;
@@ -45,9 +33,8 @@ export default class Form extends React.Component {
     })
     localStorage.setItem('list-of-places',JSON.stringify(placesToSave))
   }
-  render() {
     return (
-      <div className='form-container'>
+      <section className='form-container'>
         <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='country-input'>Country</label>
           <input id="country-input" onChange={this.handleCountryChange} value={this.state.country} type="text" name="country"></input>
@@ -60,7 +47,31 @@ export default class Form extends React.Component {
             <h1>Places to visit</h1>
           </div>
         </div>
-      </div>
+      </section>
     )
-  }
+
 }
+
+
+/* <section className="searchBar">
+      <form onSubmit={submitted}>
+        <input
+          type="text"
+          name="keyword"
+          className="searchText"
+          placeholder="keyword"
+          onFocus={focused}
+          onInput={(ev) => changed(ev)}
+        />
+        <button
+          type="submit"
+          className="searchBtn"
+          name="searchBtn"
+          onClick={clicked}
+        >
+          Search
+        </button>
+      </form>
+      {props.term ? <p>You searched for {props.term}</p> : ''}
+    </section>
+  ); */
