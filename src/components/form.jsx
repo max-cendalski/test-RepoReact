@@ -14,6 +14,7 @@ export default function Form(props)  {
     event.preventDefault()
     props.addCountry(event.target['country'].value);
     props.addCity(event.target['city'].value)
+
     /* let localStorageData = JSON.parse(localStorage.getItem('list-of-places'))
     let placesToSave;
     if (!localStorageData) {
@@ -50,7 +51,7 @@ export default function Form(props)  {
             onChange={handleCityChange}
             type="text"
             name="city">
-          </input> */
+          </input>
           <button
             type='submit'
             name="save-button"

@@ -4,17 +4,20 @@ import Header from "./components/Header.jsx"
 import List from "./components/List"
 import {useState} from 'react'
 
+
 export default function App() {
   const appTitle = "Test App"
   const [countries, setCountry] = useState(['Poland'])
   const [cities, setCity] = useState(['Lodz'])
 
-function addCountry(country) {
-  setCountry([country, ...countries])
-}
-function addCity(city) {
-  setCity([city, ...cities])
-}
+
+  function addCountry(country) {
+    setCountry([country, ...countries])
+  }
+  function addCity(city) {
+    setCity([city, ...cities])
+  }
+
 
   return (
     <div className="App">
