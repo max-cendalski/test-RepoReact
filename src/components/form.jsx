@@ -12,7 +12,8 @@ export default function Form(props)  {
 
   function handleFormSubmit(event) {
     event.preventDefault()
-    props.addPlace(event.target['country'].value);
+    props.addCountry(event.target['country'].value);
+    props.addCity(event.target['city'].value)
     /* let localStorageData = JSON.parse(localStorage.getItem('list-of-places'))
     let placesToSave;
     if (!localStorageData) {
@@ -43,6 +44,13 @@ export default function Form(props)  {
             type="text"
             name="country">
           </input>
+          <label htmlFor='city-input'>City</label>
+          <input
+            id="city-input"
+            onChange={handleCityChange}
+            type="text"
+            name="city">
+          </input> */
           <button
             type='submit'
             name="save-button"
