@@ -9,11 +9,8 @@ export default function App() {
   const appTitle = "Test App"
   let countries = []
   let cities = []
- /*  const [countries, setCountry] = useState(['Poland'])
-  const [cities, setCity] = useState(['Lodz'])
- */
-const [locations, setLocation] = useState([])
 
+  const [locations, setLocation] = useState([])
   console.log('locations',locations)
 
   function addLocation(location) {
@@ -23,6 +20,7 @@ const [locations, setLocation] = useState([])
   function addCountry(country) {
     countries.push(country)
   }
+
   function addCity(city) {
     cities.push(city)
   }
@@ -45,11 +43,3 @@ const [locations, setLocation] = useState([])
       </div>
   );
 }
-
-
-/*     <Navbar />
-      <Form countries={countries[0]}
-            addCountry={addCountry}
-            cities={cities[0]}
-            addCity={addCity}
-            /> */

@@ -11,7 +11,6 @@ export default function Form(props)  {
   }
 
   function handleFormSubmit(event) {
-
     event.preventDefault()
     props.addCountry(event.target['country'].value);
     props.addCity(event.target['city'].value)
