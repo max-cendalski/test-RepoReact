@@ -5,8 +5,8 @@ export default function List(props) {
       <div className="list-element">
         <ul>
           {
-            props.countries.map(country => (
-            <li key={country}>{country}</li>
+            props.locations.map(location => (
+            <li key={location.country}>{location.country} : {location.city}</li>
           ))
           }
         </ul>

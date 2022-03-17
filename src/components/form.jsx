@@ -11,9 +11,18 @@ export default function Form(props)  {
   }
 
   function handleFormSubmit(event) {
+
     event.preventDefault()
     props.addCountry(event.target['country'].value);
     props.addCity(event.target['city'].value)
+    for(var i = 0; i < props.countries.length; i++) {
+      let obj = {}
+      obj.country = props.countries[i]
+      obj.city = props.cities[i]
+      props.locations.push(obj)
+    }
+    props.addLocation(props.locations)
+
 
     /* let localStorageData = JSON.parse(localStorage.getItem('list-of-places'))
     let placesToSave;

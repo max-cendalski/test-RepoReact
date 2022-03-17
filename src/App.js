@@ -7,30 +7,49 @@ import {useState} from 'react'
 
 export default function App() {
   const appTitle = "Test App"
-  const [countries, setCountry] = useState(['Poland'])
+  let countries = []
+  let cities = []
+ /*  const [countries, setCountry] = useState(['Poland'])
   const [cities, setCity] = useState(['Lodz'])
+ */
+const [locations, setLocation] = useState([])
 
+  console.log('locations',locations)
+
+  function addLocation(location) {
+    setLocation([...location])
+  }
 
   function addCountry(country) {
-    setCountry([country, ...countries])
+    countries.push(country)
   }
   function addCity(city) {
-    setCity([city, ...cities])
+    cities.push(city)
   }
-
 
   return (
     <div className="App">
       <Header title={appTitle}/>
       <Navbar />
-      <Form countries={countries[0]}
+      <Form countries={countries}
             addCountry={addCountry}
-            cities={cities[0]}
+            cities={cities}
             addCity={addCity}
+            addLocation={addLocation}
+            locations = {locations}
             />
       <List countries={countries}
             cities={cities}
+            locations={locations}
             />
       </div>
   );
 }
+
+
+/*     <Navbar />
+      <Form countries={countries[0]}
+            addCountry={addCountry}
+            cities={cities[0]}
+            addCity={addCity}
+            /> */
