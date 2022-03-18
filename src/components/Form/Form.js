@@ -44,13 +44,3 @@ export default function Form(props)  {
     </section>
   )
 }
-
-
-
- /*  function handleCountryChange(event) {
-    console.log(event.target.value)
-  }
-
-  function handleCityChange(event) {
-    console.log(event.target.value)
-  } */
