@@ -36,8 +36,6 @@ export default function App() {
     cities.push(city)
   }
 
-
-
   return (
     <div className="App">
       <Header title={appTitle}/>
