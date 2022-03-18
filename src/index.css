@@ -35,6 +35,13 @@ code {
   margin-top: 20px
 }
 
+.list-container {
+  padding: 1rem;
+  width: 20rem;
+  float: left;
+}
 .list-element {
-  padding: 1rem
+  border: 1px solid black;
+  margin: 10px;
+  cursor: pointer;
 }

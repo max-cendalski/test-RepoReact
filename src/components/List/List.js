@@ -2,11 +2,11 @@ import React from "react";
 
 export default function List(props) {
     return (
-      <div className="list-element">
+      <div className="list-container">
         <ul>
           {
             props.locations.map(location => (
-            <li key={location.country}>{location.country} : {location.city}</li>
+            <li className="list-element" key={location.country}>{location.country} : {location.city}</li>
           ))
           }
         </ul>

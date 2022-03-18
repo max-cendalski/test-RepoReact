@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar/Navbar";
-import Form from "./components/Form.jsx";
-import Header from "./components/Header.jsx"
+import Form from "./components/Form/Form"
+import Header from "./components/Header/Header.js"
 import List from "./components/List/List"
 import {useState, useEffect} from 'react'
 
