@@ -51,14 +51,18 @@ export default function Form(props)  {
             id="country-input"
             onChange={handleCountryChange}
             type="text"
-            name="country">
+            name="country"
+            required
+            >
           </input>
           <label htmlFor='city-input'>City</label>
           <input
             id="city-input"
             onChange={handleCityChange}
             type="text"
-            name="city">
+            name="city"
+            required
+            >
           </input>
           <button
             type='submit'

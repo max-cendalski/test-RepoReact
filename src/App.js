@@ -2,7 +2,7 @@ import Navbar from "../src/components/Navbar.jsx"
 import Form from "./components/Form.jsx";
 import Header from "./components/Header.jsx"
 import List from "./components/List"
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 
 export default function App() {
@@ -13,8 +13,19 @@ export default function App() {
   const [locations, setLocation] = useState([])
   console.log('locations',locations)
 
-  function addLocation(location) {
-    setLocation([...location])
+  useEffect(() => {
+    const data = localStorage.getItem('my-places')
+    if (data) {
+      setLocation(JSON.parse(data))
+    }
+  },[]);
+
+  useEffect(()=> {
+    localStorage.setItem('my-places',JSON.stringify(locations))
+  })
+
+  function addLocation(locations) {
+    setLocation([...locations])
   }
 
   function addCountry(country) {
@@ -24,6 +35,8 @@ export default function App() {
   function addCity(city) {
     cities.push(city)
   }
+
+
 
   return (
     <div className="App">
