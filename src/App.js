@@ -1,4 +1,4 @@
-import Navbar from "../src/components/Navbar.jsx"
+import Navbar from "./components/Navbar/Navbar";
 import Form from "./components/Form.jsx";
 import Header from "./components/Header.jsx"
 import List from "./components/List/List"
