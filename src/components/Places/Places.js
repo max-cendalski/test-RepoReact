@@ -3,11 +3,16 @@ import "../Form/Form"
 import "../Places/Places"
 import Navbar from "../Navbar/Navbar"
 import Form from '../Form/Form'
+import GoogleMaps from '../GoogleMap/GoogleMap.js'
 import { useState, useEffect } from "react"
-export default function Places(props) {
 
+
+
+
+export default function Places(props) {
 let countries = []
 let cities = []
+
 
 const [locations, setLocation] = useState([])
 console.log('locations',locations)
@@ -52,25 +57,10 @@ function addCity(city) {
           }
         </ul>
       </div>
-      <div className='maps'></div>
+      <div id="map">
+        <GoogleMaps />
+      </div>
 
       </>
-
-
     )
 }
-
-
-/*
- <Places countries={countries}
-            cities={cities}
-            locations={locations}
-            />
- */
-/*    <Form countries={countries}
-            addCountry={addCountry}
-            cities={cities}
-            addCity={addCity}
-            addLocation={addLocation}
-            locations = {locations}
-            /> */

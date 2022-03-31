@@ -8,7 +8,7 @@
   margin: 10px;
   cursor: pointer;
 }
-.maps {
+#map {
   width: 60vh;
   height: 60vh;
   background-color: antiquewhite;
