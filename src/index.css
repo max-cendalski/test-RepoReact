@@ -20,6 +20,9 @@ code {
 .container {
   max-width: 1920px;
 }
+.navbar a{
+  margin-right: 1rem;
+}
 .header-container {
   display: fixed;
   height: 60px;
@@ -27,7 +30,6 @@ code {
   text-align: center;
   background-color: antiquewhite;
 }
-
 
 .places-container {
   margin-top: 20px
