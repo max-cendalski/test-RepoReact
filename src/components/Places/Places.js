@@ -52,6 +52,7 @@ function addCity(city) {
           }
         </ul>
       </div>
+      <div className='maps'></div>
 
       </>
 
