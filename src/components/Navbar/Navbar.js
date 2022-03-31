@@ -1,10 +1,12 @@
-import React from 'react'
+import './navbar.css'
+import {Link} from 'react-router-dom';
+
 
 export default function Navbar(props) {
     return (
-      <div className='navbar'>
-        <a href="www.google.com">Films</a>
-        <a href="www.google.com">Places</a>
-      </div>
+      <nav className='navbar'>
+        <Link to="/films">Films</Link>
+        <Link to="/places">Places</Link>
+      </nav>
     )
 }
