@@ -2,6 +2,7 @@ import "./places.css"
 import "../Form/Form"
 import "../Places/Places"
 import Navbar from "../Navbar/Navbar"
+import Form from '../Form/Form'
 import { useState, useEffect } from "react"
 export default function Places(props) {
 
@@ -36,6 +37,12 @@ function addCity(city) {
     return (
       <>
        <Navbar />
+       <Form countries={countries}
+            addCountry={addCountry}
+            cities={cities}
+            addCity={addCity}
+            addLocation={addLocation}
+            locations = {locations}/>
        <div className="list-container">
         <ul>
           {

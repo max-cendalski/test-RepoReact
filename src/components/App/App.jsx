@@ -3,8 +3,6 @@ import Main from '../Main/Main.js'
 import Films from '../Films/Films'
 import Places from '../Places/Places.js';
 import Header from '../Header/Header.js'
-import Navbar from '../Navbar/Navbar.js';
-
 
 export default function App() {
   const appTitle = "Test App"
