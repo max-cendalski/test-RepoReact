@@ -8,8 +8,7 @@
   margin: 10px;
   cursor: pointer;
 }
-#map {
-  width: 60vh;
-  height: 60vh;
+.map-container {
+  margin-top: 6rem;
   background-color: antiquewhite;
 }

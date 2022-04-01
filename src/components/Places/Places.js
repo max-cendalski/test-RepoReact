@@ -56,11 +56,8 @@ function addCity(city) {
           ))
           }
         </ul>
-      </div>
-      <div id="map">
         <GoogleMaps />
       </div>
-
       </>
     )
 }
