@@ -37,7 +37,7 @@ function addCountry(country) {
 }
 function handlePlaceClick(event) {
   event.preventDefault()
-  console.log('event.target.value',event.target)
+  console.log('event.target.value',event.target.closest('LI').id)
 }
 
 function addCity(city) {
@@ -56,7 +56,7 @@ function addCity(city) {
         <ul>
           {
             locations.map(location => (
-            <li onClick={handlePlaceClick} className="list-element" key={location.country} value={location.country}>{location.country} : {location.city}</li>
+            <li onClick={handlePlaceClick} className="list-element" key={location.country} id={location.city}>{location.country} : {location.city}</li>
           ))
           }
         </ul>
