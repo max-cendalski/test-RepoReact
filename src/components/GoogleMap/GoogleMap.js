@@ -1,61 +1,136 @@
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
-import React, {Component} from 'react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
+import React from 'react';
 
 
 
-export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {},
-
-    mapCenter: {
-      lat: 33.5685,
-      lng: -117.7263
+export class MapContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+      address: '',
+      mapCenter: {
+        lat: 33.5685,
+        lng: -117.7263
+      }
     }
-  };
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
+    this.handleChangeLocation = this.handleChangeLocation.bind(this)
+  }
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
 
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
+componentDidMount() {
+  this.setState({
+    address: 'Warsaw, Poland'
+  })
+  let address = this.state.address
+  console.log('address',address)
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => {
+        console.log('latLng',latLng)
+      this.setState({address});
+      this.setState({ mapCenter: latLng })
       })
-    }
+}
+
+
+  handleChange = address => {
+    this.setState({ address });
   };
 
+  handleSelect = address => {
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => {
+      this.setState({address});
+      this.setState({ mapCenter: latLng })
+      })
+      .catch(error => console.error('Error', error));
+  };
+
+  handleChangeLocation() {
+  this.setState({
+    address: 'Warsaw, Poland'
+    })
+  }
   render() {
     const containerStyle= {
       width: '40%',
       height: '40%'
     }
     return (
-      <Map
-          containerStyle={containerStyle}
-          google={this.props.google}
-          initialCenter = {{
-            lat:this.state.mapCenter.lat,
-            lng:this.state.mapCenter.lng
-          }}
-          center={{
-            lat:this.state.mapCenter.lat,
-            lng:this.state.mapCenter.lng
-          }}
-          >
-        <Marker
-          position= {{
-            lat:this.state.mapCenter.lat,
-            lng:this.state.mapCenter.lng
-          }}
-        />
-      </Map>
+      <>
+      <button onClick={this.handleChangeLocation}>Click to change location</button>
+        <PlacesAutocomplete
+            value={this.state.address}
+            onChange={this.handleChange}
+            onSelect={this.handleSelect}
+            >
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div>
+                <input
+                  {...getInputProps({
+                    placeholder: 'Search Places ...',
+                    className: 'location-search-input',
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map((suggestion,index) => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item';
+                    // inline style for demonstration purpose
+                    const style = suggestion.active
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                    return (
+                      <div
+                        key = {index + 1}
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style,
+                        })}
+                      >
+                      <span>{suggestion.description}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+      </PlacesAutocomplete>
+      <div id = "googleMap">
+        <Map
+            containerStyle={containerStyle}
+            google={this.props.google}
+            initialCenter = {{
+              lat:this.state.mapCenter.lat,
+              lng:this.state.mapCenter.lng
+            }}
+            center={{
+              lat:this.state.mapCenter.lat,
+              lng:this.state.mapCenter.lng
+            }}
+            >
+          <Marker
+            position= {{
+              lat:this.state.mapCenter.lat,
+              lng:this.state.mapCenter.lng
+            }}
+          />
+        </Map>
+
+      </div>
+      </>
     )
   }
 }
@@ -63,12 +138,3 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: ("AIzaSyCfY6ZRvXRb8M7sKT5QM2pWZmuF6NCECEM")
 })(MapContainer)
-
-
-/*  <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow> */
