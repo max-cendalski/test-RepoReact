@@ -1,3 +1,4 @@
-.sugestion-description {
+.autocomplete-dropdown-container {
   position: absolute;
+  z-index: 99;
 }

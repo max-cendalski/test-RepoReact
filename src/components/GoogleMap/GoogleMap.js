@@ -103,7 +103,7 @@ componentDidUpdate() {
                           style,
                         })}
                       >
-                      <span className='suggestion-description'>{suggestion.description}</span>
+                      <span>{suggestion.description}</span>
                       </div>
                     );
                   })}
