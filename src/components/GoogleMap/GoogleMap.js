@@ -30,17 +30,19 @@ componentDidMount() {
   this.setState({
     address: 'Warsaw, Poland'
   })
-  let address = this.state.address
-  console.log('address',address)
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => {
-        console.log('latLng',latLng)
-      this.setState({address});
-      this.setState({ mapCenter: latLng })
-      })
 }
-
+componentDidUpdate() {
+ geocodeByAddress(this.state.address)
+  .then(results => getLatLng(results[0]))
+  .then(({ lat, lng }) => {
+    this.setState({
+      mapCenter: {
+        lat: lat,
+        lng: lng
+      }
+    })
+  })
+}
 
   handleChange = address => {
     this.setState({ address });
@@ -57,9 +59,7 @@ componentDidMount() {
   };
 
   handleChangeLocation() {
-  this.setState({
-    address: 'Warsaw, Poland'
-    })
+
   }
   render() {
     const containerStyle= {
