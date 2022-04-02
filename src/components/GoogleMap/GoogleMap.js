@@ -1,3 +1,4 @@
+import './googlemaps.css'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -59,7 +60,9 @@ componentDidUpdate() {
   };
 
   handleChangeLocation() {
-
+    this.setState({
+      address: 'Aliso Viejo, CA, USA'
+    })
   }
   render() {
     const containerStyle= {
@@ -100,7 +103,7 @@ componentDidUpdate() {
                           style,
                         })}
                       >
-                      <span>{suggestion.description}</span>
+                      <span className='suggestion-description'>{suggestion.description}</span>
                       </div>
                     );
                   })}

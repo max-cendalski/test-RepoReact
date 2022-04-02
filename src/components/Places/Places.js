@@ -60,7 +60,7 @@ function addCity(city) {
           ))
           }
         </ul>
-        <GoogleMaps />
+        <GoogleMaps handlePlaceClick={handlePlaceClick}/>
       </div>
       </>
     )
