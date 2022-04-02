@@ -28,7 +28,7 @@ export class MapContainer extends React.Component {
 
 componentDidMount() {
   this.setState({
-    address: 'Warsaw, Poland'
+    address: 'Wroclaw, Poland'
   })
 }
 componentDidUpdate() {
