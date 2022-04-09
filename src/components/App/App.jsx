@@ -10,7 +10,7 @@ export default function App() {
       <>
       <Header appTitle={appTitle}/>
       <Routes>
-        <Route path="/home" element={<Main />} />
+        <Route path="/" element={<Main />} />
         <Route path="/films" element={<Films />} />
         <Route path="places" element={<Places />} />
       </Routes>
