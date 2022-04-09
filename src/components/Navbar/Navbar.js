@@ -8,6 +8,7 @@ export default function Navbar(props) {
         <Link to="/films">Films</Link>
         <Link to="/places">Places</Link>
         <Link to="/">Home</Link>
+        <Link to="/weather">Weather</Link>
       </nav>
     )
 }
