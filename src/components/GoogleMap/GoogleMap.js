@@ -74,9 +74,7 @@ componentDidMount() {
     }
     return (
       <>
-       <TestComponent placeToSave={this.state.address}
 
-            />
       <button onClick={this.handleChangeLocation}>Click to change location</button>
         <PlacesAutocomplete
             value={this.state.address}
@@ -86,6 +84,7 @@ componentDidMount() {
 
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
+               <TestComponent placeToSave={this.state.address}/>
                 <input
                   {...getInputProps({
                     placeholder: 'Search Places ...',
@@ -109,7 +108,9 @@ componentDidMount() {
                           className,
                           style,
                         })}
+
                       >
+
                       <span>{suggestion.description}</span>
                       </div>
                     );
