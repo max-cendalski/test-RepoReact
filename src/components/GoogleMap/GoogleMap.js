@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 import React from 'react';
-
+import TestComponent from '../TestComponent';
 export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +29,7 @@ componentDidMount() {
   this.setState({
     address: 'Paris, France'
   })
+    console.log('this.state.address',this.state.address)
 }
 /* componentDidUpdate() {
  geocodeByAddress(this.state.address)
@@ -45,6 +46,9 @@ componentDidMount() {
 
   handleChange = address => {
     this.setState({ address });
+    console.log('this.state.address',this.state.address)
+    console.log('this.props.value',this.props.value)
+
   };
 
   handleSelect = address => {
@@ -61,6 +65,7 @@ componentDidMount() {
     this.setState({
       address: 'Aliso Viejo, CA, USA'
     })
+    console.log(this.props.value)
   }
   render() {
     const containerStyle= {
@@ -69,12 +74,16 @@ componentDidMount() {
     }
     return (
       <>
+       <TestComponent placeToSave={this.state.address}
+
+            />
       <button onClick={this.handleChangeLocation}>Click to change location</button>
         <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
             >
+
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
                 <input
