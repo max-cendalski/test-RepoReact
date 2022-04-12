@@ -46,7 +46,7 @@ function addCity(city) {
     return (
       <>
        <Navbar />
-       <Form countries={countries}
+        <Form countries={countries}
             addCountry={addCountry}
             cities={cities}
             addCity={addCity}

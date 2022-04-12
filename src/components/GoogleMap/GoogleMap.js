@@ -30,7 +30,7 @@ componentDidMount() {
     address: 'Paris, France'
   })
 }
-componentDidUpdate() {
+/* componentDidUpdate() {
  geocodeByAddress(this.state.address)
   .then(results => getLatLng(results[0]))
   .then(({ lat, lng }) => {
@@ -41,7 +41,7 @@ componentDidUpdate() {
       }
     })
   })
-}
+} */
 
   handleChange = address => {
     this.setState({ address });
