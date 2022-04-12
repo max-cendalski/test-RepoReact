@@ -7,6 +7,7 @@ export default function TestComponent (props) {
     <section className='test-component-header'>
       <h2>Test Component</h2>
       <h3>Location to save: {props.placeToSave}</h3>
+      <button>Add location to list</button>
     </section>
   )
 }
