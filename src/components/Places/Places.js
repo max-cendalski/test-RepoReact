@@ -46,12 +46,7 @@ function addCity(city) {
     return (
       <>
        <Navbar />
-        <Form countries={countries}
-            addCountry={addCountry}
-            cities={cities}
-            addCity={addCity}
-            addLocation={addLocation}
-            locations = {locations}/>
+
        <div className="list-container">
         <ul>
           {
