@@ -2,7 +2,6 @@ import "./places.css"
 import "../Form/Form"
 import "../Places/Places"
 import Navbar from "../Navbar/Navbar"
-import Form from '../Form/Form'
 import GoogleMaps from '../GoogleMap/GoogleMap.js'
 import { useState, useEffect } from "react"
 
@@ -33,15 +32,14 @@ function handlePlaceClick(event) {
   console.log('event.target.value',event.target.closest('LI').id)
 }
 
-
     return (
       <>
        <Navbar />
        <div className="list-container">
         <ul>
           {
-            locations.map(location => (
-            <li onClick={handlePlaceClick} className="list-element" key={location.country} id={location.city}>{location.country} : {location.city}</li>
+            locations.map((location,index) => (
+            <li onClick={handlePlaceClick} className="list-element" key={index + 1} id={location.city}>{location.country} : {location.city}</li>
           ))
           }
         </ul>
