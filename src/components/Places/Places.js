@@ -28,25 +28,15 @@ useEffect(()=> {
   localStorage.setItem('my-places',JSON.stringify(locations))
 })
 
-function addLocation(locations) {
-  setLocation([...locations])
-}
-
-function addCountry(country) {
-  countries.push(country)
-}
 function handlePlaceClick(event) {
   event.preventDefault()
   console.log('event.target.value',event.target.closest('LI').id)
 }
 
-function addCity(city) {
-  cities.push(city)
-  }
+
     return (
       <>
        <Navbar />
-
        <div className="list-container">
         <ul>
           {
