@@ -67,6 +67,11 @@ componentDidMount() {
     })
     console.log(this.props.value)
   }
+
+  handleOnSubmit() {
+    console.log('whee')
+  }
+
   render() {
     const containerStyle= {
       width: '40%',
@@ -74,8 +79,6 @@ componentDidMount() {
     }
     return (
       <>
-
-      <button onClick={this.handleChangeLocation}>Click to change location</button>
         <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
@@ -85,12 +88,17 @@ componentDidMount() {
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
                <TestComponent placeToSave={this.state.address}/>
-                <input
+               <form onSubmit={this.handleOnSubmit}>
+                 <input type="text"
                   {...getInputProps({
                     placeholder: 'Search Places ...',
                     className: 'location-search-input',
                   })}
                 />
+                <button>Submit</button>
+               </form>
+
+
                 <div className="autocomplete-dropdown-container">
                   {loading && <div>Loading...</div>}
                   {suggestions.map((suggestion,index) => {
@@ -141,6 +149,8 @@ componentDidMount() {
         </Map>
 
       </div>
+               <button onClick={this.handleChangeLocation}>Click to change location</button>
+
       </>
     )
   }
