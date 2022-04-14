@@ -8,6 +8,11 @@ export default function TestComponent (props) {
       <h2>Test Component</h2>
       <h3>Location to save: {props.placeToSave}</h3>
       <button>Add location to list</button>
+      <section>
+        <h2>Locations to display</h2>
+        <h4>{props.cityToSave}</h4>
+        <h4>{props.countryToSave}</h4>
+      </section>
     </section>
   )
 }
