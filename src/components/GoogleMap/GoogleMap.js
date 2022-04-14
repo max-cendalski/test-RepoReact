@@ -14,7 +14,9 @@ export class MapContainer extends React.Component {
       activeMarker: {},
       selectedPlace: {},
       address: '',
-      addressToSave: '',
+      addressToSave: [],
+      cityToSave: '',
+      countryToSave: '',
       mapCenter: {
         lat: 33.5685,
         lng: -117.7263
@@ -79,9 +81,9 @@ componentDidMount() {
     console.log('newAddress',newAddressArray.length)
     const [city, country] = newAddress.split(',')
     console.log('city and country',city,country)
-
     this.setState({
-      addressToSave: 'whatever'
+      cityToSave: city,
+      countryToSave:country
     })
     console.log('this.state.addressToSave',this.state.address)
   }
