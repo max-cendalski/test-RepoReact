@@ -14,6 +14,7 @@ export class MapContainer extends React.Component {
       activeMarker: {},
       selectedPlace: {},
       address: '',
+      addressToSave: '',
       mapCenter: {
         lat: 33.5685,
         lng: -117.7263
@@ -22,6 +23,7 @@ export class MapContainer extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
     this.handleChangeLocation = this.handleChangeLocation.bind(this)
+    this.handleOnSubmit = this.handleOnSubmit.bind(this)
   }
 
 
@@ -29,7 +31,7 @@ componentDidMount() {
   this.setState({
     address: 'Paris, France'
   })
-    console.log('this.state.address',this.state.address)
+    //console.log('this.state.address',this.state.address)
 }
 /* componentDidUpdate() {
  geocodeByAddress(this.state.address)
@@ -48,7 +50,6 @@ componentDidMount() {
     this.setState({ address });
     console.log('this.state.address',this.state.address)
     console.log('this.props.value',this.props.value)
-
   };
 
   handleSelect = address => {
@@ -68,8 +69,12 @@ componentDidMount() {
     console.log(this.props.value)
   }
 
-  handleOnSubmit() {
-    console.log('whee')
+  handleOnSubmit(event) {
+    event.preventDefault()
+    this.setState({
+      addressToSave: 'whatever'
+    })
+    console.log('this.state.addressToSave',this.state.address)
   }
 
   render() {
@@ -83,6 +88,7 @@ componentDidMount() {
             value={this.state.address}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
+            handleOnSubmit = {this.handleOnSubmit}
             >
 
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
