@@ -71,6 +71,15 @@ componentDidMount() {
 
   handleOnSubmit(event) {
     event.preventDefault()
+    const newAddress = this.state.address
+    console.log('newAddress',newAddress)
+    console.log('newAddress typeof',typeof newAddress)
+
+    const newAddressArray = newAddress.split(',')
+    console.log('newAddress',newAddressArray.length)
+    const [city, country] = newAddress.split(',')
+    console.log('city and country',city,country)
+
     this.setState({
       addressToSave: 'whatever'
     })
