@@ -98,7 +98,10 @@ componentDidMount() {
 
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
-               <TestComponent placeToSave={this.state.address}/>
+               <TestComponent placeToSave={this.state.address}
+                              cityToSave ={this.state.cityToSave}
+                              countryToSave = {this.state.countryToSave}
+               />
                <form onSubmit={this.handleOnSubmit}>
                  <input type="text"
                   {...getInputProps({
