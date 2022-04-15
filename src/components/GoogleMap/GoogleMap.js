@@ -74,7 +74,15 @@ componentDidMount() {
   handleOnSubmit(event) {
     event.preventDefault()
     const newLocation = this.state.address
-    const [city, country] = newLocation.split(',')
+    if (newLocation.length === 2 ){
+      const [city, country] = newLocation.split(',')
+    } else {
+      const [city,,country] = newLocation.split(',')
+    }
+    const locationsArray = []
+    locationsArray.push(city)
+    locationsArray.push(country)
+    localStorage.setItem('location', locationsArray)
     this.setState({
       cityToSave: city,
       countryToSave:country
