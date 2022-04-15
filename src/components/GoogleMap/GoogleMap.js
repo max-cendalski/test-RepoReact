@@ -33,24 +33,17 @@ export class MapContainer extends React.Component {
 
 componentDidMount() {
   const localStorageData = localStorage.getItem('locations')
-  console.log('typeof',typeof localStorageData)
-  if (typeof localStorageData !== Object) {
-    console.log('whe1')
-
+  if (!localStorageData) {
     this.setState({
     address: 'Paris, France',
     locationsFromLocalStorage: []
   })
-  } if (typeof localStorageData === Object) {
-    console.log('whe2')
-
+  } if( localStorageData) {
     this.setState({
       address: 'Paris, France',
-      locationsFromLocalStorage: []
+      locationsFromLocalStorage: localStorageData
     })
   }
-
-    //console.log('this.state.address',this.state.address)
 }
 /* componentDidUpdate() {
  geocodeByAddress(this.state.address)
@@ -85,32 +78,39 @@ componentDidMount() {
     this.setState({
       address: 'Aliso Viejo, CA, USA'
     })
-    console.log(this.props.value)
   }
 
   handleOnSubmit(event) {
     event.preventDefault()
     const newLocation = this.state.address
-    const [city, country] = newLocation.split(',')
-    this.setState({
-      cityToSave: city,
-      countryToSave:country
-    })
+    const newLocationArray = newLocation.split(',')
+    if (newLocationArray.length === 2) {
+       const [city, country] = newLocationArray
+      this.setState({
+        cityToSave: city,
+        countryToSave: country
+      })
+    }
+    if (newLocationArray.length > 2) {
+       const [city,, country] = newLocationArray
+       this.setState({
+         cityToSave:city,
+         countryToSave:country
+       })
+    }
   }
 
   handleAddLocation(event) {
     event.preventDefault()
-    const resultArray = {}
-    let localStorageArray = []
-    if( this.state.locationsFromLocalStorage.length === 0) {
-      localStorageArray = []
-    } /* if (this.state.locationsFromLocalStorage.length > 1) {
-      localStorageArray = [...this.state.locationsFromLocalStorage]
-    } */
-    console.log('localstoragearray',localStorageArray)
-    const newLocation = this.state.address
-    const locationArray = newLocation.split(',')
-    if (locationArray.length === 2 ){
+    const locationObjectToSave = {
+      city: this.state.cityToSave,
+      country: this.state.countryToSave
+    }
+    let localStorageArray = [...this.state.locationsFromLocalStorage]
+    console.log('localStorageArray',localStorageArray)
+    console.log('locationObjectToSave',locationObjectToSave,)
+
+    /* if (locationArray.length === 2 ){
       resultArray.city= locationArray[0]
       resultArray.country= locationArray[1]
       localStorageArray.push(resultArray)
@@ -131,7 +131,7 @@ componentDidMount() {
         countryToSave: resultArray[2],
         locationsFromLocalStorage: localStorageArray
       })
-    }
+    } */
   }
 
   render() {
@@ -150,7 +150,7 @@ componentDidMount() {
 
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
-               <TestComponent placeToSave={this.state.address}
+               <TestComponent addressToSave={this.state.address}
                               cityToSave ={this.state.cityToSave}
                               countryToSave = {this.state.countryToSave}
                               handleAddLocation = {this.handleAddLocation}
