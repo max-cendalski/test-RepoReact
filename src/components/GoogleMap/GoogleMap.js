@@ -10,7 +10,7 @@ export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locationFromLocalStorage : [],
+      locationsFromLocalStorage : [],
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
@@ -33,10 +33,23 @@ export class MapContainer extends React.Component {
 
 componentDidMount() {
   const localStorageData = localStorage.getItem('locations')
-  this.setState({
+  console.log('typeof',typeof localStorageData)
+  if (typeof localStorageData !== Object) {
+    console.log('whe1')
+
+    this.setState({
     address: 'Paris, France',
-    locationFromLocalStorage: localStorageData
+    locationsFromLocalStorage: []
   })
+  } if (typeof localStorageData === Object) {
+    console.log('whe2')
+
+    this.setState({
+      address: 'Paris, France',
+      locationsFromLocalStorage: []
+    })
+  }
+
     //console.log('this.state.address',this.state.address)
 }
 /* componentDidUpdate() {
@@ -88,26 +101,36 @@ componentDidMount() {
   handleAddLocation(event) {
     event.preventDefault()
     const resultArray = {}
+    let localStorageArray = []
+    if( this.state.locationsFromLocalStorage.length === 0) {
+      localStorageArray = []
+    } /* if (this.state.locationsFromLocalStorage.length > 1) {
+      localStorageArray = [...this.state.locationsFromLocalStorage]
+    } */
+    console.log('localstoragearray',localStorageArray)
     const newLocation = this.state.address
-    console.log('newLocation',newLocation)
     const locationArray = newLocation.split(',')
-    console.log('locationArray',locationArray)
     if (locationArray.length === 2 ){
       resultArray.city= locationArray[0]
       resultArray.country= locationArray[1]
+      localStorageArray.push(resultArray)
+      console.log('localstoragearray',localStorageArray)
+      localStorage.setItem('locations',localStorageArray)
       this.setState({
         cityToSave: resultArray[0],
-        countryToSave: resultArray[1]
+        countryToSave: resultArray[1],
+        locationsFromLocalStorage: localStorageArray
       })
-
     } if (locationArray.length > 2) {
       resultArray.city = (locationArray[0])
       resultArray.country = (locationArray[2])
+      localStorage.setItem('locations', localStorageArray)
+
       this.setState({
         cityToSave: resultArray[0],
-        countryToSave: resultArray[2]
+        countryToSave: resultArray[2],
+        locationsFromLocalStorage: localStorageArray
       })
-      localStorage.setItem('locations', resultArray)
     }
   }
 
