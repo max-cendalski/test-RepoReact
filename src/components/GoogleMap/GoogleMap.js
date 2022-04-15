@@ -91,7 +91,8 @@ componentDidMount() {
     const locationArray = newLocation.split(',')
     console.log('locationArray',locationArray)
     if (locationArray.length === 2 ){
-      locationArray.forEach(item => resultArray.push(item))
+      resultArray.city= locationArray[0]
+      resultArray.country= locationArray[1]
       this.setState({
         cityToSave: resultArray[0],
         countryToSave: resultArray[1]
