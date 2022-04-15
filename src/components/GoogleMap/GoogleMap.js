@@ -32,16 +32,17 @@ export class MapContainer extends React.Component {
 
 
 componentDidMount() {
-  const localStorageData = localStorage.getItem('locations')
-  if (!localStorageData) {
+  const previousLocalStorageData = localStorage.getItem('locations')
+  if (!previousLocalStorageData) {
     this.setState({
     address: 'Paris, France',
     locationsFromLocalStorage: []
   })
-  } if( localStorageData) {
+  } if(previousLocalStorageData) {
+    let localStorageDataToSave = JSON.parse(previousLocalStorageData)
     this.setState({
-      address: 'Paris, France',
-      locationsFromLocalStorage: localStorageData
+      address: '',
+      locationsFromLocalStorage: localStorageDataToSave
     })
   }
 }
@@ -102,36 +103,23 @@ componentDidMount() {
 
   handleAddLocation(event) {
     event.preventDefault()
-    const locationObjectToSave = {
+    const ObjectToSave = {
       city: this.state.cityToSave,
       country: this.state.countryToSave
     }
-    let localStorageArray = [...this.state.locationsFromLocalStorage]
-    console.log('localStorageArray',localStorageArray)
-    console.log('locationObjectToSave',locationObjectToSave,)
-
-    /* if (locationArray.length === 2 ){
-      resultArray.city= locationArray[0]
-      resultArray.country= locationArray[1]
-      localStorageArray.push(resultArray)
-      console.log('localstoragearray',localStorageArray)
-      localStorage.setItem('locations',localStorageArray)
-      this.setState({
-        cityToSave: resultArray[0],
-        countryToSave: resultArray[1],
-        locationsFromLocalStorage: localStorageArray
-      })
-    } if (locationArray.length > 2) {
-      resultArray.city = (locationArray[0])
-      resultArray.country = (locationArray[2])
-      localStorage.setItem('locations', localStorageArray)
-
-      this.setState({
-        cityToSave: resultArray[0],
-        countryToSave: resultArray[2],
-        locationsFromLocalStorage: localStorageArray
-      })
-    } */
+    let localStorageArray = []
+    localStorageArray = this.state.locationsFromLocalStorage
+    localStorageArray.push(ObjectToSave)
+    console.log('localStorageArray',localStorageArray,)
+    this.setState({
+      locationsFromLocalStorage: localStorageArray
+    })
+    var localStorageArrayToSave = JSON.stringify(localStorageArray)
+    localStorage.setItem('locations',localStorageArrayToSave)
+  }
+  handleClickLocation(event) {
+    event.preventDefault()
+    alert('wheee')
   }
 
   render() {
@@ -154,6 +142,7 @@ componentDidMount() {
                               cityToSave ={this.state.cityToSave}
                               countryToSave = {this.state.countryToSave}
                               handleAddLocation = {this.handleAddLocation}
+                              locationsList = {this.state.locationsFromLocalStorage}
                />
                <form onSubmit={this.handleOnSubmit}>
                  <input type="text"

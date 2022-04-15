@@ -2,6 +2,19 @@
   margin: 3rem 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border: 1px solid red;
-  height: 12rem;
+  padding: .5rem;
+}
+
+.locations-list ul {
+  padding: 0;
+}
+
+.locations-list li {
+  border: 3px solid burlywood;
+  padding: 0.5rem;
+  margin: 1rem;
+  cursor: pointer;
+  list-style: none;
 }
