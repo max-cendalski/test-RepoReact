@@ -28,6 +28,7 @@ export class MapContainer extends React.Component {
     this.handleChangeLocation = this.handleChangeLocation.bind(this)
     this.handleOnSubmit = this.handleOnSubmit.bind(this)
     this.handleAddLocation = this.handleAddLocation.bind(this)
+    this.handleClickLocation = this.handleAddLocation.bind(this)
   }
 
 
@@ -107,12 +108,14 @@ componentDidMount() {
       city: this.state.cityToSave,
       country: this.state.countryToSave
     }
+    if (!this.state.cityToSave) return
     let localStorageArray = []
     localStorageArray = this.state.locationsFromLocalStorage
     localStorageArray.push(ObjectToSave)
-    console.log('localStorageArray',localStorageArray,)
     this.setState({
-      locationsFromLocalStorage: localStorageArray
+      locationsFromLocalStorage: localStorageArray,
+      cityToSave: '',
+      countryToSave: ''
     })
     var localStorageArrayToSave = JSON.stringify(localStorageArray)
     localStorage.setItem('locations',localStorageArrayToSave)
@@ -143,6 +146,7 @@ componentDidMount() {
                               countryToSave = {this.state.countryToSave}
                               handleAddLocation = {this.handleAddLocation}
                               locationsList = {this.state.locationsFromLocalStorage}
+                              handleClickLocation = {this.handleAddLocation}
                />
                <form onSubmit={this.handleOnSubmit}>
                  <input type="text"
