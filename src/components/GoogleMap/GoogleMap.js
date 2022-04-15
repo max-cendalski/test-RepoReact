@@ -10,6 +10,7 @@ export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      locationFromLocalStorage : [],
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
@@ -31,8 +32,10 @@ export class MapContainer extends React.Component {
 
 
 componentDidMount() {
+  const localStorageData = localStorage.getItem('locations')
   this.setState({
-    address: 'Paris, France'
+    address: 'Paris, France',
+    locationFromLocalStorage: localStorageData
   })
     //console.log('this.state.address',this.state.address)
 }
@@ -80,7 +83,6 @@ componentDidMount() {
       cityToSave: city,
       countryToSave:country
     })
-    console.log('this.state.addressToSave',this.state.address)
   }
 
   handleAddLocation(event) {
@@ -97,10 +99,10 @@ componentDidMount() {
         cityToSave: resultArray[0],
         countryToSave: resultArray[1]
       })
-      localStorage.setItem('locations', resultArray)
+
     } if (locationArray.length > 2) {
-      resultArray.push(locationArray[0])
-      resultArray.push(locationArray[2])
+      resultArray.city = (locationArray[0])
+      resultArray.country = (locationArray[2])
       this.setState({
         cityToSave: resultArray[0],
         countryToSave: resultArray[2]
