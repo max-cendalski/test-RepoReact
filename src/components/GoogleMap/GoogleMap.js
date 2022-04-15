@@ -73,24 +73,36 @@ componentDidMount() {
 
   handleOnSubmit(event) {
     event.preventDefault()
+    const newLocation = this.state.address
+    const [city, country] = newLocation.split(',')
+    this.setState({
+      cityToSave: city,
+      countryToSave:country
+    })
+    console.log('this.state.addressToSave',this.state.address)
+  }
+
+  handleAddLocation(event) {
+    event.preventDefault()
     const resultArray = []
     const newLocation = this.state.address
     console.log('newLocation',newLocation)
     const locationArray = newLocation.split(',')
+    console.log('locationArray',locationArray)
     if (locationArray.length === 2 ){
       locationArray.forEach(item => resultArray.push(item))
       this.setState({
         cityToSave: resultArray[0],
         countryToSave: resultArray[1]
       })
+      localStorage.setItem('locations', resultArray)
     } else {
       this.setState({
         cityToSave: resultArray[0],
         countryToSave: resultArray[2]
       })
+      localStorage.setItem('locations', resultArray)
     }
-    localStorage.setItem('location', resultArray)
-    console.log('this.state.addressToSave',this.state.address)
   }
 
   render() {
