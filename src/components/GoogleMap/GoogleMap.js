@@ -38,13 +38,15 @@ componentDidMount() {
   if (!previousLocalStorageData) {
     this.setState({
     address: '',
-    locationsFromLocalStorage: []
+    locationsFromLocalStorage: [],
+    map: 'hidden'
   })
   } if(previousLocalStorageData) {
     let localStorageDataToSave = JSON.parse(previousLocalStorageData)
     this.setState({
       address: '',
-      locationsFromLocalStorage: localStorageDataToSave
+      locationsFromLocalStorage: localStorageDataToSave,
+      map: 'hidden'
     })
   }
 }
