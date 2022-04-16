@@ -121,7 +121,8 @@ componentDidMount() {
   .then(({ lat, lng }) => {
     console.log('Successfully got latitude and longitude', { lat, lng })
    this.setState({
-    mapCenter: {lat,lng}
+    mapCenter: {lat,lng},
+    map:'map'
    })
   })
 }
@@ -133,6 +134,7 @@ componentDidMount() {
     }
     return (
       <>
+      <article id="googleMapsComponent">
         <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
@@ -208,6 +210,7 @@ componentDidMount() {
         </Map>
 
       </div>
+      </article>
       </>
     )
   }
