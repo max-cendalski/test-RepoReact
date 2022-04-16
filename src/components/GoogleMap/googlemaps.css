@@ -2,3 +2,11 @@
   position: absolute;
   z-index: 99;
 }
+
+.map {
+  display: block;
+}
+
+.hidden {
+  visibility: hidden;
+}

@@ -22,7 +22,8 @@ export class MapContainer extends React.Component {
       mapCenter: {
         lat: 33.5685,
         lng: -117.7263
-      }
+      },
+      map:'hidden'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -47,18 +48,6 @@ componentDidMount() {
     })
   }
 }
-/* componentDidUpdate() {
- geocodeByAddress(this.state.address)
-  .then(results => getLatLng(results[0]))
-  .then(({ lat, lng }) => {
-    this.setState({
-      mapCenter: {
-        lat: lat,
-        lng: lng
-      }
-    })
-  })
-} */
 
   handleChange = address => {
     this.setState({ address });
@@ -75,7 +64,6 @@ componentDidMount() {
       })
       .catch(error => console.error('Error', error));
   };
-
 
   handleOnSubmit(event) {
     event.preventDefault()
@@ -126,22 +114,6 @@ componentDidMount() {
       cityToSave: cityName,
       countryToSave: countryName
     })
-  /*    geocodeByAddress(cityName, countryName)
-    .then(results => {
-      console.log(results[0])
-      let lat = results[0].geometry.viewport.Ab.g
-      let lng = results[0].geometry.viewport.Ra.g
-      this.setState({
-        mapCenter: {
-          lat:lat,
-          lng:lng
-        }
-      })
-    })
-    .catch(error => console.error(error));
-    geocodeByPlaceId('ChIJ0RhONcBEFkcRv4pHdrW2a7Q')
-  .then(results => console.log(results))
-  .catch(error => console.error(error)); */
   geocodeByAddress(cityName, countryName)
   .then(results => getLatLng(results[0]))
   .then(({ lat, lng }) => {
@@ -212,7 +184,7 @@ componentDidMount() {
               </div>
             )}
       </PlacesAutocomplete>
-      <div id = "googleMap">
+      <div id = "googleMap" className={this.state.map}>
         <Map
             containerStyle={containerStyle}
             google={this.props.google}

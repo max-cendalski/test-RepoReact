@@ -9,12 +9,7 @@ import { useState, useEffect } from "react"
 
 
 export default function Places(props) {
-let countries = []
-let cities = []
-
-
 const [locations, setLocation] = useState([])
-console.log('locations',locations)
 
 useEffect(() => {
   const data = localStorage.getItem('my-places')
