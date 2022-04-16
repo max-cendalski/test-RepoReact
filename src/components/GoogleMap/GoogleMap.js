@@ -3,6 +3,7 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
+  geocodeByPlaceId
 } from 'react-places-autocomplete';
 import React from 'react';
 import TestComponent from '../TestComponent';
@@ -25,10 +26,9 @@ export class MapContainer extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
-    this.handleChangeLocation = this.handleChangeLocation.bind(this)
     this.handleOnSubmit = this.handleOnSubmit.bind(this)
     this.handleAddLocation = this.handleAddLocation.bind(this)
-    this.handleClickLocation = this.handleAddLocation.bind(this)
+    this.handleClickLocation = this.handleClickLocation.bind(this)
   }
 
 
@@ -36,7 +36,7 @@ componentDidMount() {
   const previousLocalStorageData = localStorage.getItem('locations')
   if (!previousLocalStorageData) {
     this.setState({
-    address: 'Paris, France',
+    address: '',
     locationsFromLocalStorage: []
   })
   } if(previousLocalStorageData) {
@@ -76,11 +76,6 @@ componentDidMount() {
       .catch(error => console.error('Error', error));
   };
 
-  handleChangeLocation() {
-    this.setState({
-      address: 'Aliso Viejo, CA, USA'
-    })
-  }
 
   handleOnSubmit(event) {
     event.preventDefault()
@@ -120,10 +115,42 @@ componentDidMount() {
     var localStorageArrayToSave = JSON.stringify(localStorageArray)
     localStorage.setItem('locations',localStorageArrayToSave)
   }
+
   handleClickLocation(event) {
     event.preventDefault()
-    alert('wheee')
-  }
+    let cityName = event.target.getAttribute('data-city')
+    let countryName = event.target.getAttribute('data-country')
+    let addressToShowOnMap = `${cityName}, ${countryName}`
+    this.setState({
+      address: addressToShowOnMap,
+      cityToSave: cityName,
+      countryToSave: countryName
+    })
+  /*    geocodeByAddress(cityName, countryName)
+    .then(results => {
+      console.log(results[0])
+      let lat = results[0].geometry.viewport.Ab.g
+      let lng = results[0].geometry.viewport.Ra.g
+      this.setState({
+        mapCenter: {
+          lat:lat,
+          lng:lng
+        }
+      })
+    })
+    .catch(error => console.error(error));
+    geocodeByPlaceId('ChIJ0RhONcBEFkcRv4pHdrW2a7Q')
+  .then(results => console.log(results))
+  .catch(error => console.error(error)); */
+  geocodeByAddress(cityName, countryName)
+  .then(results => getLatLng(results[0]))
+  .then(({ lat, lng }) => {
+    console.log('Successfully got latitude and longitude', { lat, lng })
+   this.setState({
+    mapCenter: {lat,lng}
+   })
+  })
+}
 
   render() {
     const containerStyle= {
@@ -146,7 +173,7 @@ componentDidMount() {
                               countryToSave = {this.state.countryToSave}
                               handleAddLocation = {this.handleAddLocation}
                               locationsList = {this.state.locationsFromLocalStorage}
-                              handleClickLocation = {this.handleAddLocation}
+                              handleClickLocation = {this.handleClickLocation}
                />
                <form onSubmit={this.handleOnSubmit}>
                  <input type="text"
@@ -176,9 +203,7 @@ componentDidMount() {
                           className,
                           style,
                         })}
-
                       >
-
                       <span>{suggestion.description}</span>
                       </div>
                     );
@@ -209,8 +234,6 @@ componentDidMount() {
         </Map>
 
       </div>
-               <button onClick={this.handleChangeLocation}>Click to change location</button>
-
       </>
     )
   }

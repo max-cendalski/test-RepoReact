@@ -16,11 +16,12 @@ export default function TestComponent (props) {
         <ul>
           {
             props.locationsList.map((location, index) => {
-              return <li onClick={props.handleClickLocation} key={index}>{location.country} : {location.city}</li>
+              return <li onClick={props.handleClickLocation} data-city={location.city} data-country={location.country} key={index}>{location.city} : {location.country}</li>
             })
           }
         </ul>
       </section>
+
     </>
   )
 }
