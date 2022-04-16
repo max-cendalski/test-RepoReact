@@ -119,7 +119,6 @@ componentDidMount() {
   geocodeByAddress(cityName, countryName)
   .then(results => getLatLng(results[0]))
   .then(({ lat, lng }) => {
-    console.log('Successfully got latitude and longitude', { lat, lng })
    this.setState({
     mapCenter: {lat,lng},
     map:'map'
@@ -144,13 +143,6 @@ componentDidMount() {
 
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
-               <TestComponent addressToSave={this.state.address}
-                              cityToSave ={this.state.cityToSave}
-                              countryToSave = {this.state.countryToSave}
-                              handleAddLocation = {this.handleAddLocation}
-                              locationsList = {this.state.locationsFromLocalStorage}
-                              handleClickLocation = {this.handleClickLocation}
-               />
                <form onSubmit={this.handleOnSubmit}>
                  <input type="text"
                   {...getInputProps({
@@ -210,6 +202,13 @@ componentDidMount() {
         </Map>
 
       </div>
+      <TestComponent addressToSave={this.state.address}
+                              cityToSave ={this.state.cityToSave}
+                              countryToSave = {this.state.countryToSave}
+                              handleAddLocation = {this.handleAddLocation}
+                              locationsList = {this.state.locationsFromLocalStorage}
+                              handleClickLocation = {this.handleClickLocation}
+               />
       </article>
       </>
     )

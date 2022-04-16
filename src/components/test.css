@@ -22,3 +22,8 @@
   cursor: pointer;
   list-style: none;
 }
+
+.locations-list li:hover {
+  background-color: lightgoldenrodyellow;
+  cursor: pointer
+}

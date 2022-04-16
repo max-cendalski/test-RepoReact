@@ -12,7 +12,7 @@ export default function TestComponent (props) {
       <button onClick={props.handleAddLocation}>Add to locations list</button>
     </section>
     <section className='locations-list'>
-      <h2>Locations you can check on a map</h2>
+      <h2>Click to see location on a map</h2>
         <ul>
           {
             props.locationsList.map((location, index) => {
