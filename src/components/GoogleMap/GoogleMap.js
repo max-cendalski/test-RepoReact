@@ -151,8 +151,6 @@ componentDidMount() {
                 />
                 <button>Submit</button>
                </form>
-
-
                 <div className="autocomplete-dropdown-container">
                   {loading && <div>Loading...</div>}
                   {suggestions.map((suggestion,index) => {
@@ -179,7 +177,15 @@ componentDidMount() {
               </div>
             )}
       </PlacesAutocomplete>
-      <div id = "googleMap" className={this.state.map}>
+
+      <TestComponent addressToSave={this.state.address}
+                              cityToSave ={this.state.cityToSave}
+                              countryToSave = {this.state.countryToSave}
+                              handleAddLocation = {this.handleAddLocation}
+                              locationsList = {this.state.locationsFromLocalStorage}
+                              handleClickLocation = {this.handleClickLocation}
+               />
+                <section id="googleMap" className={this.state.map}>
         <Map
             containerStyle={containerStyle}
             google={this.props.google}
@@ -199,15 +205,7 @@ componentDidMount() {
             }}
           />
         </Map>
-
-      </div>
-      <TestComponent addressToSave={this.state.address}
-                              cityToSave ={this.state.cityToSave}
-                              countryToSave = {this.state.countryToSave}
-                              handleAddLocation = {this.handleAddLocation}
-                              locationsList = {this.state.locationsFromLocalStorage}
-                              handleClickLocation = {this.handleClickLocation}
-               />
+      </section>
       </article>
       </>
     )
