@@ -132,14 +132,13 @@ componentDidMount() {
     }
     return (
       <>
-      <article id="googleMapsComponent">
+      <article id="placesPage">
         <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
             handleOnSubmit = {this.handleOnSubmit}
             >
-
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
                <form onSubmit={this.handleOnSubmit}>
@@ -177,16 +176,19 @@ componentDidMount() {
               </div>
             )}
       </PlacesAutocomplete>
+      <article>
+        <section>
+          <TestComponent addressToSave={this.state.address}
+                  cityToSave ={this.state.cityToSave}
+                  countryToSave = {this.state.countryToSave}
+                  handleAddLocation = {this.handleAddLocation}
+                  locationsList = {this.state.locationsFromLocalStorage}
+                  handleClickLocation = {this.handleClickLocation}
+          />
+        </section>
 
-      <TestComponent addressToSave={this.state.address}
-                              cityToSave ={this.state.cityToSave}
-                              countryToSave = {this.state.countryToSave}
-                              handleAddLocation = {this.handleAddLocation}
-                              locationsList = {this.state.locationsFromLocalStorage}
-                              handleClickLocation = {this.handleClickLocation}
-               />
-                <section id="googleMap" className={this.state.map}>
-        <Map
+        <section id="map" className={this.state.map}>
+          <Map
             containerStyle={containerStyle}
             google={this.props.google}
             initialCenter = {{
@@ -198,16 +200,17 @@ componentDidMount() {
               lng:this.state.mapCenter.lng
             }}
             >
-          <Marker
+            <Marker
             position= {{
               lat:this.state.mapCenter.lat,
               lng:this.state.mapCenter.lng
             }}
-          />
-        </Map>
-      </section>
+            />
+          </Map>
+        </section>
       </article>
-      </>
+      </article>
+    </>
     )
   }
 }

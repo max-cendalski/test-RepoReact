@@ -11,6 +11,11 @@
   visibility: hidden;
 }
 
-#googleMapsComponent {
+#placesPage{
   display: grid;
+  width: 80%
+}
+
+#placesAutoComplete {
+  background-color: aquamarine;
 }
