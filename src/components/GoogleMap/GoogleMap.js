@@ -2,8 +2,7 @@ import './googlemaps.css'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import PlacesAutocomplete, {
   geocodeByAddress,
-  getLatLng,
-  geocodeByPlaceId
+  getLatLng
 } from 'react-places-autocomplete';
 import React from 'react';
 import TestComponent from '../TestComponent';
