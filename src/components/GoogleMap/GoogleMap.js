@@ -176,7 +176,6 @@ componentDidMount() {
               </div>
             )}
       </PlacesAutocomplete>
-      <article>
         <section>
           <TestComponent addressToSave={this.state.address}
                   cityToSave ={this.state.cityToSave}
@@ -208,7 +207,6 @@ componentDidMount() {
             />
           </Map>
         </section>
-      </article>
       </article>
     </>
     )
