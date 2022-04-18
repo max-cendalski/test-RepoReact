@@ -5,7 +5,6 @@ import PlacesAutocomplete, {
   getLatLng
 } from 'react-places-autocomplete';
 import React from 'react';
-import TestComponent from '../TestComponent';
 export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -127,8 +126,8 @@ componentDidMount() {
 
   render() {
     const containerStyle= {
-      width: '40%',
-      height: '40%'
+      width: '10rem',
+      height:'10rem'
     }
     return (
       <>

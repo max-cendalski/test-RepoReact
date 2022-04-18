@@ -9,7 +9,7 @@
 
 #placespage{
   display: grid;
-  grid-template-columns: 0.5fr 1fr 1fr 1.5fr;
+  grid-template-columns: 0.5fr 0.5fr 1fr 2fr;
 }
 
 #placesAutoComplete {
@@ -19,7 +19,6 @@
 
 
 .search-section {
-  width: 50%;
 }
 
 .location-name {
@@ -30,5 +29,5 @@
 }
 
 #map {
-
+  margin: 0 auto 0 1rem;
 }
