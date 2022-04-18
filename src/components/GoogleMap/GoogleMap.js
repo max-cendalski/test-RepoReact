@@ -126,14 +126,13 @@ componentDidMount() {
 
   render() {
     const containerStyle= {
-      width: '30%',
-      height:'50%'
+      width: '500px',
+      height:'50%',
+      'margin-top':'1rem'
     }
     return (
       <>
       <article id="placespage">
-
-
       <section className='search-section'>
         <PlacesAutocomplete
             value={this.state.address}
