@@ -1,0 +1,29 @@
+.test-component-header {
+  margin: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid red;
+  padding: .5rem;
+}
+
+.locations-list ul {
+  padding: 0;
+}
+.locations-list {
+  padding: 1rem;
+  border: 2px solid red;
+}
+
+.locations-list li {
+  border: 3px solid burlywood;
+  padding: 0.5rem;
+  margin: 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.locations-list li:hover {
+  background-color: lightgoldenrodyellow;
+  cursor: pointer
+}

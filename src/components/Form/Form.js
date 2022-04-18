@@ -38,7 +38,7 @@ export default function Form(props)  {
           type='submit'
           name="save-button"
         >
-        Submit
+        Submit...
         </button>
       </form>
     </section>
