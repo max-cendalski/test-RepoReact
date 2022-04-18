@@ -9,7 +9,12 @@
 
 #placespage{
   display: grid;
-  grid-template-columns: 0.5fr 0.5fr 1fr 2fr;
+  margin-top: 1rem;
+  grid-gap: 1rem;
+ grid-template-columns: 200px 30% 300px 400px
+
+
+
 }
 
 #placesAutoComplete {
@@ -17,15 +22,28 @@
 }
 
 
-
 .search-section {
+
 }
 
-.location-name {
-
+.location-name * {
+  padding: 0.5rem;
 }
 .locations-list {
 
+}
+.locations-list ul {
+  padding: 0;
+}
+
+.locations-list li {
+    border: 3px solid burlywood;
+    padding: 0.5rem;
+    margin: 1rem;
+    cursor: pointer;
+    list-style: none;
+    font-weight: bold;
+    color:brown
 }
 
 #map {

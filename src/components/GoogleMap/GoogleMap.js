@@ -126,8 +126,8 @@ componentDidMount() {
 
   render() {
     const containerStyle= {
-      width: '10rem',
-      height:'10rem'
+      width: '30%',
+      height:'50%'
     }
     return (
       <>
@@ -182,7 +182,6 @@ componentDidMount() {
 
 
       <section className='location-name'>
-        <h1>Test Component</h1>
         <h3>Location to save: {this.state.placeToSave}</h3>
         <h4>City: {this.state.cityToSave}</h4>
         <h4>Country: {this.state.countryToSave}</h4>

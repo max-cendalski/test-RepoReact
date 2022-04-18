@@ -31,13 +31,7 @@ function handlePlaceClick(event) {
       <>
        <Navbar />
        <article id="placescontainer">
-        <ul>
-          {
-            locations.map((location,index) => (
-            <li onClick={handlePlaceClick} className="list-element" key={index + 1} id={location.city}>{location.country} : {location.city}</li>
-          ))
-          }
-        </ul>
+
         <GoogleMaps handlePlaceClick={handlePlaceClick}/>
         </article>
       </>
