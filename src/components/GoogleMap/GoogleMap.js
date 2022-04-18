@@ -127,8 +127,7 @@ componentDidMount() {
   render() {
     const containerStyle= {
       width: '600px',
-      height:'60%',
-      'margin-top':'1rem'
+      height:'60%'
     }
     return (
       <>
@@ -230,5 +229,5 @@ componentDidMount() {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyCfY6ZRvXRb8M7sKT5QM2pWZmuF6NCECEM")
+  apiKey: process.env.REACT_APP_api_key
 })(MapContainer)
