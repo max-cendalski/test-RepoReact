@@ -132,7 +132,10 @@ componentDidMount() {
     }
     return (
       <>
-      <article id="placesPage">
+      <article id="placespage">
+
+
+      <section className='search-section'>
         <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
@@ -175,16 +178,30 @@ componentDidMount() {
                 </div>
               </div>
             )}
-      </PlacesAutocomplete>
-        <section>
-          <TestComponent addressToSave={this.state.address}
-                  cityToSave ={this.state.cityToSave}
-                  countryToSave = {this.state.countryToSave}
-                  handleAddLocation = {this.handleAddLocation}
-                  locationsList = {this.state.locationsFromLocalStorage}
-                  handleClickLocation = {this.handleClickLocation}
-          />
+          </PlacesAutocomplete>
+      </section>
+
+
+      <section className='location-name'>
+        <h1>Test Component</h1>
+        <h3>Location to save: {this.state.placeToSave}</h3>
+        <h4>City: {this.state.cityToSave}</h4>
+        <h4>Country: {this.state.countryToSave}</h4>
+        <button onClick={this.handleAddLocation}>Add to locations list</button>
+      </section>
+
+
+      <section className='locations-list'>
+        <h2>Click to see location on a map</h2>
+          <ul>
+            {
+              this.state.locationsFromLocalStorage.map((location, index) => {
+                return <li onClick={this.handleClickLocation} data-city={location.city} data-country={location.country} key={index}>{location.city} : {location.country}</li>
+              })
+            }
+          </ul>
         </section>
+
 
         <section id="map" className={this.state.map}>
           <Map
@@ -207,6 +224,8 @@ componentDidMount() {
             />
           </Map>
         </section>
+
+
       </article>
     </>
     )

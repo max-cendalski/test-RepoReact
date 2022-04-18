@@ -30,7 +30,7 @@ function handlePlaceClick(event) {
     return (
       <>
        <Navbar />
-       <div className="list-container">
+       <article id="placescontainer">
         <ul>
           {
             locations.map((location,index) => (
@@ -39,7 +39,7 @@ function handlePlaceClick(event) {
           }
         </ul>
         <GoogleMaps handlePlaceClick={handlePlaceClick}/>
-      </div>
+        </article>
       </>
     )
 }

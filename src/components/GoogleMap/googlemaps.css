@@ -3,19 +3,32 @@
   z-index: 99;
 }
 
-.map {
-  display: block;
-}
-
 .hidden {
   visibility: hidden;
 }
 
-#placesPage{
-  display: flex;
-  flex-direction: row;
+#placespage{
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1fr 1.5fr;
 }
 
 #placesAutoComplete {
   background-color: aquamarine;
+}
+
+
+
+.search-section {
+  width: 50%;
+}
+
+.location-name {
+
+}
+.locations-list {
+
+}
+
+#map {
+
 }
