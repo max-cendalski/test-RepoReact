@@ -16,11 +16,9 @@
   grid-template-rows: 10% 1fr 1fr
 }
 
-
 #placesAutoComplete {
   background-color: aquamarine;
 }
-
 
 .search-section {
   margin-top: 1rem;

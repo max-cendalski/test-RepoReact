@@ -126,8 +126,8 @@ componentDidMount() {
 
   render() {
     const containerStyle= {
-      width: '500px',
-      height:'50%',
+      width: '600px',
+      height:'60%',
       'margin-top':'1rem'
     }
     return (
