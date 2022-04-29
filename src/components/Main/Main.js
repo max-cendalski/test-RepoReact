@@ -7,32 +7,27 @@ export default function Main(props) {
   const[location, setLocation] = useState(props.data)
   const [searchResult, setSearchResult] = useState([])
 
-useEffect(()=> {
-  const newLocation = [...location]
-   let newArray = []
-   newLocation.forEach(place => {
-     if (place.country.includes('j')) {
-       console.log('bingo')
-       newArray.push(place.country)
-       setSearchResult(newArray)
-     } else {
-       console.log('no-bingo')
-     }
-    })
-},[location])
+ useEffect(()=> {
+
+},[searchResult])
 
  function changed(ev) {
    let letter = ev.target.value
-   let word = 'japan'
    const newLocation = [...location]
    console.log('onInput',letter)
    let newArray = []
    newLocation.forEach(place => {
      console.log('place',place.country)
-     if (place.country.includes('poland')) {
+     console.log('letter',letter)
+     if (letter === '') {
+       setSearchResult([])
+     }
+     if (place.country.includes(letter)) {
        console.log('bingo')
        newArray.push(place.country)
+       console.log('newArray',newArray)
        setSearchResult(newArray)
+       console.log('searchResult',searchResult)
      } else {
        console.log('no-bingo')
      }
@@ -53,21 +48,21 @@ useEffect(()=> {
             onInput={(ev) => changed(ev)}
           />
         </p>
-        <p>{searchResult}</p>
-        <ul className='results-list'>
-          {
-            searchResult && searchResult.map((result,index) => {
-              return <li key={index}>{result.country}</li>
-            })
-          }
-        </ul>
-
       </form>
-      {
-        props.data.map((place, index) => {
-        return  <li key={index}>My location is :{place.country}</li>
+      <ul className='search-result'>
+        {
+          searchResult && searchResult.map((location,index) => {
+            return <li key={index}>{location}</li>
+          })
+        }
+      </ul>
+      <ul className='locations-list'>
+        {
+           props.data.map((place, index) => {
+           return  <li key={index}>My location is :{place.country}</li>
         })
-      }
+        }
+      </ul>
     </article>
   )
 }
