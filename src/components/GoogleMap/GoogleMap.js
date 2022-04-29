@@ -114,12 +114,12 @@ componentDidMount() {
       cityToSave: cityName,
       countryToSave: countryName
     })
+
   geocodeByAddress(cityName, countryName)
   .then(results => getLatLng(results[0]))
   .then(({ lat, lng }) => {
    this.setState({
-    mapCenter: {lat,lng},
-    map:'map'
+    mapCenter: {lat,lng}
    })
   })
 }
@@ -132,7 +132,7 @@ componentDidMount() {
     return (
       <>
       <article id="placespage">
-      <section className='search-section'>
+       <section className='search-section'>
         <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
