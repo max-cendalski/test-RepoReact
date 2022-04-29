@@ -8,24 +8,24 @@ import Weather from '../Weather/Weather.js';
 export default function App() {
   const appTitle = "Test App"
   const data=[{
-    country:'Japan',
-    city: 'Tokyo'
+    country:'japan',
+    city: 'tokyo'
   },
 {
-    country:'US',
-    city: 'Los Angeles'
+    country:'us',
+    city: 'los Angeles'
   },
 {
-    country:'Poland',
-    city: 'Lodz'
+    country:'poland',
+    city: 'lodz'
   },
   {
-    country:'Norway',
-    city: 'Trondheim'
+    country:'norway',
+    city: 'trondheim'
   },
 {
-    country:'Australia',
-    city: 'Sydney'
+    country:'australia',
+    city: 'sydney'
   }]
   return (
       <>

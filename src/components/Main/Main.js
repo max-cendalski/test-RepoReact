@@ -4,15 +4,40 @@ import { useEffect, useState } from 'react'
 
 
 export default function Main(props) {
-  const[location, setLocation] = useState([props.data])
-  const [searchResult, setSearchResult] = useState('')
-  console.log('location',location)
+  const[location, setLocation] = useState(props.data)
+  const [searchResult, setSearchResult] = useState([])
+
+useEffect(()=> {
+  const newLocation = [...location]
+   let newArray = []
+   newLocation.forEach(place => {
+     if (place.country.includes('j')) {
+       console.log('bingo')
+       newArray.push(place.country)
+       setSearchResult(newArray)
+     } else {
+       console.log('no-bingo')
+     }
+    })
+},[location])
 
  function changed(ev) {
    let letter = ev.target.value
+   let word = 'japan'
+   const newLocation = [...location]
    console.log('onInput',letter)
-   setSearchResult('letter')
- }
+   let newArray = []
+   newLocation.forEach(place => {
+     console.log('place',place.country)
+     if (place.country.includes('poland')) {
+       console.log('bingo')
+       newArray.push(place.country)
+       setSearchResult(newArray)
+     } else {
+       console.log('no-bingo')
+     }
+   })
+   }
 
   return (
     <article id="main-container">
@@ -28,6 +53,7 @@ export default function Main(props) {
             onInput={(ev) => changed(ev)}
           />
         </p>
+        <p>{searchResult}</p>
         <ul className='results-list'>
           {
             searchResult && searchResult.map((result,index) => {
