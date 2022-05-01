@@ -15,22 +15,23 @@ export default function Main(props) {
    let letter = ev.target.value.toLowerCase()
    const newLocation = [...location]
    console.log('location',location)
+   let newCountryArray = []
    let newArray = []
    if (letter === '') {
-     setSearchResult(newArray)
+     setSearchResult(newCountryArray)
    } else {
      newLocation.forEach(place => {
-     if (place.country.toLowerCase().includes(letter)) {
-       newArray.push(place.country)
+       console.log('place',place)
+     if (place.country.toLowerCase().includes(letter) || place.city.toLowerCase().includes(letter)) {
+        newArray.push(place)
        setSearchResult(newArray)
      }
    })
   }
 }
 function handleSearchClick(event) {
-  let dataCountry = event.target.getAttribute('data-country')
-  console.log('dataCountry',dataCountry)
   console.log('dataCountry console',event.target.getAttribute('data-country'))
+  console.log('dataCountry console',event.target.getAttribute('data-city'))
 }
 
   return (
@@ -52,7 +53,7 @@ function handleSearchClick(event) {
         <ul className='search-result'>
           {
             searchResult && searchResult.map((location,index) => {
-            return <li onClick={handleSearchClick} data-country={location} className='searched-location' key={index}>{location}</li>
+            return <li onClick={handleSearchClick} data-country={location.country} data-city={location.city} className='searched-location' key={index}>{location.country}: {location.city}</li>
             })
           }
         </ul>
