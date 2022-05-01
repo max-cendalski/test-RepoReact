@@ -26,6 +26,9 @@ export default function Main(props) {
    })
   }
 }
+function handleSearchClick() {
+  console.log('wheeee')
+}
 
   return (
     <article id="main-container">
@@ -46,7 +49,7 @@ export default function Main(props) {
         <ul className='search-result'>
           {
             searchResult && searchResult.map((location,index) => {
-            return <li className='searched-location' key={index}>{location}</li>
+            return <li onClick={handleSearchClick} className='searched-location' key={index}>{location}</li>
             })
           }
         </ul>
