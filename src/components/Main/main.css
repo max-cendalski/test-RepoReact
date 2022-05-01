@@ -1,12 +1,15 @@
 #main-container {
   margin-top: 3rem;
 }
+
+#search-section {
+  position: relative;
+}
 .search-result {
   list-style: none;
   position: absolute;
   background-color: white;
   width: 12rem;
-  left: 4rem
 }
 
 .my-locations-list {

@@ -42,13 +42,16 @@ export default function Main(props) {
           />
         </p>
       </form>
-      <ul className='search-result'>
-        {
-          searchResult && searchResult.map((location,index) => {
+      <section id="search-section">
+        <ul className='search-result'>
+          {
+            searchResult && searchResult.map((location,index) => {
             return <li className='searched-location' key={index}>{location}</li>
-          })
-        }
-      </ul>
+            })
+          }
+        </ul>
+      </section>
+
       <ul className='my-locations-list'>
         {
            props.data.map((place, index) => {
