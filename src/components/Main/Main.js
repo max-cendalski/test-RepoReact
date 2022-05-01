@@ -12,7 +12,7 @@ export default function Main(props) {
 },[searchResult]) */
 
  function changed(ev) {
-   let letter = ev.target.value
+   let letter = ev.target.value.toLowerCase()
    const newLocation = [...location]
    let newArray = []
    if (letter === '') {
@@ -26,8 +26,10 @@ export default function Main(props) {
    })
   }
 }
-function handleSearchClick() {
-  console.log('wheeee')
+function handleSearchClick(event) {
+  let dataCountry = event.target.getAttribute('data-country')
+  console.log('dataCountry',dataCountry)
+  console.log('dataCountry console',event.target.getAttribute('data-country'))
 }
 
   return (
@@ -49,7 +51,7 @@ function handleSearchClick() {
         <ul className='search-result'>
           {
             searchResult && searchResult.map((location,index) => {
-            return <li onClick={handleSearchClick} className='searched-location' key={index}>{location}</li>
+            return <li onClick={handleSearchClick} data-country={location} className='searched-location' key={index}>{location}</li>
             })
           }
         </ul>
