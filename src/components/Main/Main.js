@@ -21,7 +21,6 @@ export default function Main(props) {
      setSearchResult(newCountryArray)
    } else {
      newLocation.forEach(place => {
-       console.log('place',place)
      if (place.country.toLowerCase().includes(letter) || place.city.toLowerCase().includes(letter)) {
         newArray.push(place)
        setSearchResult(newArray)
@@ -30,8 +29,8 @@ export default function Main(props) {
   }
 }
 function handleSearchClick(event) {
-  console.log('dataCountry console',event.target.getAttribute('data-country'))
-  console.log('dataCountry console',event.target.getAttribute('data-city'))
+  console.log('dataCountry ',event.target.getAttribute('data-country'))
+  console.log('dataCountry ',event.target.getAttribute('data-city'))
 }
 
   return (

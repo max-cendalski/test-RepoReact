@@ -12,7 +12,7 @@ export default function App() {
     city: 'Tokyo'
   },
 {
-    country:'US',
+    country:'United States',
     city: 'Los Angeles'
   },
 {
@@ -21,7 +21,7 @@ export default function App() {
   },
   {
     country:'Norway',
-    city: 'Tndheim'
+    city: 'Trondheim'
   },
 {
     country:'Australia',

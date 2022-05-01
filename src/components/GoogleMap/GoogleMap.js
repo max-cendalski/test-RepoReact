@@ -13,7 +13,7 @@ export class MapContainer extends React.Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      address: '',
+      address: 'Japan, Tokyo',
       addressToSave: [],
       cityToSave: '',
       countryToSave: '',
@@ -112,7 +112,8 @@ componentDidMount() {
     this.setState({
       address: addressToShowOnMap,
       cityToSave: cityName,
-      countryToSave: countryName
+      countryToSave: countryName,
+      map:''
     })
 
   geocodeByAddress(cityName, countryName)

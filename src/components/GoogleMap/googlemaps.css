@@ -3,9 +3,6 @@
   z-index: 99;
 }
 
-.hidden {
-  visibility: hidden;
-}
 
 #placespage {
   padding: .5rem;
@@ -54,6 +51,10 @@
 
 #map {
   margin: 3rem auto 0 .5rem;
+  border: 1px solid red;
+}
+.hidden {
+  visibility: hidden;
 }
 
 @media only screen and (max-width: 768px) {
