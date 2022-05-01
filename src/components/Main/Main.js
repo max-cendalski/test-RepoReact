@@ -14,12 +14,13 @@ export default function Main(props) {
  function changed(ev) {
    let letter = ev.target.value.toLowerCase()
    const newLocation = [...location]
+   console.log('location',location)
    let newArray = []
    if (letter === '') {
      setSearchResult(newArray)
    } else {
      newLocation.forEach(place => {
-     if (place.country.includes(letter)) {
+     if (place.country.toLowerCase().includes(letter)) {
        newArray.push(place.country)
        setSearchResult(newArray)
      }
