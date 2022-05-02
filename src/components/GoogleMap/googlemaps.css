@@ -55,6 +55,7 @@
   border: 1px solid red;
 }
 .modal {
+  cursor: pointer;
   text-align: center;
   line-height: 2.9;
   background-color: black;

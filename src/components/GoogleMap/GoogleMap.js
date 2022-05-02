@@ -29,6 +29,7 @@ export class MapContainer extends React.Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this)
     this.handleAddLocation = this.handleAddLocation.bind(this)
     this.handleClickLocation = this.handleClickLocation.bind(this)
+    this.handleModal = this.handleModal.bind(this)
   }
 
 
@@ -135,6 +136,11 @@ componentDidMount() {
    })
   })
 }
+handleModal() {
+  this.setState({
+    modal: 'hidden'
+  })
+}
 
   render() {
     const containerStyle= {
@@ -233,7 +239,7 @@ componentDidMount() {
           </Map>
         </section>
 
-        <section className={this.state.modal}>
+        <section onClick={this.handleModal} className={this.state.modal}>
             <h2>Location already added to the list!</h2>
         </section>
       </article>
