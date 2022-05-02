@@ -3,11 +3,9 @@
   z-index: 99;
 }
 
-.hidden {
-  visibility: hidden;
-}
 
 #placespage {
+  position: relative;
   padding: .5rem;
   display: grid;
   margin-top: 1rem;
@@ -54,6 +52,23 @@
 
 #map {
   margin: 3rem auto 0 .5rem;
+  border: 1px solid red;
+}
+.modal {
+  cursor: pointer;
+  text-align: center;
+  line-height: 2.9;
+  background-color: black;
+  color: white;
+  width: 40%;
+  height: 5.725rem;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 @media only screen and (max-width: 768px) {
@@ -65,5 +80,9 @@
   }
   #map {
     margin: 0 auto 0 .125rem;
+  }
+  .modal {
+    width: 90%;
+    left:5%;
   }
 }

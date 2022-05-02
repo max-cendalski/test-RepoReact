@@ -9,11 +9,12 @@ export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      modal: 'hidden',
       locationsFromLocalStorage : [],
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      address: '',
+      address: 'Japan, Tokyo',
       addressToSave: [],
       cityToSave: '',
       countryToSave: '',
@@ -28,6 +29,7 @@ export class MapContainer extends React.Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this)
     this.handleAddLocation = this.handleAddLocation.bind(this)
     this.handleClickLocation = this.handleClickLocation.bind(this)
+    this.handleModal = this.handleModal.bind(this)
   }
 
 
@@ -41,18 +43,18 @@ componentDidMount() {
   })
   } if(previousLocalStorageData) {
     let localStorageDataToSave = JSON.parse(previousLocalStorageData)
+    console.log('localStorageData',localStorageDataToSave)
     this.setState({
       address: '',
       locationsFromLocalStorage: localStorageDataToSave,
       map: 'hidden'
     })
   }
+
 }
 
   handleChange = address => {
     this.setState({ address });
-    console.log('this.state.address',this.state.address)
-    console.log('this.props.value',this.props.value)
   };
 
   handleSelect = address => {
@@ -87,21 +89,29 @@ componentDidMount() {
 
   handleAddLocation(event) {
     event.preventDefault()
-    const ObjectToSave = {
+    const objectToSave = {
       city: this.state.cityToSave,
       country: this.state.countryToSave
     }
     if (!this.state.cityToSave) return
     let localStorageArray = []
-    localStorageArray = this.state.locationsFromLocalStorage
-    localStorageArray.push(ObjectToSave)
-    this.setState({
-      locationsFromLocalStorage: localStorageArray,
-      cityToSave: '',
-      countryToSave: ''
-    })
-    var localStorageArrayToSave = JSON.stringify(localStorageArray)
-    localStorage.setItem('locations',localStorageArrayToSave)
+    localStorageArray = [...this.state.locationsFromLocalStorage]
+    if (localStorageArray.find(location => location.country === objectToSave.country || location.city === objectToSave.city)) {
+          this.setState({
+          modal:'modal',
+          cityToSave: '',
+          countryName: ''
+        })
+    } else {
+      localStorageArray.push(objectToSave)
+      this.setState({
+        locationsFromLocalStorage: localStorageArray,
+        cityToSave: '',
+        countryToSave: ''
+      })
+      var localStorageArrayToSave = JSON.stringify(localStorageArray)
+      localStorage.setItem('locations',localStorageArrayToSave)
+    }
   }
 
   handleClickLocation(event) {
@@ -112,15 +122,21 @@ componentDidMount() {
     this.setState({
       address: addressToShowOnMap,
       cityToSave: cityName,
-      countryToSave: countryName
+      countryToSave: countryName,
+      map:''
     })
+
   geocodeByAddress(cityName, countryName)
   .then(results => getLatLng(results[0]))
   .then(({ lat, lng }) => {
    this.setState({
-    mapCenter: {lat,lng},
-    map:'map'
+    mapCenter: {lat,lng}
    })
+  })
+}
+handleModal() {
+  this.setState({
+    modal: 'hidden'
   })
 }
 
@@ -132,7 +148,7 @@ componentDidMount() {
     return (
       <>
       <article id="placespage">
-      <section className='search-section'>
+       <section className='search-section'>
         <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
@@ -221,7 +237,9 @@ componentDidMount() {
           </Map>
         </section>
 
-
+        <section onClick={this.handleModal} className={this.state.modal}>
+            <h2>Location already added to the list!</h2>
+        </section>
       </article>
     </>
     )
