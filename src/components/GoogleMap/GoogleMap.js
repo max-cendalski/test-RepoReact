@@ -41,18 +41,18 @@ componentDidMount() {
   })
   } if(previousLocalStorageData) {
     let localStorageDataToSave = JSON.parse(previousLocalStorageData)
+    console.log('localStorageData',localStorageDataToSave)
     this.setState({
       address: '',
       locationsFromLocalStorage: localStorageDataToSave,
       map: 'hidden'
     })
   }
+
 }
 
   handleChange = address => {
     this.setState({ address });
-    console.log('this.state.address',this.state.address)
-    console.log('this.props.value',this.props.value)
   };
 
   handleSelect = address => {
@@ -87,19 +87,27 @@ componentDidMount() {
 
   handleAddLocation(event) {
     event.preventDefault()
-    const ObjectToSave = {
+    const objectToSave = {
       city: this.state.cityToSave,
       country: this.state.countryToSave
     }
     if (!this.state.cityToSave) return
     let localStorageArray = []
     localStorageArray = this.state.locationsFromLocalStorage
-    localStorageArray.push(ObjectToSave)
+    console.log('objectToSave',objectToSave)
+    console.log('localStorageArray',localStorageArray)
+    console.log('whee')
+    localStorageArray.forEach((location) => {
+      if (location.country === objectToSave.country || location.city === objectToSave.city) {
+        console.log('no whee')
+      }
+    })
+/*     localStorageArray.push(objectToSave)
     this.setState({
       locationsFromLocalStorage: localStorageArray,
       cityToSave: '',
       countryToSave: ''
-    })
+    }) */
     var localStorageArrayToSave = JSON.stringify(localStorageArray)
     localStorage.setItem('locations',localStorageArrayToSave)
   }
