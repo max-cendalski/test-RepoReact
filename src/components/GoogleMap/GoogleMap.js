@@ -9,6 +9,7 @@ export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      modal: 'hidden',
       locationsFromLocalStorage : [],
       showingInfoWindow: false,
       activeMarker: {},
@@ -99,7 +100,9 @@ componentDidMount() {
     console.log('whee')
     localStorageArray.forEach((location) => {
       if (location.country === objectToSave.country || location.city === objectToSave.city) {
-        console.log('no whee')
+        this.setState({
+          modal:'modal'
+        })
       }
     })
 /*     localStorageArray.push(objectToSave)
@@ -230,7 +233,9 @@ componentDidMount() {
           </Map>
         </section>
 
-
+        <section className={this.state.modal}>
+            <h2>Location already added to the list!</h2>
+        </section>
       </article>
     </>
     )
