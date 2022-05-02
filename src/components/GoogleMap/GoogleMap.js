@@ -95,25 +95,23 @@ componentDidMount() {
     }
     if (!this.state.cityToSave) return
     let localStorageArray = []
-    localStorageArray = this.state.locationsFromLocalStorage
-    console.log('objectToSave',objectToSave)
-    console.log('localStorageArray',localStorageArray)
-    console.log('whee')
-    localStorageArray.forEach((location) => {
-      if (location.country === objectToSave.country || location.city === objectToSave.city) {
-        this.setState({
-          modal:'modal'
+    localStorageArray = [...this.state.locationsFromLocalStorage]
+    if (localStorageArray.find(location => location.country === objectToSave.country || location.city === objectToSave.city)) {
+          this.setState({
+          modal:'modal',
+          cityToSave: '',
+          countryName: ''
         })
-      }
-    })
-/*     localStorageArray.push(objectToSave)
-    this.setState({
-      locationsFromLocalStorage: localStorageArray,
-      cityToSave: '',
-      countryToSave: ''
-    }) */
-    var localStorageArrayToSave = JSON.stringify(localStorageArray)
-    localStorage.setItem('locations',localStorageArrayToSave)
+    } else {
+      localStorageArray.push(objectToSave)
+      this.setState({
+        locationsFromLocalStorage: localStorageArray,
+        cityToSave: '',
+        countryToSave: ''
+      })
+      var localStorageArrayToSave = JSON.stringify(localStorageArray)
+      localStorage.setItem('locations',localStorageArrayToSave)
+    }
   }
 
   handleClickLocation(event) {
