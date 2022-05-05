@@ -13,6 +13,7 @@ export default class CarouselComponent extends React.Component {
                 <Carousel
                 autoPlay={true}
                 interval={5000}
+                infiniteLoop={true}
                 >
                 <div>
                  <p className='carousel-paragraph'>Athens</p>
