@@ -4,7 +4,7 @@ import Films from '../Films/Films'
 import Places from '../Places/Places.js';
 import Header from '../Header/Header.js'
 import Weather from '../Weather/Weather.js';
-
+import Carousel from '../Carousel/Carousel.js'
 export default function App() {
   const appTitle = "Test App"
   const data=[{
@@ -35,7 +35,7 @@ export default function App() {
         <Route path="/films" element={<Films />} />
         <Route path="/places" element={<Places />} />
         <Route path="/weather" element={<Weather />} />
-        <Route path="/carousel" element={<Weather />} />
+        <Route path="/carousel" element={<Carousel />} />
       </Routes>
     </>
   );
