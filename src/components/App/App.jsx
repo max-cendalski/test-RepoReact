@@ -35,6 +35,7 @@ export default function App() {
         <Route path="/films" element={<Films />} />
         <Route path="/places" element={<Places />} />
         <Route path="/weather" element={<Weather />} />
+        <Route path="/carousel" element={<Weather />} />
       </Routes>
     </>
   );
