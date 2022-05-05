@@ -12,7 +12,7 @@ export default class CarouselComponent extends React.Component {
             <Navbar />
                 <Carousel
                 autoPlay={true}
-                interval={3000}
+                interval={5000}
                 >
                 <div>
                  <p className='carousel-paragraph'>Athens</p>
