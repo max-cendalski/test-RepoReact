@@ -1,17 +1,13 @@
-import React from 'react'
+import React from 'react';
 import Navbar from '../Navbar/Navbar'
 
-export default function Carousel () {
+export default class CarouselComponent extends React.Component {
+  render() {
+        return (
+          <>
+            <Navbar />
 
-
-
-  return (
-    <>
-      <Navbar />
-      <article>
-
-        <h1>Carousel</h1>
-      </article>
-    </>
-  )
+          </>
+        )
+  }
 }
