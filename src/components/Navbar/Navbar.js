@@ -10,6 +10,7 @@ export default function Navbar(props) {
         <Link to="/films">Films</Link>
         <Link to="/places">Places</Link>
         <Link to="/carousel">Carousel</Link>
+        <Link to ="/fade">Fade Test</Link>
       </nav>
     )
 }

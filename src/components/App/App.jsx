@@ -5,6 +5,7 @@ import Places from '../Places/Places.js';
 import Header from '../Header/Header.js'
 import Weather from '../Weather/Weather.js';
 import CarouselComponent from '../Carousel/Carousel.js';
+import FadeTest from '../FadeTest/FadeTest.js';
 
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
         <Route path="/places" element={<Places />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/carousel" element={<CarouselComponent />} />
+        <Route path="/fade" element={<FadeTest />} />
       </Routes>
     </>
   );
