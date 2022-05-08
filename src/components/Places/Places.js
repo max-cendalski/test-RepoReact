@@ -26,7 +26,6 @@ function handlePlaceClick(event) {
   event.preventDefault()
   console.log('event.target.value',event.target.closest('LI').id)
 }
-
     return (
       <>
        <Navbar />

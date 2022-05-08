@@ -41,6 +41,7 @@ function handleSearchClick(event) {
         <p>
           <label>Search for a location</label>
           <input
+            autoComplete='off'
             type="search"
             name="keyword"
             placeholder="keyword"

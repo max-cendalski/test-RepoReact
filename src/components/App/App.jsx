@@ -4,6 +4,9 @@ import Films from '../Films/Films'
 import Places from '../Places/Places.js';
 import Header from '../Header/Header.js'
 import Weather from '../Weather/Weather.js';
+import CarouselComponent from '../Carousel/Carousel.js';
+import FadeTest from '../FadeTest/FadeTest.js';
+
 
 export default function App() {
   const appTitle = "Test App"
@@ -35,6 +38,8 @@ export default function App() {
         <Route path="/films" element={<Films />} />
         <Route path="/places" element={<Places />} />
         <Route path="/weather" element={<Weather />} />
+        <Route path="/carousel" element={<CarouselComponent />} />
+        <Route path="/fade" element={<FadeTest />} />
       </Routes>
     </>
   );
