@@ -1,10 +1,22 @@
-.photo-section {
+
+
+
+.image-container {
   margin: 3rem auto;
-  width: 12rem;
-  height: 12rem;
-  background-color: aqua;
+  width: 80%;
 }
 
-.invisible {
-  visibility: hidden;
+.photo-section {
+  width: 40rem;
+  height: 40rem;
+  background-color: rgb(142, 142, 193);
+  opacity: 0;
+}
+
+.photo-section2 {
+  width: 70rem;
+  height: 40rem;
+  background-color: rgb(142, 142, 193);
+  transition: 1.5s linear;
+  opacity: 1;
 }

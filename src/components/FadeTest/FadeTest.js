@@ -8,20 +8,28 @@ export default class FadeTest extends React.Component {
   constructor(props) {
     super(props)
     this.state ={
-      photo: 'invisible'
+      photo: 'photo-section'
     }
   }
 
+ componentDidMount() {
+ setTimeout(()=> {
+   this.setState({
+     photo: 'photo-section2'
+   })
+ },100)
+}
 
 render() {
   return (
     <article>
     <Navbar />
       <h1>Fade</h1>
-      <section className={this.state.photo}></section>
+      <section className='image-container'>
+      <img src='../../images/Greece2.jpg' className={this.state.photo} alt="greec1"/>
+
+      </section>
     </article>
-
-
   )
 }
 
