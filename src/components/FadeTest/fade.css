@@ -7,8 +7,8 @@
 }
 
 .photo-section {
-  width: 40rem;
-  height: 40rem;
+  width: 30rem;
+  height: 20rem;
   background-color: rgb(142, 142, 193);
   opacity: 0;
 }
@@ -17,6 +17,6 @@
   width: 70rem;
   height: 40rem;
   background-color: rgb(142, 142, 193);
-  transition: 1.5s linear;
-  opacity: 1;
+  transition: 2s linear;
+  opacity: 2;
 }
