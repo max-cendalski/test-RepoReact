@@ -12,8 +12,11 @@ export default class CarouselComponent extends React.Component {
             <Navbar />
                 <Carousel
                 autoPlay={true}
-                interval={5000}
+                interval={4000}
                 infiniteLoop={true}
+                showThumbs={false}
+                stopOnHover={false}
+                showIndicators={false}
                 >
                 <div>
                  <p className='carousel-paragraph'>Athens</p>
