@@ -30,6 +30,7 @@ export default function App() {
     country:'Australia',
     city: 'Sydney'
   }]
+
   return (
       <>
       <Header appTitle={appTitle}/>
