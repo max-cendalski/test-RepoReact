@@ -10,7 +10,6 @@ import FadeTest from '../FadeTest/FadeTest.js';
 
 export default function App() {
   const appTitle = "Test App"
-  const fadetry= 'photo-section'
   const data=[{
     country:'Japan',
     city: 'Tokyo'
@@ -41,7 +40,7 @@ export default function App() {
         <Route path="/places" element={<Places />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/carousel" element={<CarouselComponent />} />
-        <Route path="/fade" element={<FadeTest fadetry={fadetry}/>} />
+        <Route path="/fade" element={<FadeTest/>} />
       </Routes>
     </>
   );

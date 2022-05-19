@@ -15,7 +15,6 @@ export default class FadeTest extends React.Component {
   }
 
   componentDidMount() {
-   console.log('props',this.props)
     setTimeout(()=> {
     if (this.state.fadeState === false) {
     this.setState({
