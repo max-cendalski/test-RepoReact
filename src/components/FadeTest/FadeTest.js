@@ -19,7 +19,7 @@ export default class FadeTest extends React.Component {
     if (this.state.fadeState === false) {
     this.setState({
       photo: 'photo-section2',
-      fadeState: true
+      fadeState: true,
     })
     } else {
         this.setState({
@@ -32,13 +32,12 @@ export default class FadeTest extends React.Component {
 render() {
   return (
     <article>
-    <section className={this.state.invisible}>
-       <Navbar/>
-    </section>
-
-      <h1>Fade</h1>
-      <section className='image-container'>
-      <img src='../../images/Greece2.jpg' className={this.state.photo} alt="greec1"/>
+      <section>
+        <Navbar/>
+      </section>
+        <h1>Fade</h1>
+        <section className='image-container'>
+        <img src='../../images/Greece2.jpg' className={this.state.photo} alt="greec1"/>
       </section>
     </article>
   )
