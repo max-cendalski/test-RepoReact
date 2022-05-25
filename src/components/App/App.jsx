@@ -1,11 +1,11 @@
 import {Routes, Route} from 'react-router-dom'
 import Main from '../Main/Main.js'
-import Films from '../Films/Films'
+import Games from '../Games/Games.js'
 import Places from '../Places/Places.js';
 import Header from '../Header/Header.js'
-import Weather from '../Weather/Weather.js';
 import CarouselComponent from '../Carousel/Carousel.js';
 import FadeTest from '../FadeTest/FadeTest.js';
+import Quotes from '../Quotes/Quotes.js';
 
 
 export default function App() {
@@ -36,10 +36,11 @@ export default function App() {
       <Header appTitle={appTitle}/>
       <Routes>
         <Route path="/" element={<Main data={data}/>} />
-        <Route path="/films" element={<Films />} />
-        <Route path="/places" element={<Places />} />
-        <Route path="/weather" element={<Weather />} />
+        <Route path="/destinations" element={<Places />} />
         <Route path="/carousel" element={<CarouselComponent />} />
+        <Route path="/quotes" element={<Quotes />} />
+        <Route path="/games" element={<Games />} />
+
         <Route path="/fade" element={<FadeTest/>} />
       </Routes>
     </>
