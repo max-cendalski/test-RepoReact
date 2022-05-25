@@ -40,7 +40,6 @@ export default function App() {
         <Route path="/carousel" element={<CarouselComponent />} />
         <Route path="/quotes" element={<Quotes />} />
         <Route path="/games" element={<Games />} />
-
         <Route path="/fade" element={<FadeTest/>} />
       </Routes>
     </>
