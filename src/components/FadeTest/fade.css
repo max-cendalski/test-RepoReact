@@ -20,3 +20,6 @@
   transition: 2s linear;
   opacity: 2;
 }
+.photo-invisible {
+  display: none;
+}
