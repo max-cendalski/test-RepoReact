@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom'
 import Main from '../../pages/Main/Main.js'
 import Games from '../../pages/Games/Games.js'
-import Destinations from '../../pages/Destinations/Destinations.js'
+import Places from '../../pages/Places/Places.js'
 import Header from '../Header/Header.js'
 import CarouselComponent from '../Carousel/Carousel.js';
 import FadeTest from '../FadeTest/FadeTest.js';
@@ -36,7 +36,7 @@ export default function App() {
       <Header appTitle={appTitle}/>
       <Routes>
         <Route path="/" element={<Main data={data}/>} />
-        <Route path="/destinations" element={<Destinations />} />
+        <Route path="/destinations" element={<Places />} />
         <Route path="/carousel" element={<CarouselComponent />} />
         <Route path="/quotes" element={<Quotes />} />
         <Route path="/games" element={<Games />} />
