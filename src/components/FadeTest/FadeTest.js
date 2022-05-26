@@ -1,7 +1,6 @@
 import './fade.css'
 import React from 'react'
 import Navbar from '../Navbar/Navbar'
-import { useState, useEffect } from 'react'
 
 
 export default class FadeTest extends React.Component {
