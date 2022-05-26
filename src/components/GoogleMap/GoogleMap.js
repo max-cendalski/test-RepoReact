@@ -247,5 +247,5 @@ handleModal() {
 }
 
 export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_api_key
+  apiKey: process.env.REACT_APP_MAPS_API_KEY
 })(MapContainer)

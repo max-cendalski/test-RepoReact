@@ -6,9 +6,9 @@ export default function Navbar(props) {
     return (
       <nav id='navbar'>
         <Link to="/">Home</Link>
-        <Link to="/weather">Weather</Link>
-        <Link to="/films">Films</Link>
-        <Link to="/places">Places</Link>
+        <Link to="/destinations">Destinations</Link>
+        <Link to="/games">Games</Link>
+        <Link to="/quotes">Quotes</Link>
         <Link to="/carousel">Carousel</Link>
         <Link to ="/fade">Fade Test</Link>
       </nav>
