@@ -1,6 +1,5 @@
 import "./places.css"
-import Navbar from '../../components/Navbar/Navbar'
-import GoogleMaps from '../../components/GoogleMap/GoogleMap'
+
 import { useState, useEffect } from "react"
 
 
