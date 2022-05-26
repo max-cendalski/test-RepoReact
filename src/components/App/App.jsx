@@ -1,5 +1,5 @@
 import {Routes, Route} from 'react-router-dom'
-import Main from '../Main/Main.js'
+import Main from '../../pages/Main/Main.js'
 import Games from '../../pages/Games/Games.js'
 import Destinations from '../../pages/Destinations/Destinations.js'
 import Header from '../Header/Header.js'
