@@ -4,6 +4,8 @@ import './index.css';
 import App from './components/App/App.jsx'
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
+import {createStore} from 'redux'
+
 
 ReactDOM.render(
  <BrowserRouter>
