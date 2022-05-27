@@ -6,7 +6,7 @@ import Header from '../Header/Header.js'
 import Carousel from '../Carousel/Carousel.js';
 import FadeTest from '../FadeTest/FadeTest.js';
 import Quotes from '../../pages/Quotes/Quotes.js'
-import { Counter } from '../features/counter/Counter.js';
+import Counter  from '../features/counter/Counter.js';
 
 
 
