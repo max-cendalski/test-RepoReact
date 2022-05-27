@@ -33,7 +33,6 @@ export default function App() {
   }]
 
   return (
-      <>
       <BrowserRouter>
         <Header appTitle={appTitle}/>
         <Routes>
@@ -46,6 +45,5 @@ export default function App() {
           <Route path="/quotes" element={<Quotes />} />
         </Routes>
       </BrowserRouter>
-    </>
   );
 }
