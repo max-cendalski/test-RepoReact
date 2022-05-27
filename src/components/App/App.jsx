@@ -7,6 +7,7 @@ import Carousel from '../Carousel/Carousel.js';
 import FadeTest from '../FadeTest/FadeTest.js';
 import Quotes from '../../pages/Quotes/Quotes.js'
 import Counter  from '../features/counter/Counter.js';
+import Navbar from '../Navbar/Navbar.js';
 
 
 
@@ -36,6 +37,7 @@ export default function App() {
   return (
       <BrowserRouter>
         <Header appTitle={appTitle}/>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Main data={data}/>} />
           <Route path="/places" element={<Places />} />

@@ -1,5 +1,4 @@
 import "./places.css"
-import Navbar from "../../components/Navbar/Navbar";
 import GoogleMaps from "../../components/GoogleMap/GoogleMap";
 import { useState, useEffect } from "react"
 
@@ -25,12 +24,8 @@ function handlePlaceClick(event) {
   console.log('event.target.value',event.target.closest('LI').id)
 }
     return (
-      <>
-       <Navbar />
-       <article id="placescontainer">
-
+      <article id="placescontainer">
         <GoogleMaps handlePlaceClick={handlePlaceClick}/>
-        </article>
-      </>
+      </article>
     )
 }

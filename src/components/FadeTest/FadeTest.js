@@ -1,6 +1,6 @@
 import './fade.css'
 import React from 'react'
-import Navbar from '../Navbar/Navbar'
+
 
 
 export default class FadeTest extends React.Component {
@@ -31,9 +31,6 @@ export default class FadeTest extends React.Component {
 render() {
   return (
     <article>
-      <section>
-        <Navbar/>
-      </section>
         <h1>Fade</h1>
         <section className='image-container'>
         <img src='../../images/Greece2.jpg' className={this.state.photo} alt="greec1"/>
