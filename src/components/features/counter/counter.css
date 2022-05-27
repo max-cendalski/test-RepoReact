@@ -1,0 +1,10 @@
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.counter {
+  margin-top: 3rem;
+  font-size: 3rem;
+}

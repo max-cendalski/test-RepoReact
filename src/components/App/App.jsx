@@ -6,6 +6,7 @@ import Header from '../Header/Header.js'
 import Carousel from '../Carousel/Carousel.js';
 import FadeTest from '../FadeTest/FadeTest.js';
 import Quotes from '../../pages/Quotes/Quotes.js'
+import { Counter } from '../features/counter/Counter.js';
 
 
 
@@ -43,6 +44,8 @@ export default function App() {
           <Route path="/fade" element={<FadeTest />} />
           <Route path="/games" element={<Games />} />
           <Route path="/quotes" element={<Quotes />} />
+          <Route path="/test" element={<Counter />} />
+
         </Routes>
       </BrowserRouter>
   );
