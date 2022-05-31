@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Main from '../../pages/Main/Main.js';
 import Places from '../../pages/Places/Places.js'
 import Games from '../../pages/Games/Games.js'
@@ -6,6 +6,9 @@ import Header from '../Header/Header.js'
 import Carousel from '../Carousel/Carousel.js';
 import FadeTest from '../FadeTest/FadeTest.js';
 import Quotes from '../../pages/Quotes/Quotes.js'
+import Counter  from '../features/counter/Counter.js';
+import Navbar from '../Navbar/Navbar.js';
+
 
 
 export default function App() {
@@ -32,17 +35,20 @@ export default function App() {
   }]
 
   return (
-      <>
-      <Header appTitle={appTitle}/>
-      <Routes>
-        <Route path="/" element={<Main data={data}/>} />
-        <Route path="/places" element={<Places />} />
-        <Route path="/carousel" element={<Carousel />} />
-        <Route path="/places" element={<Places />} />
-        <Route path="/fade" element={<FadeTest />} />
-        <Route path="/games" element={<Games />} />
-        <Route path="/quotes" element={<Quotes />} />
-      </Routes>
-    </>
+      <BrowserRouter>
+        <Header appTitle={appTitle}/>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Main data={data}/>} />
+          <Route path="/places" element={<Places />} />
+          <Route path="/carousel" element={<Carousel />} />
+          <Route path="/places" element={<Places />} />
+          <Route path="/fade" element={<FadeTest />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/quotes" element={<Quotes />} />
+          <Route path="/test" element={<Counter />} />
+
+        </Routes>
+      </BrowserRouter>
   );
 }

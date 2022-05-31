@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../Navbar/Navbar'
 import './carousel.css'
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"
@@ -9,7 +8,7 @@ export default class CarouselComponent extends React.Component {
   render() {
    return (
     <article id='carousel-container'>
-      <Navbar />
+
       <Carousel
         autoPlay={true}
         interval={5000}

@@ -11,6 +11,7 @@ export default function Navbar(props) {
         <Link to="/quotes">Quotes</Link>
         <Link to="/carousel">Carousel</Link>
         <Link to ="/fade">Fade Test</Link>
+        <Link to ="/test">Counter</Link>
       </nav>
     )
 }
