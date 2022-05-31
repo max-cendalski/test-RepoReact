@@ -3,22 +3,28 @@ import { useState } from "react";
 import { addNote } from "./notesSlice";
 
 const Notes = () => {
-const notes = useSelector((state)=> state.notes)
+const notes = useSelector((state)=> state.notes.notes)
+console.log('notes',notes)
 const dispatch = useDispatch()
 
-const [addNote, setAddNote] = useState('')
+const [newNote, setNewNote] = useState('')
 
 
   return (
     <article>
       <h1>Notes</h1>
       <section>
-        <input
+
+
+      <p>
+          <input
           type="text"
-          value={addNote}
-          onChange={(e)=> setAddNote(e.target.value)}
+          value={newNote}
+          onChange={(e)=> setNewNote(e.target.value)}
         />
-        <button onClick={dispatch(addNote(addNote))}></button>
+      </p>
+
+        <button onClick={(e)=> dispatch(addNote(newNote))}>Add Note</button>
       </section>
 
     </article>
@@ -26,3 +32,11 @@ const [addNote, setAddNote] = useState('')
 }
 
 export default Notes
+/*
+<ul>
+        {
+          notes.map((note,index) => {
+            return <li key={index}>{note}</li>
+          })
+        }
+      </ul> */

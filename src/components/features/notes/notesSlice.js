@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  notes: 'whatever'
+  notes: ['Learn Redux']
 }
 
 export const notesSlice = createSlice({
