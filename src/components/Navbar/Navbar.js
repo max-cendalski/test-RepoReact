@@ -12,6 +12,7 @@ export default function Navbar(props) {
         <Link to="/carousel">Carousel</Link>
         <Link to ="/fade">Fade Test</Link>
         <Link to ="/test">Counter</Link>
+        <Link to ="/notes">Notes</Link>
       </nav>
     )
 }

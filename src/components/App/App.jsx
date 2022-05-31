@@ -8,7 +8,7 @@ import FadeTest from '../FadeTest/FadeTest.js';
 import Quotes from '../../pages/Quotes/Quotes.js'
 import Counter  from '../features/counter/Counter.js';
 import Navbar from '../Navbar/Navbar.js';
-
+import Notes from '../features/notes/Notes.js'
 
 
 export default function App() {
@@ -47,6 +47,7 @@ export default function App() {
           <Route path="/games" element={<Games />} />
           <Route path="/quotes" element={<Quotes />} />
           <Route path="/test" element={<Counter />} />
+          <Route path="/notes" element={<Notes />} />
 
         </Routes>
       </BrowserRouter>
