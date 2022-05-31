@@ -9,7 +9,7 @@ export const notesSlice = createSlice({
   initialState,
   reducers: {
     addNote:(state, action)=> {
-      state.notes += action.payload
+      state.notes.push(action.payload)
     }
   }
 })

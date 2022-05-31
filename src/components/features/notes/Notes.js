@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { addNote } from "./notesSlice";
+import List from '../../List.js'
 
 const Notes = () => {
 const notes = useSelector((state)=> state.notes.notes)
@@ -14,29 +15,18 @@ const [newNote, setNewNote] = useState('')
     <article>
       <h1>Notes</h1>
       <section>
-
-
-      <p>
+        <List notes={notes}/>
+        <p>
           <input
           type="text"
           value={newNote}
           onChange={(e)=> setNewNote(e.target.value)}
         />
-      </p>
-
+        </p>
         <button onClick={(e)=> dispatch(addNote(newNote))}>Add Note</button>
       </section>
-
     </article>
   )
 }
 
 export default Notes
-/*
-<ul>
-        {
-          notes.map((note,index) => {
-            return <li key={index}>{note}</li>
-          })
-        }
-      </ul> */
