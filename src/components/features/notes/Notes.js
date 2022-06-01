@@ -9,7 +9,10 @@ console.log('notes',notes)
 const dispatch = useDispatch()
 
 const [newNote, setNewNote] = useState('')
-
+function handleAddNote() {
+  dispatch(addNote(newNote))
+  setNewNote('')
+}
 
   return (
     <article>
@@ -23,7 +26,7 @@ const [newNote, setNewNote] = useState('')
           onChange={(e)=> setNewNote(e.target.value)}
         />
         </p>
-        <button onClick={(e)=> dispatch(addNote(newNote))}>Add Note</button>
+        <button onClick={handleAddNote}>Add Note</button>
       </section>
     </article>
   )
