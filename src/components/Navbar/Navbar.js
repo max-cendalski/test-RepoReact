@@ -13,6 +13,7 @@ export default function Navbar(props) {
         <Link to ="/fade">Fade Test</Link>
         <Link to ="/test">Counter</Link>
         <Link to ="/notes">Notes</Link>
+        <Link to ="/postslist">Posts List</Link>
       </nav>
     )
 }
