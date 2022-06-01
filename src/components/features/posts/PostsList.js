@@ -9,7 +9,7 @@ const PostsList = () => {
   const renderPosts = posts.map(post=> (
     <article className='post' key={post.id}>
       <h3>{post.title}</h3>
-      <h3>{post.content.substring(0, 100)}</h3>
+      <h4>{post.content.substring(0, 100)}</h4>
     </article>
   )
   )
