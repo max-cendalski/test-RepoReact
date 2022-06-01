@@ -47,7 +47,6 @@ export default function App() {
           <Route path="/games" element={<Games />} />
           <Route path="/quotes" element={<Quotes />} />
           <Route path="/test" element={<Counter />} />
-          <Route path="/notes" element={<Notes />} />
 
         </Routes>
       </BrowserRouter>

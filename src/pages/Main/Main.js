@@ -1,7 +1,7 @@
 import './main.css'
 import Counter from '../../components/features/counter/Counter'
 import { useSelector, } from 'react-redux'
-import List from '../../components/List'
+
 
 
 
@@ -12,7 +12,6 @@ console.log('notes',notes)
     <article id="main-container">
       <h1>Homepage</h1>
       <Counter />
-      <List notes={notes} />
     </article>
   )
 }
