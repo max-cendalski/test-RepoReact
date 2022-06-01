@@ -2,6 +2,7 @@ import './posts.css'
 import { useSelector } from "react-redux";
 import { selectAllPosts } from './postsSlice';
 import AddPostForm from './AddPostForm';
+import Users from '../users/Users';
 
 
 const PostsList = () => {
@@ -15,11 +16,14 @@ const PostsList = () => {
   )
 
   return (
-    <section id="posts-container">
-    <AddPostForm />
-      <h2>Posts</h2>
-      {renderPosts}
-    </section>
+    <>
+      <section id="posts-container">
+      <AddPostForm />
+        <h2>Posts</h2>
+        {renderPosts}
+      </section>
+      <Users />
+    </>
   )
 }
 
