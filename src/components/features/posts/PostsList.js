@@ -1,7 +1,7 @@
 import './posts.css'
 import { useSelector } from "react-redux";
-import { selectAllPosts } from "./postsSlice";
-import AddPostForm from '../AddPostForm';
+import { selectAllPosts } from './postsSlice';
+import AddPostForm from './AddPostForm';
 
 
 const PostsList = () => {

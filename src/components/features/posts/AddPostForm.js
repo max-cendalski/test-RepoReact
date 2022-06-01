@@ -1,8 +1,9 @@
+import './posts.css'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 
-import { postAdded } from "./posts/postsSlice";
+import { postAdded} from './postsSlice'
 
 const AddPostForm = () => {
   const [title, setTitle] = useState('')
@@ -29,8 +30,9 @@ const AddPostForm = () => {
   return (
     <section>
       <h2>Add a New Post</h2>
-      <form>
-        <label htmlFor="postTitle">Post Title:</label>
+      <form id="form">
+      <p>
+         <label htmlFor="postTitle">Post Title:</label>
         <input
           type="text"
           id="postTitle"
@@ -38,13 +40,17 @@ const AddPostForm = () => {
           value={title}
           onChange={onTitleChanged}
         />
-        <label htmlFor="postContent">Content:</label>
+      </p>
+      <p>
+         <label htmlFor="postContent">Content:</label>
         <textarea
           id="postContent"
           name="postContent"
           value={content}
           onChange={onContentChanged}
         />
+      </p>
+
         <button
           onClick={onSavePostClicked}
           type="button"
