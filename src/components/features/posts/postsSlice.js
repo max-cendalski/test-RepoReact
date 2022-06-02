@@ -30,6 +30,7 @@ const postsSlice = createSlice({
             id:nanoid(),
             title,
             content,
+            date: new Date().toISOString(),
             userId
           }
         }
