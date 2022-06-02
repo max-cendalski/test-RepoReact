@@ -41,6 +41,13 @@ const AddPostForm = () => {
       <h2>Add a New Post</h2>
       <form id="form">
       <p>
+        <label htmlFor="postAuthor">Author:</label>
+        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
+          <option value=""></option>
+          {usersOptions}
+        </select>
+      </p>
+       <p>
          <label htmlFor="postTitle">Post Title:</label>
         <input
           type="text"
@@ -49,13 +56,6 @@ const AddPostForm = () => {
           value={title}
           onChange={onTitleChanged}
         />
-      </p>
-      <p>
-        <label htmlFor="postAuthor">Author:</label>
-        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
-          <option value=""></option>
-          {usersOptions}
-        </select>
       </p>
       <p>
          <label htmlFor="postContent">Content:</label>

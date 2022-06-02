@@ -14,6 +14,7 @@ const postsSlice = createSlice({
       reducer(state, action) {
         state.push(action.payload)
       },
+      // callback to format data and return object as payload
       prepare(title, content, userId) {
         return {
           payload: {
