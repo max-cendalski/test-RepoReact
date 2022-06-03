@@ -12,7 +12,7 @@ const initialState = [
       wow: 0,
       heart: 0,
       rocket: 0,
-      coffee: 0
+      wine: 0
     }
   },
   {id: '2', title: 'Slices....',
@@ -23,7 +23,7 @@ const initialState = [
       wow: 0,
       heart: 0,
       rocket: 0,
-      coffee: 0
+      wine: 0
     }
   }
 ]
@@ -50,7 +50,7 @@ const postsSlice = createSlice({
               wow: 0,
               heart: 0,
               rocket: 0,
-              coffee: 0
+              wine: 0
             }
           }
         }
