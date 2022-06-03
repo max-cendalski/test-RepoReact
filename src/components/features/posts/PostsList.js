@@ -32,7 +32,6 @@ const PostsList = () => {
         <h2>Posts</h2>
         {renderPosts}
       </section>
-      <Users />
     </>
   )
 }
