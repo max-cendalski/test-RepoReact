@@ -1,9 +1,13 @@
+import './header.css'
 import React from 'react'
 
 export default function Header(props) {
+  const handleHeaderClick=()=> {
+    window.location = "/"
+  }
   return (
-    <div className='header-container'>
-      <h1>{props.appTitle}</h1>
-    </div>
+    <article className='header-container'>
+      <h1 className="header" onClick={handleHeaderClick}>{props.appTitle}</h1>
+    </article>
   )
 }
