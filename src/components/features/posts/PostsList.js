@@ -2,7 +2,6 @@ import './posts.css'
 import { useSelector } from "react-redux";
 import { selectAllPosts } from './postsSlice';
 import AddPostForm from './AddPostForm';
-import Users from '../users/Users';
 import PostAuthor from './PostAuthor';
 import TimeAgo from './TimeAgo';
 import ReactionButtons from './ReactionButtons';
