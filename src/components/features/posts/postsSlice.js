@@ -13,7 +13,7 @@ const initialState = {
 
 // async Thunk
 // createAsyncThunk accepts two arguments, first is string used as prefix for generating
-// action type, second payload callback
+// action type, second payload creator callback. Should return data
 export const fetchPosts = createAsyncThunk('posts/fecthPosts', async () => {
   try {
     const response = await axios.get(POSTS_URL)
@@ -58,6 +58,37 @@ const postsSlice = createSlice({
         existingPost.reactions[reaction]++
       }
     }
+  },
+  // extraReducers is for actions that weren't define as part of slices reducers
+  // builder parameter let as define additional case reducer
+  extraReducers(builder) {
+    builder
+    .addCase(fetchPosts.pending, (state, action) => {
+      state.status = 'loading'
+    })
+    .addCase(fetchPosts.fulfilled, (state, action) => {
+      state.status = 'succeeded'
+      // adding date and reactions
+      let min = 1;
+      const loadedPosts = action.payload.map(post => {
+        post.data = sub(new Date(), {minutes: min++ }).toISOString()
+        post.reactions = {
+          thumbsUp: 0,
+          wow: 0,
+          heart: 0,
+          rocket: 0,
+          wine: 0
+        }
+        return post;
+      })
+
+      //add any fetched posts to the array
+      state.posts = state.posts.concat(loadedPosts)
+    })
+    .addCase(fetchPosts.rejected, (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    })
   }
 })
 
