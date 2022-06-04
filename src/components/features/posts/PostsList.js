@@ -1,11 +1,10 @@
 import './posts.css'
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from 'react';
+
 import { selectAllPosts, getPostsStatus, getPostsError, fetchPosts } from './postsSlice';
 import AddPostForm from './AddPostForm';
-import PostAuthor from './PostAuthor';
-import TimeAgo from './TimeAgo';
-import ReactionButtons from './ReactionButtons';
+
 
 
 
@@ -16,7 +15,7 @@ const PostsList = () => {
   const postsStatus = useSelector(getPostsStatus)
   const error = useSelector(getPostsError);
 
-  useEffect(() =>{
+  useEffect(() => {
     if (postsStatus === 'idle') {
       dispatch(fetchPosts())
     }
