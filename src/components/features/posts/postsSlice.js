@@ -17,6 +17,7 @@ const initialState = {
 export const fetchPosts = createAsyncThunk('posts/fecthPosts', async () => {
   try {
     const response = await axios.get(POSTS_URL)
+    console.log(response.data)
     return response.data
   } catch (err) {
     return err.message;
@@ -71,7 +72,7 @@ const postsSlice = createSlice({
       // adding date and reactions
       let min = 1;
       const loadedPosts = action.payload.map(post => {
-        post.data = sub(new Date(), {minutes: min++ }).toISOString()
+        post.date = sub(new Date(), {minutes: min++ }).toISOString()
         post.reactions = {
           thumbsUp: 0,
           wow: 0,
