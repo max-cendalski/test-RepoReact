@@ -1,5 +1,6 @@
 import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import {sub} from 'date-fns';
+import axios from "axios";
 
 const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts'
 
@@ -9,6 +10,18 @@ const initialState = {
   status: 'idle', //'idle' | 'loading' | 'succeeded' | 'failed'
   error: null
 }
+
+// async Thunk
+// createAsyncThunk accepts two arguments, first is string used as prefix for generating
+// action type, second payload callback
+export const fetchPosts = createAsyncThunk('posts/fecthPosts', async () => {
+  try {
+    const response = await axios.get(POSTS_URL)
+    return response.data
+  } catch (err) {
+    return err.message;
+  }
+})
 
 const postsSlice = createSlice({
   name: 'posts',
