@@ -5,7 +5,7 @@ const USERS_URL = 'https://jsonplaceholder.typicode.com/users';
 
 const initialState=[]
 
-export const fetchUsers = createAsyncThunk('users/fetchUsers',async () => {
+export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   console.log('whee1')
   try{
       console.log('whee2')
