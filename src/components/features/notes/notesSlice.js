@@ -1,6 +1,6 @@
 import './notes.css'
-
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, nanoid} from "@reduxjs/toolkit";
+import {sub} from 'date-fns'
 
 
 const initialState = [
@@ -8,14 +8,14 @@ const initialState = [
     id: 1,
     title: 'Learn TypeScript',
     text: 'As soon as possible',
-    date: 'June 6th',
+    date: sub(new Date(), {minutes: 10}).toISOString(),
     author: 'Max'
   },
     {
     id: 2,
     title: 'Play',
     text: 'Diablo Immortal',
-    date: 'June 6th',
+    date: sub(new Date(), {minutes: 10}).toISOString(),
     author: 'Max'
   }
 ]
