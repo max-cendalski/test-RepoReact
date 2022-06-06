@@ -1,7 +1,14 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import { addNote } from "./notesSlice";
-import List from '../../List.js'
+import { useSelector } from "react-redux";
+
+const Notes = () => {
+  return (
+    <main>
+      <h1>Notes</h1>
+    </main>
+  )
+}
+
+export default Notes;
 /*
 const Notes = () => {
 const notes = useSelector((state)=> state.notes.notes)
