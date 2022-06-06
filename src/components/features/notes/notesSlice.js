@@ -27,6 +27,17 @@ const notesSlice = createSlice({
     noteAdded: {
       reducer(state, action) {
         state.push(action.payload)
+      },
+      prepare(title, text, author) {
+        return {
+          payload: {
+            id: nanoid(),
+            title,
+            text,
+            date: sub(new Date()).toISOString(),
+            author
+          }
+        }
       }
     }
   }
