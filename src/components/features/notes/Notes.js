@@ -1,7 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
-import List from '../../List.js'
-
-
+import { useSelector, useDispatch } from "react-redux"
 
 
 const Notes = () => {

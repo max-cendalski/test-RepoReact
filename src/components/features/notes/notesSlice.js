@@ -1,4 +1,4 @@
-import createSlice from 'react-redux'
+import {createSlice} from "@reduxjs/toolkit";
 
 
 const initialState = [
@@ -17,3 +17,19 @@ const initialState = [
     author: 'Max'
   }
 ]
+
+const notesSlice = createSlice({
+  name: 'notes',
+  initialState,
+  reducers: {
+    noteAdded: {
+      reducer(state, action) {
+        state.push(action.payload)
+      }
+    }
+  }
+})
+
+const selectAllNotes = (state) => state.notes
+
+export default notesSlice
