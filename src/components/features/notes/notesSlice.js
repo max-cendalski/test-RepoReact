@@ -50,3 +50,4 @@ export const {noteAdded} = notesSlice.actions
 
 
 export default notesSlice.reducer
+
