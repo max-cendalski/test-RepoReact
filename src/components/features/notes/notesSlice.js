@@ -7,12 +7,17 @@ const initialState = [
   {
     id: nanoid(),
     title: 'Learn TypeScript',
-    text: 'As soon as possible'
+    text: 'As soon as possible',
+    author: 'Max',
+    date: sub(new Date(), {minutes:30}).toISOString()
+
   },
     {
     id: nanoid(),
     title: 'Play',
-    text: 'Diablo Immortal'
+    text: 'Diablo Immortal',
+    author: 'Max',
+    date: sub(new Date(), {minutes:20}).toISOString()
   }
 ]
 
@@ -30,7 +35,8 @@ const notesSlice = createSlice({
             author,
             title,
             text,
-            id: nanoid()
+            id: nanoid(),
+            date: sub(new Date(), {minutes:10}).toISOString()
           }
         }
       }
