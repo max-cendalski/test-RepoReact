@@ -1,19 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import createSlice from 'react-redux'
 
-const initialState = {
-  notes: ['Learn Redux']
-}
 
-export const notesSlice = createSlice({
-  name: 'note',
-  initialState,
-  reducers: {
-    addNote:(state, action)=> {
-      state.notes.push(action.payload)
-    }
+const initialState = [
+  {
+    id: 1,
+    title: 'Learn TypeScript',
+    text: 'As soon as possible',
+    date: 'June 6th',
+    author: 'Max'
+  },
+    {
+    id: 1,
+    title: 'Play',
+    text: 'Diablo Immortal',
+    date: 'June 6th',
+    author: 'Max'
   }
-})
-
-export const {addNote} = notesSlice.actions
-
-export default notesSlice.reducer
+]
