@@ -15,7 +15,7 @@ const initialState = [
     id: 2,
     title: 'Play',
     text: 'Diablo Immortal',
-    date: sub(new Date(), {minutes: 10}).toISOString(),
+    date: sub(new Date(), {minutes: 5}).toISOString(),
     author: 'Max'
   }
 ]
