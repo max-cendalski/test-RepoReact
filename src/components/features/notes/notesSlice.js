@@ -5,14 +5,14 @@ import {sub} from 'date-fns'
 
 const initialState = [
   {
-    id: 1,
+    id: nanoid(),
     title: 'Learn TypeScript',
     text: 'As soon as possible',
     date: sub(new Date(), {minutes: 10}).toISOString(),
     author: 'Max'
   },
     {
-    id: 2,
+    id: nanoid(),
     title: 'Play',
     text: 'Diablo Immortal',
     date: sub(new Date(), {minutes: 5}).toISOString(),

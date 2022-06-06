@@ -1,4 +1,4 @@
-import { useSelector, useDispatch} from "react-redux"
+import { useSelector} from "react-redux"
 import { selectAllNotes } from "./notesSlice"
 import AddNoteForm from "./AddNoteForm"
 
