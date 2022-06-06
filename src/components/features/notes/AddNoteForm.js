@@ -63,7 +63,7 @@ const AddNoteForm = ()=> {
          onClick={handleAddNote}
          type="button"
          >
-         Submit</button>
+         Save note</button>
         </form>
       </article>
     </>
