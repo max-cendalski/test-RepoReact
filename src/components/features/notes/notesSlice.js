@@ -1,3 +1,5 @@
+import './notes.css'
+
 import {createSlice} from "@reduxjs/toolkit";
 
 
@@ -10,7 +12,7 @@ const initialState = [
     author: 'Max'
   },
     {
-    id: 1,
+    id: 2,
     title: 'Play',
     text: 'Diablo Immortal',
     date: 'June 6th',
@@ -30,6 +32,9 @@ const notesSlice = createSlice({
   }
 })
 
-const selectAllNotes = (state) => state.notes
+export const selectAllNotes = (state) => state.notes
 
-export default notesSlice
+export const {noteAdded} = notesSlice.actions
+
+
+export default notesSlice.reducer
