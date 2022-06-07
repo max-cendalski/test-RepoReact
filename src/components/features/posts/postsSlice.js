@@ -121,7 +121,7 @@ export const getPostsStatus = (state)=> state.posts.status
 export const getPostsError = (state)=> state.posts.error
 
 export const selectPostById = (state, postId) =>
-  state.posts.find(post => post.id === postId);
+  state.posts.posts.find(post => post.id === postId);
 
 export const {postAdded, reactionAdded, } = postsSlice.actions
 
