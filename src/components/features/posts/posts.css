@@ -25,10 +25,11 @@
   font-size: 1.2rem;
 }
 
-h3 {
+h2 {
   color: darkcyan;
 }
 
-.postCredit {
-  padding: 0.5rem;
+.post-credit {
+  margin: .5rem;
+  font-weight: 700;
 }

@@ -5,11 +5,13 @@ import Navbar from './Navbar/Navbar';
 const Layout = () => {
   const appTitle = "Test App"
   return (
-    <main className="App">
-        <Header appTitle={appTitle}/>
-        <Navbar />
+    <>
+      <Header appTitle={appTitle}/>
+      <Navbar />
+      <main className="App">
         <Outlet />
     </main>
+    </>
   )
 }
 

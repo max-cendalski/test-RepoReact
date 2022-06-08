@@ -5,7 +5,9 @@ import { useState, useEffect } from "react"
 
 
 
-export default function Places(props) {
+export default function Places({places}) {
+  console.log('places',places)
+
 const [locations, setLocation] = useState([])
 
 useEffect(() => {
