@@ -1,4 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Layout from '../Layout'
 import Main from '../../pages/Main/Main.js';
 import Places from '../../pages/Places/Places.js'
 import Games from '../../pages/Games/Games.js'
@@ -11,11 +12,11 @@ import Navbar from '../Navbar/Navbar.js';
 import PostsList from '../features/posts/PostsList.js';
 import Notes from '../features/notes/Notes.js'
 import SinglePostPage from '../features/posts/SinglePostPage.js';
+import AddPostForm from '../features/posts/AddPostForm';
 
 
 
 export default function App() {
-  const appTitle = "Test App"
   const data=[{
     country:'Japan',
     city: 'Tokyo'
@@ -38,24 +39,16 @@ export default function App() {
   }]
 
   return (
-      <BrowserRouter>
-        <Header appTitle={appTitle}/>
-        <Navbar />
         <Routes>
-          <Route path="/" element={<Main data={data}/>} />
-          <Route path="/places" element={<Places />} />
-          <Route path="/carousel" element={<Carousel />} />
-          <Route path="/places" element={<Places />} />
-          <Route path="/fade" element={<FadeTest />} />
-          <Route path="/games" element={<Games />} />
-          <Route path="/quotes" element={<Quotes />} />
-          <Route path="/test" element={<Counter />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path="/postslist" element={<PostsList />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path =":postId" element ={<SinglePostPage />} />
-
+          <Route path="/" element={<Layout />}>
+            <Route index element = {<Main />} />
+            <Route path="postslist" element={<PostsList />} />
+            <Route path="notes" element={<Notes />} />
+            <Route path="post">
+              <Route index element={<AddPostForm />} />
+              <Route path=":postId" element={<SinglePostPage />} />
+            </Route>
+          </Route>
         </Routes>
-      </BrowserRouter>
   );
 }

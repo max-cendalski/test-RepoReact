@@ -108,7 +108,6 @@ const postsSlice = createSlice({
         rocket: 0,
         wine: 0
       }
-      console.log(action.payload)
       state.posts.push(action.payload)
     })
   }
