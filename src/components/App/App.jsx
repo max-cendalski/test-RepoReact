@@ -10,6 +10,7 @@ import Counter  from '../features/counter/Counter.js';
 import Navbar from '../Navbar/Navbar.js';
 import PostsList from '../features/posts/PostsList.js';
 import Notes from '../features/notes/Notes.js'
+import SinglePostPage from '../features/posts/SinglePostPage.js';
 
 
 
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="/notes" element={<Notes />} />
           <Route path="/postslist" element={<PostsList />} />
           <Route path="/notes" element={<Notes />} />
+          <Route path =":postId" element ={<SinglePostPage />} />
 
         </Routes>
       </BrowserRouter>
