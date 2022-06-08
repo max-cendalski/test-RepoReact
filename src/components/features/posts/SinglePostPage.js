@@ -26,7 +26,7 @@ return (
       <h2>{post.title}</h2>
       <p>{post.body}</p>
       <p className="post-credit">
-        <Link to ={`/post/edit/${post.id}`}>Edit Post </Link>
+        <Link to ={`/post/edit/${post.id}`} className="post-credit-link">Edit Post </Link>
         <PostAuhor userId={post.userId} />
         <TimeAgo timestamp={post.date} />
       </p>

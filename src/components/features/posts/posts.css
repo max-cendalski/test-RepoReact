@@ -29,7 +29,14 @@ h2 {
   color: darkcyan;
 }
 
+h4 {
+  font-weight: 600;
+}
 .post-credit {
-  margin: .5rem;
+  margin: 0.2rem;
+}
+.post-credit-link {
   font-weight: 700;
+  text-decoration: none;
+  color: rgb(234, 65, 4);
 }
