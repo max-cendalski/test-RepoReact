@@ -36,7 +36,7 @@ const EditPostForm =() => {
     if(canSave) {
       try {
         setRequestStatus('pending')
-        dispatch(updatePost({id: post.id, title, body:content, userId, reactions: post.reactions}))
+        dispatch(updatePost({id: post.id, title, body:content, userId, reactions: post.reactions})).unwrap()
 
         setTitle('')
         setContent('')
@@ -49,5 +49,42 @@ const EditPostForm =() => {
       }
     }
   }
-
+  const usersOptions = users.map(user => (
+    <option
+      key={user.id}
+      value={user.id}
+    >{user.name}</option>
+  ))
+    return (
+      <section>
+        <h2>Edit Post</h2>
+        <form>
+          <label htmlFor="postTitle">Post Title:</label>
+          <input
+            type="text"
+            id="postTitle"
+            name="postTitle"
+            value={title}
+            onChange={onTitleChanged}
+          />
+          <label htmlFor="postAuthor">Author:</label>
+          <select id="postAuthor" defaultValue={userId} onChange={onAuthorChanged}>
+            <option value=""></option>
+            {usersOptions}
+          </select>
+          <label htmlFor="postContent">Content:</label>
+          <textarea
+            id="postContent"
+            name="postContent"
+            value={content}
+            onChange={onContentChanged}
+          />
+          <button
+            type="button"
+            onClick={onSavePostClicked}
+            disabled={!canSave}
+          ></button>
+        </form>
+      </section>
+    )
 }
