@@ -83,7 +83,7 @@ const EditPostForm =() => {
             type="button"
             onClick={onSavePostClicked}
             disabled={!canSave}
-          ></button>
+          >Submit</button>
         </form>
       </section>
     )

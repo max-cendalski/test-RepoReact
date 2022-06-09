@@ -53,6 +53,10 @@ export default function App() {
               <Route index element={<AddPostForm />} />
               <Route path=":postId" element={<SinglePostPage />} />
             </Route>
+            <Route path="/edit">
+              <Route index element={<AddPostForm />} />
+              <Route path=":postId" element={<EditPostForm />} />
+            </Route>
           </Route>
         </Routes>
   );
