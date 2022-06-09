@@ -11,6 +11,7 @@ import PostsList from '../features/posts/PostsList.js';
 import Notes from '../features/notes/Notes.js'
 import SinglePostPage from '../features/posts/SinglePostPage.js';
 import AddPostForm from '../features/posts/AddPostForm';
+import EditPostForm from '../features/posts/EditPostForm.js';
 
 
 
