@@ -88,3 +88,5 @@ const EditPostForm =() => {
       </section>
     )
 }
+
+export default EditPostForm
