@@ -7,12 +7,16 @@ import { selectAllUsers } from '../users/usersSlice';
 import {useNavigate} from 'react-router-dom'
 
 const AddPostForm = () => {
+  const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [userId, setUserId] = useState('')
   const [addRequestStatus, setAddRequestStatus] = useState('idle')
 
-  const dispatch = useDispatch()
+
 
   const users = useSelector(selectAllUsers)
 
@@ -32,6 +36,7 @@ const AddPostForm = () => {
         setTitle('')
         setContent('')
         setUserId('')
+        navigate('/')
       } catch (err) {
         console.error('Failed to save the post',err)
       } finally {
