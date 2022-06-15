@@ -2,6 +2,7 @@ import './posts.css'
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from 'react';
 import PostsExcerpt from './PostsExcerpt';
+import { useParams } from 'react-router-dom';
 
 import { selectAllPosts, getPostsStatus, getPostsError, fetchPosts } from './postsSlice';
 import AddPostForm from './AddPostForm';
@@ -23,6 +24,7 @@ const PostsList = () => {
   },[postStatus, dispatch])
 
   let content;
+
   if (postStatus === 'loading')  {
     content = <p>"Loading..."</p>;
   } else if (postStatus === 'succeeded') {

@@ -12,7 +12,7 @@ const initialState = {
 }
 
 // async Thunk
-// createAsyncThunk accepts two arguments, first is string used as prefix for generating
+// createAsyncThunk accepts two arguments, first it's string used as prefix for generating
 // action type, second payload creator callback. Should return data
 export const fetchPosts = createAsyncThunk('posts/fecthPosts', async () => {
   try {
@@ -47,8 +47,11 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
+    // createSlice automatically generates ACTION CREATOR FUNCTION  with the same name (postAdded)
+    // postAdded it's REDUCER FUNCTION or just REDUCER
     postAdded: {
       reducer(state, action) {
+        // we dispatch action postAdded and it has payload, look what is exported
         state.posts.push(action.payload)
       },
       // callback to format data and return object as payload
@@ -119,7 +122,19 @@ const postsSlice = createSlice({
         rocket: 0,
         wine: 0
       }
+      console.log(action.payload)
       state.posts.push(action.payload)
+    })
+    .addCase(updatePost.fulfilled, (state, action) => {
+      if (!action.payload?.id) {
+        console.log('Update could not complete')
+        console.log('action.payload',action.payload)
+        return;
+      }
+      const {id} = action.payload;
+      action.payload.date = new Date().toISOString();
+      const posts = state.posts.filter(post => post.id === id)
+      state.posts = [...posts, action.payload]
     })
   }
 })

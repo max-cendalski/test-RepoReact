@@ -18,6 +18,7 @@ const EditPostForm =() => {
   const [requestStatus, setRequestStatus] = useState('idle')
 
   const dispatch = useDispatch()
+
   if(!post) {
     return (
       <section>
