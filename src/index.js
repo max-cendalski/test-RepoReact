@@ -5,9 +5,11 @@ import App from '../src/components/App/App.jsx'
 import reportWebVitals from './reportWebVitals';
 import {store} from '../src/components/App/store'
 import {Provider} from 'react-redux';
+import { fetchPosts } from './components/features/posts/postsSlice';
 import {fetchUsers} from './components/features/users/usersSlice'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
+store.dispatch(fetchPosts())
 store.dispatch(fetchUsers())
 
 ReactDOM.render(
