@@ -59,7 +59,7 @@ const EditPostForm =() => {
       setTitle('')
       setContent('')
       setUserId('')
-      navigate('/posts')
+      navigate('/postslist')
     } catch (err) {
       console.error('Failed to delete the post', err)
     } finally {
