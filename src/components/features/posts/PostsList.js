@@ -2,8 +2,6 @@ import './posts.css'
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from 'react';
 import PostsExcerpt from './PostsExcerpt';
-import { useParams } from 'react-router-dom';
-
 import { selectAllPosts, getPostsStatus, getPostsError, fetchPosts } from './postsSlice';
 import AddPostForm from './AddPostForm';
 
