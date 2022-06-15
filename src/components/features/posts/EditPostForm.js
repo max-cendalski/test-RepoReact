@@ -101,7 +101,11 @@ const EditPostForm =() => {
             type="button"
             onClick={onSavePostClicked}
             disabled={!canSave}
-          >Submit</button>
+          >SUBMIT</button>
+            <button
+            type="button"
+            onClick={onDeletePostClicked}
+          >DELETE</button>
         </form>
       </section>
     )
