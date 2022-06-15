@@ -42,7 +42,7 @@ const EditPostForm =() => {
         setTitle('')
         setContent('')
         setUserId('')
-        navigate(`/post${postId}`)
+        navigate(`/post/${post.id}`)
       } catch (err) {
         console.error('Failed to save the post',err)
       } finally {

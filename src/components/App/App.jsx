@@ -49,13 +49,10 @@ export default function App() {
             <Route path="/fadetest" element={<FadeTest />} />
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/games" element={<Games />} />
-            <Route path="/post">
+            <Route path="post">
               <Route index element={<AddPostForm />} />
               <Route path=":postId" element={<SinglePostPage />} />
-            </Route>
-            <Route path="/edit">
-              <Route index element={<AddPostForm />} />
-              <Route path=":postId" element={<EditPostForm />} />
+               <Route path="edit/:postId" element={<EditPostForm />} />
             </Route>
           </Route>
         </Routes>
