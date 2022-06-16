@@ -1,4 +1,4 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice,nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import {sub} from 'date-fns';
 import axios from "axios";
 
@@ -44,11 +44,11 @@ export const updatePost = createAsyncThunk('posts/updatePost', async (initialPos
   }
 })
 
-export const deletePost = createAsyncThunk('posts/deletePost', async (initialPost) => {
+  export const deletePost = createAsyncThunk('posts/deletePost', async (initialPost) => {
   const { id } = initialPost;
   try {
     const response = await axios.delete(`${POSTS_URL}/${id}`)
-    if (response?.status === 200) return initialPost;
+     if (response?.status === 200) return initialPost;
     return `${response?.status}: ${response?.statusText}`;
   } catch (err) {
     return err.message
@@ -70,7 +70,7 @@ const postsSlice = createSlice({
       prepare(title, content, userId) {
         return {
           payload: {
-            id:nanoid(),
+            id: nanoid(),
             title,
             content,
             date: new Date().toISOString(),
