@@ -1,6 +1,5 @@
 
 #posts-container {
-  width: 50%;
   margin: 0 auto;
 }
 
@@ -26,6 +25,18 @@
   font-size: 1.2rem;
 }
 
-h3 {
+h2 {
   color: darkcyan;
+}
+
+h4 {
+  font-weight: 600;
+}
+.post-credit {
+  margin: 0.2rem;
+}
+.post-credit-link {
+  font-weight: 700;
+  text-decoration: none;
+  color: rgb(234, 65, 4);
 }
