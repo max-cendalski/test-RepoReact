@@ -7,7 +7,6 @@ const Notes = () => {
   const notesToRender =  useSelector(selectAllNotes)
   return (
     <main>
-      <h1>Notes</h1>
         <AddNoteForm />
       {
         notesToRender.map(note => {
