@@ -20,6 +20,8 @@ const Notes = () => {
               <p>
                 <TimeAgo timestamp={note.date}/>
               </p>
+              <button>Edit</button>
+              <button>Delete</button>
             </article>
           )
         })
