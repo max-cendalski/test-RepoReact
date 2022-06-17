@@ -6,7 +6,6 @@ const AddNoteForm = ()=> {
 
   const dispatch = useDispatch()
 
-
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
   const [author, setAuthor] = useState('')
@@ -16,7 +15,6 @@ const AddNoteForm = ()=> {
   const handleTextChange = e => setText(e.target.value)
 
   const saveNotesVisible = [author, title, text].every(Boolean)
-
 
   const handleAddNote = () => {
     if (title && text && author) {

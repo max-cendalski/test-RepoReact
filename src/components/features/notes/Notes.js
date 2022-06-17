@@ -1,7 +1,8 @@
-import { useSelector} from "react-redux"
+import { useSelector, useDispatch} from "react-redux"
 import { selectAllNotes } from "./notesSlice"
 import AddNoteForm from "./AddNoteForm"
 import TimeAgo from "../posts/TimeAgo"
+
 
 const Notes = () => {
   const notesToRender =  useSelector(selectAllNotes)
@@ -11,7 +12,7 @@ const Notes = () => {
     console.log('edit button clicked')
   }
    const handleDeleteNoteButton = e => {
-    console.log('delete button clicked')
+
   }
   return (
     <main>

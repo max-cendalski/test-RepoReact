@@ -40,6 +40,11 @@ const notesSlice = createSlice({
           }
         }
       }
+    },
+    noteDeleted: {
+      reducer(state, action) {
+        console.log('whee')
+      }
     }
   }
 })
