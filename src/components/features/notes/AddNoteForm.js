@@ -27,7 +27,7 @@ const AddNoteForm = ()=> {
 
   return (
     <>
-      <article>
+      <article className="add-note-container">
         <h1>Form</h1>
         <form>
         <p>

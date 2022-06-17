@@ -1,3 +1,6 @@
+* {
+  margin: 0 auto;
+}
 main {
   width: 90%;
   margin: 0 auto;
@@ -7,4 +10,8 @@ main {
   padding: 0.5rem;
   margin: 2rem auto;
   border: 2px solid black;
+}
+
+.add-note-container {
+  width: 50%
 }
