@@ -18,6 +18,13 @@ const initialState = [
     text: 'Diablo Immortal',
     author: 'Max',
     date: sub(new Date(), {minutes:20}).toISOString()
+  },
+      {
+    id: nanoid(),
+    title: 'Watch movies',
+    text: 'The Expanse',
+    author: 'Max',
+    date: sub(new Date(), {minutes:10}).toISOString()
   }
 ]
 
@@ -27,7 +34,6 @@ const notesSlice = createSlice({
   reducers: {
     noteAdded: {
       reducer(state, action) {
-        console.log('action-payload',action.payload)
         state.push(action.payload)
       },
       prepare(title, text, author) {
@@ -44,7 +50,8 @@ const notesSlice = createSlice({
     },
     noteDeleted: {
       reducer(state, action) {
-        console.log('action',typeof Number(action.payload))
+        const noteToRemove = state.findIndex(item => item.id === action.payload )
+        state.splice(noteToRemove, 1)
       }
     }
   }

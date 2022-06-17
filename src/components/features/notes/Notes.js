@@ -13,7 +13,7 @@ const Notes = () => {
     console.log('edit button clicked')
   }
    const handleDeleteNoteButton = (e) => {
-    const note =  e.target.closest('.note-container').getAttribute('key')
+    const note =  e.target.closest('.note-container').getAttribute('data-id')
     console.log('e.target.whatever', e.target.closest('.note-container'))
     dispatch(noteDeleted(note))
   }
@@ -36,7 +36,6 @@ const Notes = () => {
           )
         })
       }
-
     </main>
   )
 }
