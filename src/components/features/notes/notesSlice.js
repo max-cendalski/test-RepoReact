@@ -36,7 +36,7 @@ const notesSlice = createSlice({
             title,
             text,
             id: nanoid(),
-            date: sub(new Date(), {minutes:10}).toISOString()
+            date: sub(new Date(), {minutes:1}).toISOString()
           }
         }
       }
@@ -50,4 +50,3 @@ export const {noteAdded} = notesSlice.actions
 
 
 export default notesSlice.reducer
-

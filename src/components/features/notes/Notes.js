@@ -5,11 +5,13 @@ import TimeAgo from "../posts/TimeAgo"
 
 const Notes = () => {
   const notesToRender =  useSelector(selectAllNotes)
+  const sortedNotes = notesToRender.slice().sort((a, b) =>  b.date.localeCompare(a.date) )
+
   return (
     <main>
         <AddNoteForm />
       {
-        notesToRender.map(note => {
+        sortedNotes.map(note => {
           return (
             <article className="note-container" key={note.id}>
               <h2>{note.title}</h2>

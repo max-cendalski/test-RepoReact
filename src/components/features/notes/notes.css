@@ -9,15 +9,14 @@ main {
 .note-container {
   padding: 0.5rem;
   margin: 2rem auto;
-  border: 2px solid black;
+  border: 1px solid rgb(69, 55, 55);
 }
 
 .add-note-container {
   margin: 2rem auto;
   width: 50%;
-  color: rgb(82, 139, 139)
+  color: rgb(82, 139, 139);
 }
-
 
 
 form {
@@ -25,16 +24,17 @@ form {
   padding: 2rem;
 }
 
-
 input, textarea {
   width: 80%;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
+textarea {
+  height: 4rem;
+}
 label {
   display: block;
-  color: rgb(82, 139, 139)
 }
 
 form button {
