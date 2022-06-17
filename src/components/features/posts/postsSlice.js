@@ -48,8 +48,8 @@ export const updatePost = createAsyncThunk('posts/updatePost', async (initialPos
   const { id } = initialPost;
   try {
     const response = await axios.delete(`${POSTS_URL}/${id}`)
-     if (response?.status === 200) return initialPost;
-    return `${response?.status}: ${response?.statusText}`;
+   //  if (response?.status === 200) return initialPost;
+    //return `${response?.status}: ${response?.statusText}`;
   } catch (err) {
     return err.message
   }

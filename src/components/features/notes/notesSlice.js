@@ -27,6 +27,7 @@ const notesSlice = createSlice({
   reducers: {
     noteAdded: {
       reducer(state, action) {
+        console.log('action-payload',action.payload)
         state.push(action.payload)
       },
       prepare(title, text, author) {
@@ -43,7 +44,7 @@ const notesSlice = createSlice({
     },
     noteDeleted: {
       reducer(state, action) {
-        console.log('whee')
+        console.log('action',typeof Number(action.payload))
       }
     }
   }
@@ -51,7 +52,7 @@ const notesSlice = createSlice({
 
 export const selectAllNotes = (state) => state.notes
 
-export const {noteAdded} = notesSlice.actions
+export const {noteAdded, noteDeleted} = notesSlice.actions
 
 
 export default notesSlice.reducer
