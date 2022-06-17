@@ -8,6 +8,7 @@ const Notes = () => {
   return (
     <main>
       <h1>Notes</h1>
+        <AddNoteForm />
       {
         notesToRender.map(note => {
           return (
@@ -22,7 +23,7 @@ const Notes = () => {
           )
         })
       }
-      <AddNoteForm />
+
     </main>
   )
 }

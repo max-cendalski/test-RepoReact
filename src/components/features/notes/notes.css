@@ -13,5 +13,26 @@ main {
 }
 
 .add-note-container {
-  width: 50%
+  width: 50%;
+}
+
+form {
+  border: 1px solid black;
+  padding: 2rem;
+}
+
+input, textarea {
+  width: 80%;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  color: rgb(18, 18, 38);
+}
+
+form button {
+  padding: .2rem;
+  width: 30%;
+  font-size: 1.1rem;
 }
