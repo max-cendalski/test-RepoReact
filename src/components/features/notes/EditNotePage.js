@@ -1,31 +1,33 @@
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {selectAllNotes} from './notesSlice'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { noteUpdated} from './notesSlice'
 
 
 const EditNotePage = () => {
-const {noteId} = useParams()
-const dispatch = useDispatch()
+  const {noteId} = useParams()
+  const dispatch = useDispatch()
 
-  const [title, setTitle] = useState('')
-  const [text, setText] = useState('')
-  const [author, setAuthor] = useState('')
+  const notes = useSelector(selectAllNotes)
+  const noteToEdit = notes.filter(note => note.id === noteId)
+
+  const [title, setTitle] = useState(noteToEdit[0].title)
+  const [text, setText] = useState(noteToEdit[0].text)
+  const [author, setAuthor] = useState(noteToEdit[0].author)
 
   const handleAuthorChange = e => setAuthor(e.target.value)
   const handleTitleChange = e => setTitle(e.target.value)
   const handleTextChange = e => setText(e.target.value)
 
-  const notes = useSelector(selectAllNotes)
-  const noteToEdit = notes.filter(note => note.id === noteId)
 
- const handleAddNote = () => {
-    if (title && text && author) {
+
+ const handleAddNote = e => {
+      e.preventDefault()
       dispatch(
-       // noteAdded(title, text, author)
+       noteUpdated(author,title,text,noteId)
       )
-    }
+
     setTitle('')
     setAuthor('')
     setText('')
@@ -40,7 +42,7 @@ const dispatch = useDispatch()
           <label htmlFor="noteAuthor">Author name</label>
           <input
             type="text"
-            value={noteToEdit[0].author}
+            value={author}
             name="author"
             onChange={handleAuthorChange}
             >
@@ -50,7 +52,7 @@ const dispatch = useDispatch()
           <label htmlFor="noteTitle">Title</label>
           <input
             type="text"
-            value={noteToEdit[0].title}
+            value={title}
             name="title"
             onChange={handleTitleChange}
             >
@@ -59,7 +61,7 @@ const dispatch = useDispatch()
            <p>
           <label htmlFor="noteText">Text</label>
           <textarea
-            value={noteToEdit[0].text}
+            value={text}
             name="text"
             onChange={handleTextChange}
             >

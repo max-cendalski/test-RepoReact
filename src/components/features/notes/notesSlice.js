@@ -2,7 +2,6 @@ import './notes.css'
 import {createSlice, nanoid} from "@reduxjs/toolkit";
 import {sub} from 'date-fns'
 
-
 const initialState = {
   notes: [
  {
@@ -30,8 +29,6 @@ const initialState = {
   ]
 }
 
-
-
 const notesSlice = createSlice({
   name: 'notes',
   initialState,
@@ -55,8 +52,26 @@ const notesSlice = createSlice({
     noteDeleted: {
       reducer(state, action) {
         console.log(state.notes)
-       const noteToRemove = state.notes.findIndex(item => item.id === action.payload )
+        const noteToRemove = state.notes.findIndex(item => item.id === action.payload )
         state.notes.splice(noteToRemove, 1)
+      }
+    },
+    noteUpdated: {
+      reducer(state, action) {
+        const findNotee = state.notes.findIndex(item => item.id === action.payload.id)
+        state.notes.splice(findNotee, 1, action.payload)
+        console.log('action in reducer',action.payload)
+      },
+      prepare(author, title, text, noteId) {
+        return {
+          payload: {
+            author,
+            title,
+            text,
+            id: noteId,
+            date: sub(new Date(), {minutes: 1}).toISOString()
+          }
+        }
       }
     }
   }
@@ -64,7 +79,7 @@ const notesSlice = createSlice({
 
 export const selectAllNotes = (state) => state.notes.notes
 
-export const {noteAdded, noteDeleted} = notesSlice.actions
+export const {noteAdded, noteDeleted, noteUpdated} = notesSlice.actions
 
 
 export default notesSlice.reducer

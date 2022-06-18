@@ -19,7 +19,7 @@ const AddNoteForm = ()=> {
   const handleAddNote = () => {
     if (title && text && author) {
       dispatch(
-        noteAdded(title, text, author)
+        noteAdded('wweee')
       )
     }
     setTitle('')
