@@ -66,8 +66,5 @@ export const selectAllNotes = (state) => state.notes.notes
 
 export const {noteAdded, noteDeleted} = notesSlice.actions
 
-export const selectPostById = (state, noteId) =>
-  state.notes.find(note => note.id === noteId);
-
 
 export default notesSlice.reducer
