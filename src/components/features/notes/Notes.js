@@ -30,9 +30,7 @@ const Notes = () => {
               <p>
                 <TimeAgo timestamp={note.date}/>
               </p>
-                <button>
-                  <Link to = {`/notes/edit/${note.id}`}>Edit</Link>
-                </button>
+                  <Link to = {`/notes/edit/${note.id}`} className="edit-link">Edit</Link>
                <button onClick={handleDeleteNoteButton}>Delete</button>
             </section>
           )
