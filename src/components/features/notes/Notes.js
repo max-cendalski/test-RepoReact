@@ -11,13 +11,12 @@ const Notes = () => {
   const notesToRender =  useSelector(selectAllNotes)
   const sortedNotes = notesToRender.slice().sort((a, b) =>  b.date.localeCompare(a.date) )
 
-  const handleEditNoteButton = () => {
-    console.log('edit button clicked')
-  }
+
    const handleDeleteNoteButton = e => {
     const note =  e.target.closest('.note-container').getAttribute('data-id')
     dispatch(noteDeleted(note))
   }
+
   return (
     <main>
         <AddNoteForm />
@@ -31,7 +30,7 @@ const Notes = () => {
               <p>
                 <TimeAgo timestamp={note.date}/>
               </p>
-                <button onClick={handleEditNoteButton}>
+                <button>
                   <Link to = {`/notes/edit/${note.id}`}>Edit</Link>
                 </button>
                <button onClick={handleDeleteNoteButton}>Delete</button>
