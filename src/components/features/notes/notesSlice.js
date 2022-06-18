@@ -3,8 +3,9 @@ import {createSlice, nanoid} from "@reduxjs/toolkit";
 import {sub} from 'date-fns'
 
 
-const initialState = [
-  {
+const initialState = {
+  notes: [
+ {
     id: nanoid(),
     title: 'Learn TypeScript',
     text: 'As soon as possible',
@@ -14,7 +15,7 @@ const initialState = [
   },
     {
     id: nanoid(),
-    title: 'Play',
+    title: 'Play Video Game',
     text: 'Diablo Immortal',
     author: 'Max',
     date: sub(new Date(), {minutes:20}).toISOString()
@@ -26,7 +27,10 @@ const initialState = [
     author: 'Max',
     date: sub(new Date(), {minutes:10}).toISOString()
   }
-]
+  ]
+}
+
+
 
 const notesSlice = createSlice({
   name: 'notes',
@@ -50,16 +54,20 @@ const notesSlice = createSlice({
     },
     noteDeleted: {
       reducer(state, action) {
-        const noteToRemove = state.findIndex(item => item.id === action.payload )
-        state.splice(noteToRemove, 1)
+        console.log(state.notes)
+       const noteToRemove = state.notes.findIndex(item => item.id === action.payload )
+        state.notes.splice(noteToRemove, 1)
       }
     }
   }
 })
 
-export const selectAllNotes = (state) => state.notes
+export const selectAllNotes = (state) => state.notes.notes
 
 export const {noteAdded, noteDeleted} = notesSlice.actions
+
+export const selectPostById = (state, noteId) =>
+  state.notes.find(note => note.id === noteId);
 
 
 export default notesSlice.reducer

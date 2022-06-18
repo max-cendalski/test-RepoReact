@@ -1,7 +1,9 @@
-import { useSelector, useDispatch} from "react-redux"
-import { selectAllNotes, noteDeleted } from "./notesSlice"
-import AddNoteForm from "./AddNoteForm"
-import TimeAgo from "../posts/TimeAgo"
+import { useSelector, useDispatch} from 'react-redux'
+import { selectAllNotes, noteDeleted } from './notesSlice'
+import AddNoteForm from './AddNoteForm'
+import TimeAgo from '../posts/TimeAgo'
+import {Link} from 'react-router-dom'
+import EditNotePage from './EditNotePage'
 
 
 const Notes = () => {
@@ -12,9 +14,8 @@ const Notes = () => {
   const handleEditNoteButton = () => {
     console.log('edit button clicked')
   }
-   const handleDeleteNoteButton = (e) => {
+   const handleDeleteNoteButton = e => {
     const note =  e.target.closest('.note-container').getAttribute('data-id')
-    console.log('e.target.whatever', e.target.closest('.note-container'))
     dispatch(noteDeleted(note))
   }
   return (
@@ -30,8 +31,10 @@ const Notes = () => {
               <p>
                 <TimeAgo timestamp={note.date}/>
               </p>
-              <button onClick={handleEditNoteButton}>Edit</button>
-              <button onClick={handleDeleteNoteButton}>Delete</button>
+                <button onClick={handleEditNoteButton}>
+                  <Link to = {`/notes/edit/${note.id}`}>Edit</Link>
+                </button>
+               <button onClick={handleDeleteNoteButton}>Delete</button>
             </section>
           )
         })

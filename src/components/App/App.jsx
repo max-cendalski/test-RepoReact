@@ -12,6 +12,7 @@ import Notes from '../features/notes/Notes.js'
 import SinglePostPage from '../features/posts/SinglePostPage.js';
 import AddPostForm from '../features/posts/AddPostForm';
 import EditPostForm from '../features/posts/EditPostForm.js';
+import EditNotePage from '../features/notes/EditNotePage'
 
 
 
@@ -44,7 +45,6 @@ export default function App() {
             <Route path="/postslist" element={<PostsList />} />
             <Route path="/counter" element={<Counter />} />
             <Route path="/carousel" element={<Carousel />} />
-            <Route path="/notes" element={<Notes />} />
             <Route path="/places" element={<Places places={data}/>} />
             <Route path="/fadetest" element={<FadeTest />} />
             <Route path="/quotes" element={<Quotes />} />
@@ -53,6 +53,10 @@ export default function App() {
               <Route index element={<AddPostForm />} />
               <Route path=":postId" element={<SinglePostPage />} />
                <Route path="edit/:postId" element={<EditPostForm />} />
+            </Route>
+            <Route path="notes">
+              <Route index element={<Notes />} />
+              <Route path="edit/:noteId" element={<EditNotePage />} />
             </Route>
           </Route>
         </Routes>
