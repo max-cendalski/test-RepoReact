@@ -27,6 +27,16 @@ const todosSlice = createSlice({
     todoAdded: {
       reducer(state, action) {
         state.todos.push(action.payload)
+      },
+      prepare(title,status) {
+        return {
+          payload: {
+            title,
+            status,
+            id: nanoid(),
+            date: sub(new Date(), {minutes: 1}).toISOString()
+          }
+        }
       }
 
     }

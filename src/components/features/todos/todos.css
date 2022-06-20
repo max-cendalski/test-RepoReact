@@ -1,0 +1,14 @@
+
+
+.todos-container {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.add-todo-form {
+  width: 80%;
+}
+
+.todos-list {
+  margin: 1rem auto;
+}
