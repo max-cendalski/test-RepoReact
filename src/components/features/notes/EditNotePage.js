@@ -1,13 +1,15 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {selectAllNotes} from './notesSlice'
 import { useState } from 'react'
 import { noteUpdated} from './notesSlice'
 
 
+
 const EditNotePage = () => {
   const {noteId} = useParams()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const notes = useSelector(selectAllNotes)
   const noteToEdit = notes.filter(note => note.id === noteId)
@@ -31,6 +33,7 @@ const EditNotePage = () => {
     setTitle('')
     setAuthor('')
     setText('')
+    navigate('/notes')
   }
 
 
