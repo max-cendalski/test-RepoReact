@@ -2,6 +2,8 @@ import './notes.css'
 import {createSlice, nanoid} from "@reduxjs/toolkit";
 import {sub} from 'date-fns'
 
+
+
 const initialState = {
   notes: [
  {
@@ -35,9 +37,9 @@ const notesSlice = createSlice({
   reducers: {
     noteAdded: {
       reducer(state, action) {
-        state.push(action.payload)
+        state.notes.push(action.payload)
       },
-      prepare(title, text, author) {
+      prepare(author, title, text) {
         return {
           payload: {
             author,
@@ -47,7 +49,7 @@ const notesSlice = createSlice({
             date: sub(new Date(), {minutes:1}).toISOString()
           }
         }
-      }
+      },
     },
     noteDeleted: {
       reducer(state, action) {
@@ -65,10 +67,10 @@ const notesSlice = createSlice({
       prepare(author, title, text, noteId) {
         return {
           payload: {
+            id: noteId,
             author,
             title,
             text,
-            id: noteId,
             date: sub(new Date(), {minutes: 1}).toISOString()
           }
         }

@@ -9,6 +9,7 @@ import EditNotePage from './EditNotePage'
 const Notes = () => {
   const dispatch = useDispatch()
   const notesToRender =  useSelector(selectAllNotes)
+  console.log('notesToRender',notesToRender)
   const sortedNotes = notesToRender.slice().sort((a, b) =>  b.date.localeCompare(a.date) )
 
 
