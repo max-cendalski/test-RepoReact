@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import {store} from '../src/components/App/store'
 import {Provider} from 'react-redux';
 import { fetchPosts } from './components/features/posts/postsSlice';
-import {fetchUsers} from './components/features/users/usersSlice'
+import {fetchUsers} from './components/features/users/usersSlice';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 store.dispatch(fetchPosts())
 store.dispatch(fetchUsers())
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,3 +30,31 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+
+/* const itemsToCreate = JSON.stringify({
+  notes: [
+ {
+    id: nanoid(),
+    title: 'Learn TypeScript',
+    text: 'As soon as possible',
+    author: 'Max',
+    date: sub(new Date(), {minutes:30}).toISOString()
+
+  },
+    {
+    id: nanoid(),
+    title: 'Play Video Game',
+    text: 'Diablo Immortal',
+    author: 'Max',
+    date: sub(new Date(), {minutes:20}).toISOString()
+  },
+    {
+    id: nanoid(),
+    title: 'Watch movies',
+    text: 'The Expanse',
+    author: 'Max',
+    date: sub(new Date(), {minutes:10}).toISOString()
+  }
+  ] */

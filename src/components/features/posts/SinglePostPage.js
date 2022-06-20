@@ -14,7 +14,6 @@ const {postId} = useParams()
 
 const post = useSelector((state) => selectPostById(state,Number(postId)))
 
-
 if(!post) {
   return (
     <section>

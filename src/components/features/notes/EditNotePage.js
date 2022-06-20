@@ -1,36 +1,44 @@
-import { useState } from "react";
-import { noteAdded } from "./notesSlice";
-import { useDispatch } from "react-redux";
+import { useParams, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import {selectAllNotes} from './notesSlice'
+import { useState } from 'react'
+import { noteUpdated} from './notesSlice'
 
-const AddNoteForm = ()=> {
 
+
+const EditNotePage = () => {
+  const {noteId} = useParams()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const [author, setAuthor] = useState('')
-  const [title, setTitle] = useState('')
-  const [text, setText] = useState('')
+  const notes = useSelector(selectAllNotes)
+  const noteToEdit = notes.filter(note => note.id === noteId)
+
+  const [title, setTitle] = useState(noteToEdit[0].title)
+  const [text, setText] = useState(noteToEdit[0].text)
+  const [author, setAuthor] = useState(noteToEdit[0].author)
 
   const handleAuthorChange = e => setAuthor(e.target.value)
   const handleTitleChange = e => setTitle(e.target.value)
   const handleTextChange = e => setText(e.target.value)
 
-  const saveNotesVisible = [author, title, text].every(Boolean)
 
 
-  const handleAddNote = () => {
-    if (title && text && author) {
+ const handleAddNote = e => {
+      e.preventDefault()
       dispatch(
-        noteAdded(title, text, author)
+       noteUpdated(author,title,text,noteId)
       )
-    }
+
     setTitle('')
     setAuthor('')
     setText('')
+    navigate('/notes')
   }
 
+
   return (
-    <>
-      <article className="add-note-container">
+     <article className="edit-note-container">
         <h1>Add Note Form</h1>
         <form>
         <p>
@@ -65,14 +73,12 @@ const AddNoteForm = ()=> {
         <button
          onClick={handleAddNote}
          type="button"
-         disabled={!saveNotesVisible}
          >
          Save note</button>
         </form>
       </article>
-    </>
   )
 }
 
 
-export default AddNoteForm;
+export default EditNotePage

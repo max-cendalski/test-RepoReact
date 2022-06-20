@@ -1,28 +1,40 @@
-import { useSelector} from "react-redux"
-import { selectAllNotes } from "./notesSlice"
-import AddNoteForm from "./AddNoteForm"
-import TimeAgo from "../posts/TimeAgo"
+import { useSelector, useDispatch} from 'react-redux'
+import { selectAllNotes, noteDeleted } from './notesSlice'
+import AddNoteForm from './AddNoteForm'
+import TimeAgo from '../posts/TimeAgo'
+import {Link} from 'react-router-dom'
+
 
 const Notes = () => {
+  const dispatch = useDispatch()
   const notesToRender =  useSelector(selectAllNotes)
+  const sortedNotes = notesToRender.slice().sort((a, b) =>  b.date.localeCompare(a.date) )
+
+
+   const handleDeleteNoteButton = e => {
+    const note =  e.target.closest('.note-container').getAttribute('data-id')
+    dispatch(noteDeleted(note))
+  }
+
   return (
     <main>
-      <h1>Notes</h1>
+        <AddNoteForm />
       {
-        notesToRender.map(note => {
+        sortedNotes.map(note => {
           return (
-            <article className="note-container" key={note.id}>
+            <section className="note-container" data-id={note.id} key={note.id}>
               <h2>{note.title}</h2>
               <h3>{note.text.substring(0, 100)}</h3>
               <p>{note.author}</p>
               <p>
                 <TimeAgo timestamp={note.date}/>
               </p>
-            </article>
+                  <Link to = {`/notes/edit/${note.id}`} className="edit-link">Edit</Link>
+               <button onClick={handleDeleteNoteButton}>Delete</button>
+            </section>
           )
         })
       }
-      <AddNoteForm />
     </main>
   )
 }

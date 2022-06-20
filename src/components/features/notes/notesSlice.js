@@ -3,8 +3,9 @@ import {createSlice, nanoid} from "@reduxjs/toolkit";
 import {sub} from 'date-fns'
 
 
-const initialState = [
-  {
+const initialState = {
+  notes: [
+ {
     id: nanoid(),
     title: 'Learn TypeScript',
     text: 'As soon as possible',
@@ -14,12 +15,20 @@ const initialState = [
   },
     {
     id: nanoid(),
-    title: 'Play',
+    title: 'Play Video Game',
     text: 'Diablo Immortal',
     author: 'Max',
     date: sub(new Date(), {minutes:20}).toISOString()
+  },
+      {
+    id: nanoid(),
+    title: 'Watch movies',
+    text: 'The Expanse',
+    author: 'Max',
+    date: sub(new Date(), {minutes:10}).toISOString()
   }
-]
+  ]
+}
 
 const notesSlice = createSlice({
   name: 'notes',
@@ -27,16 +36,41 @@ const notesSlice = createSlice({
   reducers: {
     noteAdded: {
       reducer(state, action) {
-        state.push(action.payload)
+        state.notes.push(action.payload)
       },
-      prepare(title, text, author) {
+      prepare(author, title, text) {
         return {
           payload: {
+            text,
+            author,
+            title,
+            id: nanoid(),
+            date: sub(new Date(), {minutes:1}).toISOString()
+          }
+        }
+      },
+    },
+    noteDeleted: {
+      reducer(state, action) {
+        console.log(state.notes)
+        const noteToRemove = state.notes.findIndex(item => item.id === action.payload )
+        state.notes.splice(noteToRemove, 1)
+      }
+    },
+    noteUpdated: {
+      reducer(state, action) {
+        const findNotee = state.notes.findIndex(item => item.id === action.payload.id)
+        state.notes.splice(findNotee, 1, action.payload)
+        console.log('action in reducer',action.payload)
+      },
+      prepare(author, title, text, noteId) {
+        return {
+          payload: {
+            id: noteId,
             author,
             title,
             text,
-            id: nanoid(),
-            date: sub(new Date(), {minutes:10}).toISOString()
+            date: sub(new Date(), {minutes: 1}).toISOString()
           }
         }
       }
@@ -44,10 +78,9 @@ const notesSlice = createSlice({
   }
 })
 
-export const selectAllNotes = (state) => state.notes
+export const selectAllNotes = (state) => state.notes.notes
 
-export const {noteAdded} = notesSlice.actions
+export const {noteAdded, noteDeleted, noteUpdated} = notesSlice.actions
 
 
 export default notesSlice.reducer
-
