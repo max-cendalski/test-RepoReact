@@ -13,6 +13,7 @@ import SinglePostPage from '../features/posts/SinglePostPage.js';
 import AddPostForm from '../features/posts/AddPostForm';
 import EditPostForm from '../features/posts/EditPostForm.js';
 import EditNotePage from '../features/notes/EditNotePage'
+import Todos from '../features/todos/Todos';
 
 export default function App() {
   const data=[{
@@ -50,6 +51,7 @@ export default function App() {
             <Route path="/fadetest" element={<FadeTest />} />
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/games" element={<Games />} />
+            <Route path="/todos" element={<Todos />} />
             <Route path="post">
               <Route index element={<AddPostForm />} />
               <Route path=":postId" element={<SinglePostPage />} />

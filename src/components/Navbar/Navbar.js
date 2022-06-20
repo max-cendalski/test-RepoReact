@@ -14,6 +14,7 @@ export default function Navbar(props) {
         <Link to ="/test">Counter</Link>
         <Link to ="/notes">Notes</Link>
         <Link to ="/postslist">Posts List</Link>
+        <Link to ="/todos">Todos</Link>
       </nav>
     )
 }
