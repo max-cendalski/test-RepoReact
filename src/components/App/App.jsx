@@ -14,8 +14,6 @@ import AddPostForm from '../features/posts/AddPostForm';
 import EditPostForm from '../features/posts/EditPostForm.js';
 import EditNotePage from '../features/notes/EditNotePage'
 
-
-
 export default function App() {
   const data=[{
     country:'Japan',
@@ -37,6 +35,9 @@ export default function App() {
     country:'Australia',
     city: 'Sydney'
   }]
+
+
+
 
   return (
         <Routes>

@@ -3,7 +3,6 @@ import {createSlice, nanoid} from "@reduxjs/toolkit";
 import {sub} from 'date-fns'
 
 
-
 const initialState = {
   notes: [
  {
@@ -42,9 +41,9 @@ const notesSlice = createSlice({
       prepare(author, title, text) {
         return {
           payload: {
+            text,
             author,
             title,
-            text,
             id: nanoid(),
             date: sub(new Date(), {minutes:1}).toISOString()
           }
