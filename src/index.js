@@ -8,8 +8,6 @@ import {Provider} from 'react-redux';
 import { fetchPosts } from './components/features/posts/postsSlice';
 import {fetchUsers} from './components/features/users/usersSlice';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import { nanoid} from "@reduxjs/toolkit";
-import {sub} from 'date-fns'
 
 store.dispatch(fetchPosts())
 store.dispatch(fetchUsers())

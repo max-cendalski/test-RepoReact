@@ -3,7 +3,6 @@ import { selectAllNotes, noteDeleted } from './notesSlice'
 import AddNoteForm from './AddNoteForm'
 import TimeAgo from '../posts/TimeAgo'
 import {Link} from 'react-router-dom'
-import EditNotePage from './EditNotePage'
 
 
 const Notes = () => {
