@@ -8,11 +8,12 @@
 .add-todo-form {
   width: 60%;
   margin: 2rem auto;
+  text-align: left;
 }
 
 .todos-container {
   width: 90%;
-
+  text-align: center;
 }
 
 .todo {
@@ -21,14 +22,21 @@
   border: 1px solid black;
   margin: 1rem auto;
   padding: .2rem 1rem;
+  text-align: left;
 }
 
 .todo-date {
   margin-top: 2rem;
 }
 
-
 i {
   float: right;
   cursor: pointer;
+}
+
+.remove-todos-button {
+  padding: .2rem;
+    width: 30%;
+    font-size: 1.1rem;
+    cursor: pointer;
 }

@@ -13,7 +13,6 @@ const handleStatusChange = e => {
   dispatch(todoStatus(todo))
 
 }
-console.log('todosToRender',todosToRender)
   return(
     <article className='todos-container'>
       <AddTodo />
@@ -29,6 +28,7 @@ console.log('todosToRender',todosToRender)
          )
         })
       }
+      <button className='remove-todos-button'>Remove all completed todos</button>
     </article>
   )
 }
