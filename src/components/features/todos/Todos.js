@@ -1,11 +1,18 @@
 import './todos.css'
-import {selectAllTodos} from './todosSlice'
-import { useSelector } from 'react-redux'
+import {selectAllTodos, todoStatus} from './todosSlice'
+import { useSelector, useDispatch } from 'react-redux'
 import AddTodo from './AddTodoForm'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Todos = () => {
+const dispatch = useDispatch()
 const todosToRender = useSelector(selectAllTodos)
+
+const handleStatusChange = e => {
+  const todo = e.target.closest('.todo').getAttribute('data-id')
+  dispatch(todoStatus(todo))
+
+}
 console.log('todosToRender',todosToRender)
   return(
     <article className='todos-container'>
@@ -14,11 +21,11 @@ console.log('todosToRender',todosToRender)
       {
         todosToRender.map(todo => {
          return (
-            <article className='todo' data-id={todo.id} key={todo.id}>
-              <h3>{todo.title}</h3>
-              {(!todo.status) ? <i className="fa-regular fa-lg fa-square"></i> : <i className="fa-solid fa-lg fa-square-check"></i>}
+            <section className='todo' data-id={todo.id} key={todo.id}>
+              <h2>{todo.title}</h2>
+              {(!todo.status) ? <i onClick={handleStatusChange} className="fa-regular fa-2x fa-square"></i> : <i onClick={handleStatusChange} className="fa-solid fa-2x fa-square-check"></i>}
               <p className='todo-date'>{todo.date}</p>
-          </article>
+          </section>
          )
         })
       }
