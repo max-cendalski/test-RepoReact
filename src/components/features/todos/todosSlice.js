@@ -47,7 +47,8 @@ const todosSlice = createSlice({
     },
     removedCompletedTodos: {
       reducer(state, action) {
-        state.todos = action.payload
+        const todosToKeep =  state.todos.filter(todo => todo.status === false)
+        state.todos = todosToKeep
       }
     }
   }

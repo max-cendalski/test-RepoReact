@@ -14,14 +14,8 @@ const handleStatusChange = e => {
 }
 
 const handleRemoveAllTodos = () => {
-  console.log('todosToRender',todosToRender)
-  const todosToKeep = []
-  for (var i = 0; i < todosToRender.length; i++) {
-    if (todosToRender[i].status === false) {
-      todosToKeep.push(todosToRender[i])
-    }
-  }
-  dispatch(removedCompletedTodos(todosToKeep))
+
+  dispatch(removedCompletedTodos())
 }
   return(
     <article className='todos-container'>
