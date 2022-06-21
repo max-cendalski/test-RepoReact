@@ -1,5 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { sub } from 'date-fns'
+import { sub, format } from 'date-fns'
 
 
 
@@ -8,14 +8,14 @@ const initialState = {
     {
       id: nanoid(),
       title: 'Send resumes',
-      completed: false,
-      date: sub(new Date(), {minutes: 10}).toISOString()
+      status: false,
+      date: format(new Date(), "'Wrote down on' eee d")
     },
      {
       id: nanoid(),
       title: 'Read book',
-      completed: false,
-      date: sub(new Date(), {minutes: 10}).toISOString()
+      status: false,
+      date: format(new Date(), "'Wrote down on' eee d")
     },
   ]
 }
@@ -32,12 +32,14 @@ const todosSlice = createSlice({
         return {
           payload: {
             title,
-            completed: false,
+            status: false,
             id: nanoid(),
-            date: sub(new Date(), {minutes: 1}).toISOString()
+            date: format(new Date(), "'Wrote down' eee d")
           }
         }
       }
+    },
+    todoStatus: {
 
     }
   }})
@@ -45,6 +47,6 @@ const todosSlice = createSlice({
 
 export const selectAllTodos = (state) => state.todos.todos
 
-export const {todoAdded} = todosSlice.actions
+export const {todoAdded, todoStatus} = todosSlice.actions
 
 export default todosSlice.reducer

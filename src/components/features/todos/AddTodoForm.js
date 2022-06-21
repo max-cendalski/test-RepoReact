@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { todoAdded } from "./todosSlice";
 
 
 const AddTodo = () => {
@@ -10,7 +11,8 @@ const AddTodo = () => {
 
   const handleTitleChange = e => setTitle(e.target.value)
   const handleAddTodo = e => {
-
+    e.preventDefault()
+    dispatch(todoAdded(title))
   }
   return(
     <>

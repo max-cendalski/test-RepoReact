@@ -11,7 +11,7 @@
 }
 
 .todos-container {
-  width: 80%;
+  width: 90%;
 
 }
 
@@ -20,7 +20,7 @@
   height: 6rem;
   border: 1px solid black;
   margin: 1rem auto;
-  padding-left:  .5rem;
+  padding: .2rem 1rem;
 }
 
 .todo-date {
@@ -29,8 +29,7 @@
 
 
 i {
-  margin-top: 1.6rem;
-  margin-right: 1rem;
+  margin-top: 1.2rem;
   float: right;
   cursor: pointer;
 }

@@ -16,10 +16,8 @@ console.log('todosToRender',todosToRender)
          return (
             <article className='todo' data-id={todo.id} key={todo.id}>
               <h3>{todo.title}</h3>
-              {(!todo.completed) ? <i className="fa-regular fa-lg fa-square"></i> : <i className="fa-solid fa-lg fa-square-check"></i>}
+              {(!todo.status) ? <i className="fa-regular fa-lg fa-square"></i> : <i className="fa-solid fa-lg fa-square-check"></i>}
               <p className='todo-date'>{todo.date}</p>
-
-
           </article>
          )
         })
