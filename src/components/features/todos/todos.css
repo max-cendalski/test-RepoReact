@@ -1,14 +1,36 @@
 
 
-.todos-container {
+.todos-list {
   width: 80%;
   margin: 2rem auto;
 }
 
 .add-todo-form {
-  width: 80%;
+  width: 60%;
+  margin: 2rem auto;
 }
 
-.todos-list {
+.todos-container {
+  width: 80%;
+
+}
+
+.todo {
+  width: 60%;
+  height: 6rem;
+  border: 1px solid black;
   margin: 1rem auto;
+  padding-left:  .5rem;
+}
+
+.todo-date {
+  margin-top: 2rem;
+}
+
+
+i {
+  margin-top: 1.6rem;
+  margin-right: 1rem;
+  float: right;
+  cursor: pointer;
 }

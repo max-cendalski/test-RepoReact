@@ -8,20 +8,23 @@ const AddTodo = () => {
   const [title, setTitle] = useState('')
   const [status, setStatus] = useState(false)
 
-  const handleTitleChange = (e) => setTitle(e.target.value)
+  const handleTitleChange = e => setTitle(e.target.value)
+  const handleAddTodo = e => {
+
+  }
   return(
     <>
       <article className="add-todo-form">
         <form>
           <p>
             <label htmlFor="title">Title</label>
-            <input
-              type="text"
+            <textarea
               value={title}
               name="title"
               onChange={handleTitleChange}
-            ></input>
+            ></textarea>
           </p>
+          <button onClick={handleAddTodo}>Add Task</button>
         </form>
       </article>
     </>

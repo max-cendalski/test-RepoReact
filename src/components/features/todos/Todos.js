@@ -2,6 +2,7 @@ import './todos.css'
 import {selectAllTodos} from './todosSlice'
 import { useSelector } from 'react-redux'
 import AddTodo from './AddTodoForm'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Todos = () => {
 const todosToRender = useSelector(selectAllTodos)
@@ -13,10 +14,13 @@ console.log('todosToRender',todosToRender)
       {
         todosToRender.map(todo => {
          return (
-            <section className='todos-list' key={todo.id}>
-            <h3>{todo.title}</h3>
-            <p>{todo.date}</p>
-          </section>
+            <article className='todo' key={todo.id}>
+              <h3>{todo.title}</h3>
+              {(!todo.status) ? <i className="fa-regular fa-lg fa-square"></i> : <i className="fa-solid fa-lg fa-square-check"></i>}
+              <p className='todo-date'>{todo.date}</p>
+
+
+          </article>
          )
         })
       }
