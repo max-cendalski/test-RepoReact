@@ -7,7 +7,6 @@ const AddTodo = () => {
   const dispatch = useDispatch()
 
   const [title, setTitle] = useState('')
-  const [status, setStatus] = useState(false)
 
   const handleTitleChange = e => setTitle(e.target.value)
   const handleAddTodo = e => {

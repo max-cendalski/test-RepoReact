@@ -1,8 +1,8 @@
 import './todos.css'
-import {selectAllTodos, todoStatus} from './todosSlice'
+import {selectAllTodos, todoStatusChanged} from './todosSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import AddTodo from './AddTodoForm'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const Todos = () => {
 const dispatch = useDispatch()
@@ -10,7 +10,7 @@ const todosToRender = useSelector(selectAllTodos)
 
 const handleStatusChange = e => {
   const todo = e.target.closest('.todo').getAttribute('data-id')
-  dispatch(todoStatus(todo))
+  dispatch(todoStatusChanged(todo))
 
 }
   return(

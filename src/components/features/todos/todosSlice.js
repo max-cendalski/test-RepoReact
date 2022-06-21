@@ -1,5 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { sub, format } from 'date-fns'
+import {  format } from 'date-fns'
 
 
 
@@ -39,7 +39,7 @@ const todosSlice = createSlice({
         }
       }
     },
-    todoStatus: {
+    todoStatusChanged: {
       reducer(state, action) {
         const todoToChange =state.todos.findIndex(todo => todo.id == action.payload)
         state.todos[todoToChange].status = !state.todos[todoToChange].status
@@ -50,6 +50,6 @@ const todosSlice = createSlice({
 
 export const selectAllTodos = (state) => state.todos.todos
 
-export const {todoAdded, todoStatus} = todosSlice.actions
+export const {todoAdded, todoStatusChanged} = todosSlice.actions
 
 export default todosSlice.reducer
