@@ -32,11 +32,12 @@
 i {
   float: right;
   cursor: pointer;
+  color: rgb(82, 139, 139);
 }
 
 .remove-todos-button {
-  padding: .2rem;
-    width: 30%;
-    font-size: 1.1rem;
-    cursor: pointer;
+   padding: .2rem;
+   width: 30%;
+   font-size: 1.1rem;
+   cursor: pointer;
 }

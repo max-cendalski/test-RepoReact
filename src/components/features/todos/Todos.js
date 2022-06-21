@@ -1,5 +1,5 @@
 import './todos.css'
-import {selectAllTodos, todoStatusChanged} from './todosSlice'
+import {selectAllTodos, todoStatusChanged, removedCompletedTodos} from './todosSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import AddTodo from './AddTodoForm'
 
@@ -11,7 +11,17 @@ const todosToRender = useSelector(selectAllTodos)
 const handleStatusChange = e => {
   const todo = e.target.closest('.todo').getAttribute('data-id')
   dispatch(todoStatusChanged(todo))
+}
 
+const handleRemoveAllTodos = () => {
+  console.log('todosToRender',todosToRender)
+  const todosToKeep = []
+  for (var i = 0; i < todosToRender.length; i++) {
+    if (todosToRender[i].status === false) {
+      todosToKeep.push(todosToRender[i])
+    }
+  }
+  dispatch(removedCompletedTodos(todosToKeep))
 }
   return(
     <article className='todos-container'>
@@ -28,7 +38,7 @@ const handleStatusChange = e => {
          )
         })
       }
-      <button className='remove-todos-button'>Remove all completed todos</button>
+      <button onClick={handleRemoveAllTodos} className='remove-todos-button'>Remove all completed todos</button>
     </article>
   )
 }

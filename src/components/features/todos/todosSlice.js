@@ -41,15 +41,23 @@ const todosSlice = createSlice({
     },
     todoStatusChanged: {
       reducer(state, action) {
-        const todoToChange =state.todos.findIndex(todo => todo.id == action.payload)
+        const todoToChange = state.todos.findIndex(todo => todo.id == action.payload)
         state.todos[todoToChange].status = !state.todos[todoToChange].status
       }
+    },
+    removedCompletedTodos: {
+      reducer(state, action) {
+        state.todos = action.payload
+      }
     }
-  }})
+  }
+})
+
+
 
 
 export const selectAllTodos = (state) => state.todos.todos
 
-export const {todoAdded, todoStatusChanged} = todosSlice.actions
+export const {todoAdded, todoStatusChanged, removedCompletedTodos} = todosSlice.actions
 
 export default todosSlice.reducer
