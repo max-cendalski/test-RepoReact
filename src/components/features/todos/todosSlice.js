@@ -8,13 +8,13 @@ const initialState = {
     {
       id: nanoid(),
       title: 'Send resumes',
-      status: false,
+      completed: false,
       date: sub(new Date(), {minutes: 10}).toISOString()
     },
      {
       id: nanoid(),
       title: 'Read book',
-      status: false,
+      completed: false,
       date: sub(new Date(), {minutes: 10}).toISOString()
     },
   ]
@@ -32,7 +32,7 @@ const todosSlice = createSlice({
         return {
           payload: {
             title,
-            status,
+            completed: false,
             id: nanoid(),
             date: sub(new Date(), {minutes: 1}).toISOString()
           }
