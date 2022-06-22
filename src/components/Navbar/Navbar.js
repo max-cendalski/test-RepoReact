@@ -1,20 +1,20 @@
 import './navbar.css'
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 
 export default function Navbar(props) {
     return (
       <nav id='navbar'>
-        <Link to="/">Home</Link>
-        <Link to="/places">Places</Link>
-        <Link to="/games">Games</Link>
-        <Link to="/quotes">Quotes</Link>
-        <Link to="/carousel">Carousel</Link>
-        <Link to ="/fade">Fade Test</Link>
-        <Link to ="/test">Counter</Link>
-        <Link to ="/notes">Notes</Link>
-        <Link to ="/postslist">Posts List</Link>
-        <Link to ="/todos">Todos</Link>
+        <NavLink to="/" className={({isActive}) => (isActive ? "active-link" : 'none')}>Home</NavLink>
+        <NavLink to="/places" className={({isActive}) => (isActive ? "active-link" : 'none')}>Places</NavLink>
+        <NavLink to="/games" className={({isActive}) => (isActive ? "active-link" : 'none')}>Games</NavLink>
+        <NavLink to="/quotes" className={({isActive}) => (isActive ? "active-link" : 'none')}>Quotes</NavLink>
+        <NavLink to="/carousel" className={({isActive}) => (isActive ? "active-link" : 'none')}>Carousel</NavLink>
+        <NavLink to ="/fade" className={({isActive}) => (isActive ? "active-link" : 'none')}>Fade Test</NavLink>
+        <NavLink to ="/test" className={({isActive}) => (isActive ? "active-link" : 'none')}>Counter</NavLink>
+        <NavLink to ="/notes" className={({isActive}) => (isActive ? "active-link" : 'none')}>Notes</NavLink>
+        <NavLink to ="/postslist" className={({isActive}) => (isActive ? "active-link" : 'none')}>Posts List</NavLink>
+        <NavLink to ="/todos" className={({isActive}) => (isActive ? "active-link" : 'none')}>Todos</NavLink>
       </nav>
     )
 }

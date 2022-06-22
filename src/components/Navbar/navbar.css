@@ -9,3 +9,13 @@
 #navbar * {
   margin: 0 .5rem
 }
+
+.active-link {
+  color: rgb(190, 144, 58);
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.1rem;
+}
