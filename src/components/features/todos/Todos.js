@@ -12,9 +12,16 @@ const handleStatusChange = e => {
   const todo = e.target.closest('.todo').getAttribute('data-id')
   dispatch(todoStatusChanged(todo))
 }
-
+// Possible easier way to do this !
+let checkStatus = false
+const checkTodosStatus = () => {
+  const checkTodoStatus = todosToRender.filter(todo => todo.status === true)
+  if (checkTodoStatus.length > 0) {
+    checkStatus = true
+  }
+}
+checkTodosStatus()
 const handleRemoveAllTodos = () => {
-
   dispatch(removedCompletedTodos())
 }
   return(
@@ -32,7 +39,13 @@ const handleRemoveAllTodos = () => {
          )
         })
       }
-      <button onClick={handleRemoveAllTodos} className='remove-todos-button'>Remove all completed todos</button>
+      <button
+        onClick={handleRemoveAllTodos}
+        className='remove-todos-button'
+        disabled={!checkStatus}
+        >
+        Remove all completed todos
+      </button>
     </article>
   )
 }

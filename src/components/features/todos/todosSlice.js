@@ -1,8 +1,6 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 import {  format } from 'date-fns'
 
-
-
 const initialState = {
   todos: [
     {
