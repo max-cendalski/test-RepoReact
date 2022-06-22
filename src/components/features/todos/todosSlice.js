@@ -7,13 +7,13 @@ const initialState = {
       id: nanoid(),
       title: 'Send resumes',
       status: false,
-      date: format(new Date(), "'Wrote down on' eee d")
+      date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
     },
      {
       id: nanoid(),
       title: 'Read book',
       status: false,
-      date: format(new Date(), "'Wrote down on' eee d")
+      date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
     },
   ]
 }
@@ -32,7 +32,7 @@ const todosSlice = createSlice({
             title,
             status: false,
             id: nanoid(),
-            date: format(new Date(), "'Wrote down' eee d")
+            date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
           }
         }
       }
