@@ -10,7 +10,7 @@ export default function Navbar(props) {
         <NavLink to="/games" className={({isActive}) => (isActive ? "active-link" : 'none')}>Games</NavLink>
         <NavLink to="/quotes" className={({isActive}) => (isActive ? "active-link" : 'none')}>Quotes</NavLink>
         <NavLink to="/carousel" className={({isActive}) => (isActive ? "active-link" : 'none')}>Carousel</NavLink>
-        <NavLink to ="/fade" className={({isActive}) => (isActive ? "active-link" : 'none')}>Fade Test</NavLink>
+        <NavLink to ="/fadetest" className={({isActive}) => (isActive ? "active-link" : 'none')}>Fade Test</NavLink>
         <NavLink to ="/test" className={({isActive}) => (isActive ? "active-link" : 'none')}>Counter</NavLink>
         <NavLink to ="/notes" className={({isActive}) => (isActive ? "active-link" : 'none')}>Notes</NavLink>
         <NavLink to ="/postslist" className={({isActive}) => (isActive ? "active-link" : 'none')}>Posts List</NavLink>
