@@ -14,6 +14,8 @@ import AddPostForm from '../features/posts/AddPostForm';
 import EditPostForm from '../features/posts/EditPostForm.js';
 import EditNotePage from '../features/notes/EditNotePage'
 import Todos from '../features/todos/Todos';
+import { nanoid } from '@reduxjs/toolkit';
+import format from 'date-fns/format';
 
 export default function App() {
   const data=[{
@@ -37,7 +39,22 @@ export default function App() {
     city: 'Sydney'
   }]
 
-
+ localStorage.setItem('todos',{
+   todos: [
+    {
+      id: nanoid(),
+      title: 'Send resumes',
+      status: false,
+      date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
+    },
+     {
+      id: nanoid(),
+      title: 'Read book',
+      status: false,
+      date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
+    },
+  ]}
+ )
 
 
   return (
