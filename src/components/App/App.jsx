@@ -39,7 +39,7 @@ export default function App() {
     city: 'Sydney'
   }]
 
- localStorage.setItem('todos',{
+  const saveToLocalStorage = {
    todos: [
     {
       id: nanoid(),
@@ -54,7 +54,9 @@ export default function App() {
       date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
     },
   ]}
- )
+
+
+ localStorage.setItem('todos',JSON.stringify(saveToLocalStorage));
 
 
   return (
