@@ -6,6 +6,8 @@ const initialState = JSON.parse(localStorage.getItem('todos'))
 
 
 
+console.log('initialState',initialState.todos)
+
 const todosSlice = createSlice({
   name: 'todos',
   initialState,
@@ -13,6 +15,9 @@ const todosSlice = createSlice({
     todoAdded: {
       reducer(state, action) {
         state.todos.push(action.payload)
+        const localStorageItems =   JSON.parse(localStorage.getItem('todos'))
+        localStorageItems.todos.push(action.payload)
+        localStorage.setItem('todos',JSON.stringify(localStorageItems))
       },
       prepare(title,status) {
         return {
@@ -35,6 +40,10 @@ const todosSlice = createSlice({
       reducer(state, action) {
         const todosToKeep =  state.todos.filter(todo => todo.status === false)
         state.todos = todosToKeep
+       /*  console.log('action',action)
+        console.log('state.todo',state.todos)
+        console.log('todosToKeep',todosToKeep)
+        localStorage.set('todos',JSON.stringify(todosToKeep)) */
       }
     }
   }

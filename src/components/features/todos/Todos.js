@@ -22,7 +22,15 @@ const checkTodosStatus = () => {
 }
 checkTodosStatus()
 const handleRemoveAllTodos = () => {
-  dispatch(removedCompletedTodos())
+
+  const todosToRemove = []
+  for (var i = 0; i < todosToRender.length; i++) {
+    if (todosToRender[i].status === true) {
+      todosToRemove.push(todosToRender[i].id)
+      console.log('todosToRemove',todosToRemove)
+    }
+  }
+  dispatch(removedCompletedTodos(todosToRemove))
 }
   return(
     <article className='todos-container'>

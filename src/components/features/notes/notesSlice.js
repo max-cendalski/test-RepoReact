@@ -52,13 +52,13 @@ const notesSlice = createSlice({
     },
     noteDeleted: {
       reducer(state, action) {
-        const noteToRemove = state.notes.findIndex(item => item.id === action.payload )
+        const noteToRemove = state.notes.findIndex(item => item.id == action.payload )
         state.notes.splice(noteToRemove, 1)
       }
     },
     noteUpdated: {
       reducer(state, action) {
-        const findNotee = state.notes.findIndex(item => item.id === action.payload.id)
+        const findNotee = state.notes.findIndex(item => item.id == action.payload.id)
         state.notes.splice(findNotee, 1, action.payload)
         console.log('action in reducer',action.payload)
       },

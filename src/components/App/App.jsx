@@ -39,24 +39,6 @@ export default function App() {
     city: 'Sydney'
   }]
 
-  const saveToLocalStorage = {
-   todos: [
-    {
-      id: nanoid(),
-      title: 'Send resumes',
-      status: false,
-      date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
-    },
-     {
-      id: nanoid(),
-      title: 'Read book',
-      status: false,
-      date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
-    },
-  ]}
-
-
- localStorage.setItem('todos',JSON.stringify(saveToLocalStorage));
 
 
   return (
