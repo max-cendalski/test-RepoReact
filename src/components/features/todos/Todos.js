@@ -38,6 +38,7 @@ const handleRemoveAllTodos = () => {
        {(todosToRender.length > 0) &&
         todosToRender.map(todo => {
          return (
+
             <section className='todo' data-id={todo.id} key={todo.id}>
               <h2>{todo.title}</h2>
               {(!todo.status) ? <i onClick={handleStatusChange} className="fa-regular fa-2x fa-square"></i> : <i onClick={handleStatusChange} className="fa-solid fa-2x fa-square-check"></i>}

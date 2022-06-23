@@ -38,17 +38,32 @@ const todosSlice = createSlice({
     removedCompletedTodos: {
       reducer(state, action) {
         const todosToKeep =  state.todos.filter(todo => todo.status === false)
-        console.log('todostokeep',todosToKeep)
         state.todos = todosToKeep
         console.log('actionpayload',action.payload)
-        const todosToKeepInLocalStorage = initialState.todos.filter(todo => todo.id == action.payload)
+        const todosToKeepInLC = {todos: []}
+        let newArray = initialState.todos
+        for (var i = 0; i < initialState.todos.length; i++) {
+          for (var j = 0; j < action.payload.length; j++) {
+            if (initialState.todos[i].id == action.payload[j]) {
+              newArray = initialState.todos.filter(todo => todo.id != action.payload[j])
+              //newArray = initialState.todos[i]
+              console.log('initalstatetodo',initialState.todos)
+              console.log('newArray',newArray)
+              //console.log('initalstatetodoat0',initialState.todos[0])
+            }
+          }
+        }
+
+        }
+      }
+
+        /* const todosToKeepInLocalStorage = initialState.todos.filter(todo => todo.id != action.payload)
         console.log('whe',todosToKeepInLocalStorage)
         localStorage.setItem('todoss',JSON.stringify(todosToKeep))
-
+ */
       }
-    }
-  }
-})
+    })
+
 
 
 
