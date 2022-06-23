@@ -22,21 +22,20 @@ const checkTodosStatus = () => {
 }
 checkTodosStatus()
 const handleRemoveAllTodos = () => {
-
   const todosToRemove = []
   for (var i = 0; i < todosToRender.length; i++) {
     if (todosToRender[i].status === true) {
       todosToRemove.push(todosToRender[i].id)
-      console.log('todosToRemove',todosToRemove)
     }
   }
   dispatch(removedCompletedTodos(todosToRemove))
 }
+
   return(
     <article className='todos-container'>
       <AddTodo />
       <h1>Todo List</h1>
-      {
+       {(todosToRender.length > 0) &&
         todosToRender.map(todo => {
          return (
             <section className='todo' data-id={todo.id} key={todo.id}>
@@ -47,13 +46,18 @@ const handleRemoveAllTodos = () => {
          )
         })
       }
-      <button
-        onClick={handleRemoveAllTodos}
-        className='remove-todos-button'
-        disabled={!checkStatus}
-        >
-        Remove all completed todos
-      </button>
+      {
+        (todosToRender.length > 0) ?
+          <button
+            onClick={handleRemoveAllTodos}
+            className='remove-todos-button'
+            disabled={!checkStatus}
+            >
+            Remove all completed todos
+          </button>
+        :
+        <h1> Todo list is empty!</h1>
+      }
     </article>
   )
 }

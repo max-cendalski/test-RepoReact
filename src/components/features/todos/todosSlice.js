@@ -5,7 +5,6 @@ import {  format } from 'date-fns'
 const initialState = JSON.parse(localStorage.getItem('todos'))
 
 
-
 console.log('initialState',initialState.todos)
 
 const todosSlice = createSlice({
@@ -15,7 +14,7 @@ const todosSlice = createSlice({
     todoAdded: {
       reducer(state, action) {
         state.todos.push(action.payload)
-        const localStorageItems =   JSON.parse(localStorage.getItem('todos'))
+        const localStorageItems = JSON.parse(localStorage.getItem('todos'))
         localStorageItems.todos.push(action.payload)
         localStorage.setItem('todos',JSON.stringify(localStorageItems))
       },
@@ -39,11 +38,13 @@ const todosSlice = createSlice({
     removedCompletedTodos: {
       reducer(state, action) {
         const todosToKeep =  state.todos.filter(todo => todo.status === false)
+        console.log('todostokeep',todosToKeep)
         state.todos = todosToKeep
-       /*  console.log('action',action)
-        console.log('state.todo',state.todos)
-        console.log('todosToKeep',todosToKeep)
-        localStorage.set('todos',JSON.stringify(todosToKeep)) */
+        console.log('actionpayload',action.payload)
+        const todosToKeepInLocalStorage = initialState.todos.filter(todo => todo.id == action.payload)
+        console.log('whe',todosToKeepInLocalStorage)
+        localStorage.setItem('todoss',JSON.stringify(todosToKeep))
+
       }
     }
   }
