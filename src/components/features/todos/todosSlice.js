@@ -45,7 +45,7 @@ const todosSlice = createSlice({
         for (var i = 0; i < initialState.todos.length; i++) {
           for (var j = 0; j < action.payload.length; j++) {
             if (initialState.todos[i].id == action.payload[j]) {
-              newArray = initialState.todos.filter(todo => todo.id != action.payload[j])
+              newArray = initialState.todos.slice(i,i +1)
               //newArray = initialState.todos[i]
               console.log('initalstatetodo',initialState.todos)
               console.log('newArray',newArray)
