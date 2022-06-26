@@ -5,7 +5,7 @@ import {  format } from 'date-fns'
 const initialState = JSON.parse(localStorage.getItem('todos'))
 
 
-console.log('initialState',initialState.todos)
+//console.log('initialState',initialState.todos)
 
 const todosSlice = createSlice({
   name: 'todos',
@@ -37,34 +37,21 @@ const todosSlice = createSlice({
     },
     removedCompletedTodos: {
       reducer(state, action) {
+        const arrayToLocalStorage = {todos: []}
+        const tempArr = [... initialState.todos]
+        let todoToRemove = 0
+        for (var i = 0; i < action.payload.length; i++) {
+          todoToRemove = tempArr.findIndex(todo =>  todo.id == action.payload[i])
+          tempArr.splice(todoToRemove,1)
+        }
+        arrayToLocalStorage.todos = tempArr
+        localStorage.setItem('todos',JSON.stringify(arrayToLocalStorage))
         const todosToKeep =  state.todos.filter(todo => todo.status === false)
         state.todos = todosToKeep
-        console.log('actionpayload',action.payload)
-        const todosToKeepInLC = {todos: []}
-        let newArray = initialState.todos
-        for (var i = 0; i < initialState.todos.length; i++) {
-          for (var j = 0; j < action.payload.length; j++) {
-            if (initialState.todos[i].id == action.payload[j]) {
-              newArray = initialState.todos.slice(i,i +1)
-              //newArray = initialState.todos[i]
-              console.log('initalstatetodo',initialState.todos)
-              console.log('newArray',newArray)
-              //console.log('initalstatetodoat0',initialState.todos[0])
-            }
-          }
-        }
-
         }
       }
-
-        /* const todosToKeepInLocalStorage = initialState.todos.filter(todo => todo.id != action.payload)
-        console.log('whe',todosToKeepInLocalStorage)
-        localStorage.setItem('todoss',JSON.stringify(todosToKeep))
- */
       }
     })
-
-
 
 
 

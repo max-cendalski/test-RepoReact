@@ -38,7 +38,7 @@ export default function App() {
     country:'Australia',
     city: 'Sydney'
   }]
- /*   const localStorageObject = {
+   /*  const localStorageObject = {
   todos: [
     {
       id: nanoid(),
@@ -54,8 +54,8 @@ export default function App() {
     }
   ]}
 
- localStorage.setItem('todos',JSON.stringify(localStorageObject))
- */
+ localStorage.setItem('todos',JSON.stringify(localStorageObject))*/
+
   return (
         <Routes>
           <Route path="/" element={<Layout />}>
