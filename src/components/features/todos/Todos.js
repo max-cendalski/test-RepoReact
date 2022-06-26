@@ -8,9 +8,11 @@ const Todos = () => {
 const dispatch = useDispatch()
 const todosToRender = useSelector(selectAllTodos)
 
-const handleStatusChange = e => {
-  const todo = e.target.closest('.todo').getAttribute('data-id')
-  dispatch(todoStatusChanged(todo))
+const handleStatusChange = (id) => {
+  // No need to set and get attribute !!!
+  //const todo = e.target.closest('.todo').getAttribute('data-id')
+  const todo = id
+  dispatch(todoStatusChanged(id))
 }
 // Possible easier way to do this !
 let checkStatus = false
@@ -31,6 +33,9 @@ const handleRemoveAllTodos = () => {
   dispatch(removedCompletedTodos(todosToRemove))
 }
 
+const handleButtonClick = (id) => {
+  console.log('id :',id)
+}
   return(
     <article className='todos-container'>
       <AddTodo />
@@ -39,10 +44,11 @@ const handleRemoveAllTodos = () => {
         todosToRender.map(todo => {
          return (
 
-            <section className='todo' data-id={todo.id} key={todo.id}>
-              <h2>{todo.title}</h2>
-              {(!todo.status) ? <i onClick={handleStatusChange} className="fa-regular fa-2x fa-square"></i> : <i onClick={handleStatusChange} className="fa-solid fa-2x fa-square-check"></i>}
+            <section className='todo' key={todo.id}>
+              <h2 onClick={()=> handleButtonClick(todo.id)}>{todo.title}</h2>
+              {(!todo.status) ? <i onClick={()=>{handleStatusChange(todo.id)}} className="fa-regular fa-2x fa-square"></i> : <i onClick={()=>{handleStatusChange(todo.id)}} className="fa-solid fa-2x fa-square-check"></i>}
               <p className='todo-date'>{todo.date}</p>
+
           </section>
          )
         })
