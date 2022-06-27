@@ -3,12 +3,14 @@ import counterReducer from '../features/counter/counterSlice'
 import postsReducer from '../features/posts/postsSlice'
 import usersReducer from '../features/users/usersSlice'
 import notesReducer from '../features/notes/notesSlice'
+import todosReducer from '../features/todos/todosSlice'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     posts: postsReducer,
     users: usersReducer,
-    notes: notesReducer
+    notes: notesReducer,
+    todos: todosReducer
   }
 })

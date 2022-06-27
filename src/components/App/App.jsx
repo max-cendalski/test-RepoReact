@@ -13,6 +13,9 @@ import SinglePostPage from '../features/posts/SinglePostPage.js';
 import AddPostForm from '../features/posts/AddPostForm';
 import EditPostForm from '../features/posts/EditPostForm.js';
 import EditNotePage from '../features/notes/EditNotePage'
+import Todos from '../features/todos/Todos';
+import { nanoid } from '@reduxjs/toolkit';
+import format from 'date-fns/format';
 
 export default function App() {
   const data=[{
@@ -36,9 +39,6 @@ export default function App() {
     city: 'Sydney'
   }]
 
-
-
-
   return (
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -50,6 +50,7 @@ export default function App() {
             <Route path="/fadetest" element={<FadeTest />} />
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/games" element={<Games />} />
+            <Route path="/todos" element={<Todos />} />
             <Route path="post">
               <Route index element={<AddPostForm />} />
               <Route path=":postId" element={<SinglePostPage />} />
@@ -63,3 +64,23 @@ export default function App() {
         </Routes>
   );
 }
+
+
+
+ /*  const localStorageObject = {
+  todos: [
+    {
+      id: nanoid(),
+      title: 'Send resumes',
+      status: false,
+      date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
+    },
+     {
+      id: nanoid(),
+      title: 'Read book',
+      status: false,
+      date: format(new Date(), "'Wrote down on' MM-dd-yyyy")
+    }
+  ]}
+
+ localStorage.setItem('todos',JSON.stringify(localStorageObject))*/
