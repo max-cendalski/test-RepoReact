@@ -15,6 +15,7 @@ export default function Navbar(props) {
         <NavLink to ="/notes" className={({isActive}) => (isActive ? "active-link" : 'none')}>Notes</NavLink>
         <NavLink to ="/postslist" className={({isActive}) => (isActive ? "active-link" : 'none')}>Posts List</NavLink>
         <NavLink to ="/todos" className={({isActive}) => (isActive ? "active-link" : 'none')}>Todos</NavLink>
+        <NavLink to ="/tasks" className={({isActive}) => (isActive ? "active-link" : 'none')}>Tasks</NavLink>
       </nav>
     )
 }

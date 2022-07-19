@@ -14,6 +14,7 @@ import AddPostForm from '../features/posts/AddPostForm';
 import EditPostForm from '../features/posts/EditPostForm.js';
 import EditNotePage from '../features/notes/EditNotePage'
 import Todos from '../features/todos/Todos';
+import Tasks from '../../components/Tasks/Tasks.js'
 import { nanoid } from '@reduxjs/toolkit';
 import format from 'date-fns/format';
 
@@ -51,6 +52,7 @@ export default function App() {
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/games" element={<Games />} />
             <Route path="/todos" element={<Todos />} />
+            <Route path="/tasks" element={<Tasks />} />
             <Route path="post">
               <Route index element={<AddPostForm />} />
               <Route path=":postId" element={<SinglePostPage />} />
