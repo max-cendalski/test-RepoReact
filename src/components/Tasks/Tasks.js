@@ -13,7 +13,7 @@ const Tasks = () => {
  const tasksCollection = collection(db, 'tasks')
  const usersDb = collection(db, 'users')
 
-    useEffect(()  => {
+  useEffect(()  => {
     const getTasks = async() => {
       const tasksData = await getDocs(tasksCollection);
       setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
@@ -34,20 +34,25 @@ const Tasks = () => {
   }
 
   const handleAddTask = e => {
+    e.preventDefault()
     const addTask = async () => {
       try {
-        const addTask = await addDoc(tasksCollection, {
-        date: '7/20',
-        note: taskNote,
-        title: title
-      })
-
-      console.log("Task added with ID: ", addTask.id)
-    } catch(e) {
-      console.error("ERROR: ",e)
-    }
-    }
+        const taskToBeAdded = {
+          date:'7/20',
+          note: taskNote,
+          title
+        }
+        const addTask = await addDoc(tasksCollection, taskToBeAdded)
+        taskToBeAdded.id = addTask.id
+        const newTasksArray = [... tasks,taskToBeAdded]
+        setTasks(newTasksArray)
+        } catch(e) {
+          console.error("ERROR: ",e)
+      }
+   }
     addTask()
+    setTaskNote('')
+    setTitle('')
   }
 
 
@@ -64,7 +69,14 @@ const Tasks = () => {
       await deleteDoc(taskRef, id)
       console.log(`Task with id:${id} has been deleted!`)
     }
+    const newTasksArray = tasks.filter(task => task.id !== id)
+    console.log('newTaskArray',newTasksArray)
+    setTasks(newTasksArray)
     deleteTask()
+  }
+
+  const handleEditTask = id => {
+    console.log(id)
   }
 
   return (
@@ -99,6 +111,7 @@ const Tasks = () => {
             <h3>Title: {task.title}</h3>
             <h3>When: {task.note}</h3>
             <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
+            <button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
           </section>
         })
       }
