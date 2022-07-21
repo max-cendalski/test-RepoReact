@@ -13,15 +13,20 @@ const Tasks = () => {
 
     useEffect(()  => {
     const getTasks = async() => {
-      const tasksSnapshot = await getDocs(tasksCollection);
-      const tasksArray = []
-      tasksSnapshot.forEach((task) => {
+      const tasksData = await getDocs(tasksCollection);
+      //const tasksArray = []
+      console.log('tasksData',tasksData)
+         console.log('tasks.docs',tasksData.docs)
+     tasksData.forEach((task) => {
         console.log('task.id',task.id)
-        tasksArray.push(task.data())
+        console.log('task.data()',task.data())
       });
-      console.log('tasksArray',tasksArray)
-      setTasks(tasksArray)
+      setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
+
+      //setTasks(tasksArray)
       };
+
+         console.log('tasks', tasks)
     getTasks()
   },[])
 
@@ -56,8 +61,8 @@ const Tasks = () => {
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
       {
-        tasks.map((task, index) => {
-          return <section className="task-container" key={index}>
+        tasks.map(task => {
+          return <section className="task-container" key={task.id}>
             <h3>Title: {task.title}</h3>
             <h3>When: {task.note}</h3>
           </section>
