@@ -17,11 +17,8 @@ const Tasks = () => {
     const getTasks = async() => {
       const tasksData = await getDocs(tasksCollection);
       setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
-
-      //setTasks(tasksArray)
       };
-
-         console.log('tasks', tasks)
+      console.log('tasks', tasks)
     getTasks()
   },[])
 
@@ -35,23 +32,34 @@ const Tasks = () => {
       console.log("No such document!");
     }
   }
-  const handleAddTask = async () => {
-    try {
-      const addTask = await addDoc(tasksCollection, {
-        date: 'July 20th',
-        note: 'by end of the week',
-        title: 'Clean the floor'
+
+  const handleAddTask = e => {
+    e.preventDefault()
+    const addTask = async () => {
+      try {
+        const addTask = await addDoc(tasksCollection, {
+        date: '7/20',
+        note: taskNote,
+        title: title
       })
+
       console.log("Task added with ID: ", addTask.id)
     } catch(e) {
       console.error("ERROR: ",e)
     }
+    }
+    addTask()
   }
+
+
   const handleTitleChange = e => {
     setTitle(e.target.value)
   }
    const handleNoteChange = e => {
     setTaskNote(e.target.value)
+  }
+  const handleDeleteTask = id => {
+    console.log("id",id)
   }
 
   return (
@@ -85,6 +93,7 @@ const Tasks = () => {
           return <section className="task-container" key={task.id}>
             <h3>Title: {task.title}</h3>
             <h3>When: {task.note}</h3>
+            <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
           </section>
         })
       }
