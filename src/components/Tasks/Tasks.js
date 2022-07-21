@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {collection, getDocs,getDoc, addDoc, doc } from 'firebase/firestore';
+import {collection, getDocs,getDoc, addDoc, doc , updateDoc, deleteField, deleteDoc} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 
 
@@ -34,7 +34,6 @@ const Tasks = () => {
   }
 
   const handleAddTask = e => {
-    e.preventDefault()
     const addTask = async () => {
       try {
         const addTask = await addDoc(tasksCollection, {
@@ -58,8 +57,14 @@ const Tasks = () => {
    const handleNoteChange = e => {
     setTaskNote(e.target.value)
   }
+
   const handleDeleteTask = id => {
-    console.log("id",id)
+    const taskRef = doc(db, `tasks/${id}`)
+    const deleteTask = async () => {
+      await deleteDoc(taskRef, id)
+      console.log(`Task with id:${id} has been deleted!`)
+    }
+    deleteTask()
   }
 
   return (
