@@ -41,3 +41,7 @@ code {
   margin: 1rem auto;
   width: 80%;
 }
+
+.task-form {
+  width: 8rem;
+}

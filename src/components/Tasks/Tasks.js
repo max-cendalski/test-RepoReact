@@ -8,19 +8,14 @@ const Tasks = () => {
  const [tasks, setTasks] = useState([])
  const [users, setUsers] = useState([])
  const [user, setUser] = useState([])
+ const [title, setTitle] = useState('')
+ const [taskNote, setTaskNote] = useState('')
  const tasksCollection = collection(db, 'tasks')
  const usersDb = collection(db, 'users')
 
     useEffect(()  => {
     const getTasks = async() => {
       const tasksData = await getDocs(tasksCollection);
-      //const tasksArray = []
-      console.log('tasksData',tasksData)
-         console.log('tasks.docs',tasksData.docs)
-     tasksData.forEach((task) => {
-        console.log('task.id',task.id)
-        console.log('task.data()',task.data())
-      });
       setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
 
       //setTasks(tasksArray)
@@ -52,9 +47,34 @@ const Tasks = () => {
       console.error("ERROR: ",e)
     }
   }
+  const handleTitleChange = e => {
+    setTitle(e.target.value)
+  }
+   const handleNoteChange = e => {
+    setTaskNote(e.target.value)
+  }
 
   return (
     <article>
+      <form>
+        <p>
+          <label htmlFor="title">Title</label>
+          <input
+            value={title}
+            name="title"
+            onChange={handleTitleChange}
+          />
+        </p>
+        <p>
+          <label htmlFor="title">Note</label>
+          <textarea
+            value={taskNote}
+            name="taskNote"
+            onChange={handleNoteChange}
+          ></textarea>
+        </p>
+          <button onClick={handleAddTask}>Add Task</button>
+        </form>
       <h1>Tasks</h1>
       <button onClick={handleRetrieveUsers}>Click to render user</button>
       <button onClick={handleAddTask}>Click to Add Task</button>
