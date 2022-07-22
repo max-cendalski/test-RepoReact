@@ -11,6 +11,9 @@ const Tasks = () => {
  const [users, setUsers] = useState([])
  const [user, setUser] = useState([])
  const [title, setTitle] = useState('')
+
+ const [editedTask, setEditedTask] = useState(null)
+
  const [taskNote, setTaskNote] = useState('')
  const tasksCollection = collection(db, 'tasks')
  const usersDb = collection(db, 'users')
@@ -74,8 +77,13 @@ const Tasks = () => {
     setTasks(newTasksArray)
   }
 
-  const handleEditTask = id => {
-    console.log(id)
+  const handleEditTask = async (id) => {
+    const tasksCollection = collection(db, 'tasks')
+    const taskRef =  doc(tasksCollection, `${id}` )
+    const docSnap = await getDoc(taskRef)
+    const taskToEdit = docSnap.data()
+    setEditedTask(taskToEdit)
+    console.log('edited',editedTask)
   }
 
   return (
@@ -99,6 +107,8 @@ const Tasks = () => {
         </p>
           <button onClick={handleAddTask}>Add Task</button>
         </form>
+
+      {editedTask && <EditTask task={editedTask}/>}
       <h1>Tasks</h1>
       <button onClick={handleRetrieveUsers}>Click to render user</button>
       <button onClick={handleAddTask}>Click to Add Task</button>
@@ -115,6 +125,52 @@ const Tasks = () => {
           </section>
         ))
       }
+    </article>
+  )
+}
+
+
+const EditTask = ({task}) => {
+   const [title, setTitle] = useState('')
+   const [taskNote, setTaskNote] = useState('')
+   const handleTitleChange = e => {
+    setTitle(e.target.value)
+   }
+   const handleNoteChange = e => {
+    setTaskNote(e.target.value)
+   }
+   const handleAddEditedTask = e => {
+    e.preventDefault()
+     /*  const taskToUpdateRef = doc(db, `tasks/${id}`)
+      await updateDoc(taskToUpdateRef, {
+      date: '8/8',
+      title: 'Whee',
+      note: 'Wheee'
+    }) */
+    console.log('daate',task.title)
+  }
+  return (
+    <article className="edit-task-container">
+       <form>
+        <p>
+          <label htmlFor="title">Title</label>
+          <input
+            value={task.title}
+            name="title"
+            onChange={handleTitleChange}
+          />
+        </p>
+        <p>
+          <label htmlFor="title">Note</label>
+          <textarea
+            value={task.note}
+            name="taskNote"
+            onChange={handleNoteChange}
+          ></textarea>
+        </p>
+          <button onClick={handleAddEditedTask}>Submit changes</button>
+        </form>
+
 
 
     </article>

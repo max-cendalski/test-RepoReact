@@ -45,3 +45,8 @@ code {
 .task-form {
   width: 8rem;
 }
+
+.edit-task-container {
+  width: 50%;
+  margin: 1rem auto;
+}
