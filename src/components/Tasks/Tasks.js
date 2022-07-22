@@ -15,6 +15,8 @@ const Tasks = () => {
  const tasksCollection = collection(db, 'tasks')
  const usersDb = collection(db, 'users')
 
+ const [checkTasks] = useCollectionData(usersDb)
+
   useEffect(()  => {
     const getTasks = async() => {
       const tasksData = await getDocs(tasksCollection);
@@ -38,15 +40,12 @@ const Tasks = () => {
 
   const handleAddTask = e => {
     e.preventDefault()
-    const date = serverTimestamp()
-    console.log('date',date)
     const addTask = async () => {
       try {
         const taskToBeAdded = {
           date:'7/20',
           note: taskNote,
           title,
-          createdAt: date
         }
         const addTask = await addDoc(tasksCollection, taskToBeAdded)
         taskToBeAdded.id = addTask.id
