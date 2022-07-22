@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import {collection, getDocs,getDoc, addDoc, doc , updateDoc, deleteField, deleteDoc} from 'firebase/firestore';
+import {collection, getDocs,getDoc, addDoc, doc , updateDoc, deleteField, deleteDoc, Timestamp, serverTimestamp} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
+
+import {useCollectionData} from 'react-firebase-hooks/firestore'
 
 
 
@@ -18,8 +20,9 @@ const Tasks = () => {
       const tasksData = await getDocs(tasksCollection);
       setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
       };
-      console.log('tasks', tasks)
     getTasks()
+      console.log('tasks', tasks)
+
   },[])
 
   const handleRetrieveUsers = async() => {
@@ -35,12 +38,15 @@ const Tasks = () => {
 
   const handleAddTask = e => {
     e.preventDefault()
+    const date = serverTimestamp()
+    console.log('date',date)
     const addTask = async () => {
       try {
         const taskToBeAdded = {
           date:'7/20',
           note: taskNote,
-          title
+          title,
+          createdAt: date
         }
         const addTask = await addDoc(tasksCollection, taskToBeAdded)
         taskToBeAdded.id = addTask.id
@@ -110,6 +116,7 @@ const Tasks = () => {
           return <section className="task-container" key={task.id}>
             <h3>Title: {task.title}</h3>
             <h3>When: {task.note}</h3>
+
             <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
             <button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
           </section>
