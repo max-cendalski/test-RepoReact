@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {collection, getDocs,getDoc, addDoc, doc , updateDoc, deleteField, deleteDoc, Timestamp, serverTimestamp} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 
-import {useCollectionData} from 'react-firebase-hooks/firestore'
+//import {useCollectionData} from 'react-firebase-hooks/firestore'
 
 
 
@@ -15,7 +15,7 @@ const Tasks = () => {
  const tasksCollection = collection(db, 'tasks')
  const usersDb = collection(db, 'users')
 
- const [checkTasks] = useCollectionData(usersDb)
+ //const [checkTasks] = useCollectionData(tasksCollection)
 
   useEffect(()  => {
     const getTasks = async() => {
@@ -23,8 +23,6 @@ const Tasks = () => {
       setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
       };
     getTasks()
-      console.log('tasks', tasks)
-
   },[])
 
   const handleRetrieveUsers = async() => {
@@ -45,7 +43,7 @@ const Tasks = () => {
         const taskToBeAdded = {
           date:'7/20',
           note: taskNote,
-          title,
+          title
         }
         const addTask = await addDoc(tasksCollection, taskToBeAdded)
         taskToBeAdded.id = addTask.id
@@ -68,16 +66,12 @@ const Tasks = () => {
     setTaskNote(e.target.value)
   }
 
-  const handleDeleteTask = id => {
+  const handleDeleteTask = async (id) => {
     const taskRef = doc(db, `tasks/${id}`)
-    const deleteTask = async () => {
-      await deleteDoc(taskRef, id)
-      console.log(`Task with id:${id} has been deleted!`)
-    }
+    await deleteDoc(taskRef, id)
+    console.log(`Task with id:${id} has been deleted!`)
     const newTasksArray = tasks.filter(task => task.id !== id)
-    console.log('newTaskArray',newTasksArray)
     setTasks(newTasksArray)
-    deleteTask()
   }
 
   const handleEditTask = id => {
@@ -111,16 +105,18 @@ const Tasks = () => {
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
       {
-        tasks.map(task => {
-          return <section className="task-container" key={task.id}>
+        tasks.map((task) => (
+           <section className="task-container" key={task.id}>
             <h3>Title: {task.title}</h3>
             <h3>When: {task.note}</h3>
 
             <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
             <button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
           </section>
-        })
+        ))
       }
+
+
     </article>
   )
 }
