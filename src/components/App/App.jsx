@@ -52,11 +52,14 @@ export default function App() {
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/games" element={<Games />} />
             <Route path="/todos" element={<Todos />} />
-            <Route path="/tasks" element={<Tasks />} />
+            <Route path="/tasks">
+              <Route index element={<Tasks />}
+              <Route path="edit/:taskId" element ={<EditTaskPage />} />
+            </Route>
             <Route path="post">
               <Route index element={<AddPostForm />} />
               <Route path=":postId" element={<SinglePostPage />} />
-               <Route path="edit/:postId" element={<EditPostForm />} />
+              <Route path="edit/:postId" element={<EditPostForm />} />
             </Route>
             <Route path="notes">
               <Route index element={<Notes />} />
