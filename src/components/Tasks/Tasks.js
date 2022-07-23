@@ -14,7 +14,6 @@ const Tasks = () => {
  const [user, setUser] = useState([])
  const [title, setTitle] = useState('')
 
- const [editedTask, setEditedTask] = useState(null)
 
  const [taskNote, setTaskNote] = useState('')
  const tasksCollection = collection(db, 'tasks')

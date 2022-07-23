@@ -1,16 +1,34 @@
 import {useEffect, useState} from 'react'
 import {useParams, useNavigate} from 'react-router-dom';
+import {db} from '../../components/firebase/Firebase';
+import {doc, getDoc} from 'firebase/firestore';
 
 const EditTask = () => {
   const navigate = useNavigate()
-  const {postId} = useParams()
+  const {taskId} = useParams()
+
+  console.log('psotI',taskId)
 
   const [title, setTitle] = useState('')
   const [taskNote, setTaskNote] = useState('')
+  const [taskToEdit, setTaskToEdit]  = useState(null)
+
+
+  useEffect(() => {
+    const getTask = async () => {
+      const taskRef = doc(db, 'tasks',taskId)
+      const taskSnap = await getDoc(taskRef)
+      setTaskToEdit(taskSnap.data())
+      setTitle(taskSnap.data().title)
+      setTaskNote(taskSnap.data().note)
+    }
+    getTask()
+  },[])
 
 
    const handleTitleChange = e => {
     setTitle(e.target.value)
+    console.log('tie',title)
    }
    const handleNoteChange = e => {
     setTaskNote(e.target.value)
@@ -25,6 +43,7 @@ const EditTask = () => {
     }) */
 
   }
+  if (!taskToEdit) return <p>Loading...</p>
   return (
     <article className="edit-task-container">
        <form>
