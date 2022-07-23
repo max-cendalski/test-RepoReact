@@ -15,6 +15,7 @@ import EditPostForm from '../features/posts/EditPostForm.js';
 import EditNotePage from '../features/notes/EditNotePage'
 import Todos from '../features/todos/Todos';
 import Tasks from '../../components/Tasks/Tasks.js'
+import EditTaskPage from '../Tasks/EditTask.js'
 import { nanoid } from '@reduxjs/toolkit';
 import format from 'date-fns/format';
 
@@ -53,7 +54,7 @@ export default function App() {
             <Route path="/games" element={<Games />} />
             <Route path="/todos" element={<Todos />} />
             <Route path="/tasks">
-              <Route index element={<Tasks />}
+              <Route index element={<Tasks />} />
               <Route path="edit/:taskId" element ={<EditTaskPage />} />
             </Route>
             <Route path="post">

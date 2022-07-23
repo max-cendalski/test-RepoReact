@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import {collection, getDocs,getDoc, addDoc, doc , updateDoc, deleteField, deleteDoc, Timestamp, serverTimestamp} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
+import {useParams, useNavigate} from 'react-router-dom';
 
 //import {useCollectionData} from 'react-firebase-hooks/firestore'
 
@@ -78,12 +80,13 @@ const Tasks = () => {
   }
 
   const handleEditTask = async (id) => {
-    const tasksCollection = collection(db, 'tasks')
+/*     const tasksCollection = collection(db, 'tasks')
     const taskRef =  doc(tasksCollection, `${id}` )
     const docSnap = await getDoc(taskRef)
     const taskToEdit = docSnap.data()
     setEditedTask(taskToEdit)
-    console.log('edited',editedTask)
+    console.log('edited',editedTask) */
+    console.log('id',id)
   }
 
   return (
@@ -108,7 +111,6 @@ const Tasks = () => {
           <button onClick={handleAddTask}>Add Task</button>
         </form>
 
-      {editedTask && <EditTask task={editedTask}/>}
       <h1>Tasks</h1>
       <button onClick={handleRetrieveUsers}>Click to render user</button>
       <button onClick={handleAddTask}>Click to Add Task</button>
@@ -121,7 +123,7 @@ const Tasks = () => {
             <h3>When: {task.note}</h3>
 
             <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
-            <button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
+            <Link to = {`/tasks/edit/${task.id}`} className="edit-link">Edit</Link>
           </section>
         ))
       }
@@ -130,52 +132,7 @@ const Tasks = () => {
 }
 
 
-const EditTask = ({task}) => {
-   const [title, setTitle] = useState('')
-   const [taskNote, setTaskNote] = useState('')
-   const handleTitleChange = e => {
-    setTitle(e.target.value)
-   }
-   const handleNoteChange = e => {
-    setTaskNote(e.target.value)
-   }
-   const handleAddEditedTask = e => {
-    e.preventDefault()
-     /*  const taskToUpdateRef = doc(db, `tasks/${id}`)
-      await updateDoc(taskToUpdateRef, {
-      date: '8/8',
-      title: 'Whee',
-      note: 'Wheee'
-    }) */
-    console.log('daate',task.title)
-  }
-  return (
-    <article className="edit-task-container">
-       <form>
-        <p>
-          <label htmlFor="title">Title</label>
-          <input
-            value={task.title}
-            name="title"
-            onChange={handleTitleChange}
-          />
-        </p>
-        <p>
-          <label htmlFor="title">Note</label>
-          <textarea
-            value={task.note}
-            name="taskNote"
-            onChange={handleNoteChange}
-          ></textarea>
-        </p>
-          <button onClick={handleAddEditedTask}>Submit changes</button>
-        </form>
 
-
-
-    </article>
-  )
-}
 
 
 
@@ -200,3 +157,5 @@ export default Tasks;
     }
     addUser()
     getTasks() */
+
+     //<button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
