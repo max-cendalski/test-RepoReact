@@ -42,6 +42,7 @@ const EditTask = () => {
     editTask()
     navigate('/tasks')
   }
+
   if (!taskToEdit) return <p>Loading...</p>
   return (
     <article className="edit-task-container">
@@ -64,9 +65,6 @@ const EditTask = () => {
         </p>
           <button onClick={handleAddEditedTask}>Submit changes</button>
         </form>
-
-
-
     </article>
   )
 }

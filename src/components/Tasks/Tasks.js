@@ -26,6 +26,7 @@ const Tasks = () => {
       setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
       };
     getTasks()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const handleRetrieveUsers = async() => {
@@ -50,7 +51,7 @@ const Tasks = () => {
         }
         const addTask = await addDoc(tasksCollection, taskToBeAdded)
         taskToBeAdded.id = addTask.id
-        const newTasksArray = [... tasks,taskToBeAdded]
+        const newTasksArray = [...tasks,taskToBeAdded]
         setTasks(newTasksArray)
         } catch(e) {
           console.error("ERROR: ",e)
