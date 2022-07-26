@@ -1,16 +1,14 @@
 import {useEffect, useState} from 'react'
 import {useParams, useNavigate} from 'react-router-dom';
 import {db} from '../../components/firebase/Firebase';
-import {doc, getDoc} from 'firebase/firestore';
+import {doc, getDoc, updateDoc} from 'firebase/firestore';
 
 const EditTask = () => {
   const navigate = useNavigate()
   const {taskId} = useParams()
 
-  console.log('psotI',taskId)
-
   const [title, setTitle] = useState('')
-  const [taskNote, setTaskNote] = useState('')
+  const [note, setNote] = useState('')
   const [taskToEdit, setTaskToEdit]  = useState(null)
 
 
@@ -20,7 +18,7 @@ const EditTask = () => {
       const taskSnap = await getDoc(taskRef)
       setTaskToEdit(taskSnap.data())
       setTitle(taskSnap.data().title)
-      setTaskNote(taskSnap.data().note)
+      setNote(taskSnap.data().note)
     }
     getTask()
   },[])
@@ -28,20 +26,21 @@ const EditTask = () => {
 
    const handleTitleChange = e => {
     setTitle(e.target.value)
-    console.log('tie',title)
    }
    const handleNoteChange = e => {
-    setTaskNote(e.target.value)
+    setNote(e.target.value)
    }
    const handleAddEditedTask = e => {
     e.preventDefault()
-     /*  const taskToUpdateRef = doc(db, `tasks/${id}`)
+     const editTask = async() => {
+      const taskToUpdateRef = doc(db, `tasks/${taskId}`)
       await updateDoc(taskToUpdateRef, {
-      date: '8/8',
-      title: 'Whee',
-      note: 'Wheee'
-    }) */
-
+      title,
+      note
+    })
+    }
+    editTask()
+    navigate('/tasks')
   }
   if (!taskToEdit) return <p>Loading...</p>
   return (
@@ -58,7 +57,7 @@ const EditTask = () => {
         <p>
           <label htmlFor="title">Note</label>
           <textarea
-            value={taskNote}
+            value={note}
             name="taskNote"
             onChange={handleNoteChange}
           ></textarea>

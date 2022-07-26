@@ -1,25 +1,24 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import {collection, getDocs,getDoc, addDoc, doc , updateDoc, deleteField, deleteDoc, Timestamp, serverTimestamp} from 'firebase/firestore';
+import {collection, getDocs,getDoc, addDoc, doc, deleteDoc} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
-import {useParams, useNavigate} from 'react-router-dom';
-
-//import {useCollectionData} from 'react-firebase-hooks/firestore'
 
 
 
 const Tasks = () => {
  const [tasks, setTasks] = useState([])
- const [users, setUsers] = useState([])
- const [user, setUser] = useState([])
  const [title, setTitle] = useState('')
 
 
- const [taskNote, setTaskNote] = useState('')
+ // Temporary not needed user, users
+ const [users, setUsers] = useState([])
+ const [user, setUser] = useState([])
+
+
+ const [note, setTaskNote] = useState('')
  const tasksCollection = collection(db, 'tasks')
  const usersDb = collection(db, 'users')
 
- //const [checkTasks] = useCollectionData(tasksCollection)
 
   useEffect(()  => {
     const getTasks = async() => {
@@ -46,7 +45,7 @@ const Tasks = () => {
       try {
         const taskToBeAdded = {
           date:'7/20',
-          note: taskNote,
+          note: note,
           title
         }
         const addTask = await addDoc(tasksCollection, taskToBeAdded)
@@ -78,16 +77,6 @@ const Tasks = () => {
     setTasks(newTasksArray)
   }
 
-  const handleEditTask = async (id) => {
-/*     const tasksCollection = collection(db, 'tasks')
-    const taskRef =  doc(tasksCollection, `${id}` )
-    const docSnap = await getDoc(taskRef)
-    const taskToEdit = docSnap.data()
-    setEditedTask(taskToEdit)
-    console.log('edited',editedTask) */
-    console.log('id',id)
-  }
-
   return (
     <article>
       <form>
@@ -102,7 +91,7 @@ const Tasks = () => {
         <p>
           <label htmlFor="title">Note</label>
           <textarea
-            value={taskNote}
+            value={note}
             name="taskNote"
             onChange={handleNoteChange}
           ></textarea>
