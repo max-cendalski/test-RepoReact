@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import {collection, getDocs,getDoc, addDoc, doc, deleteDoc} from 'firebase/firestore';
+import {collection, getDocs,getDoc, addDoc, doc,query, deleteDoc, onSnapshot} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 
 
@@ -20,14 +20,33 @@ const Tasks = () => {
  const usersDb = collection(db, 'users')
 
 
+
   useEffect(()  => {
     const getTasks = async() => {
       const tasksData = await getDocs(tasksCollection);
       setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
       };
     getTasks()
+     const q = query(collection(db, "tasks"));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  const tasks = [];
+   setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
+ /*  querySnapshot.forEach((doc) => {
+      console.log((doc.data().title))
+  }); */
+  //console.log("Current cities in CA: ", cities.join(", "));
+});
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
+
+
+
+  /*     const unsub = onSnapshot(doc(db, "tasks", "64f5bNBtZDW6n5aYDdBO"), (doc) => {
+      const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+      console.log(source, " data: ", doc.data());
+      }); */
 
   const handleRetrieveUsers = async() => {
     const userRef = doc(db, "users", "Uu8m5sAOkjOCmkUAVfGs")
@@ -46,7 +65,7 @@ const Tasks = () => {
       try {
         const taskToBeAdded = {
           date:'7/20',
-          note: note,
+          note,
           title
         }
         const addTask = await addDoc(tasksCollection, taskToBeAdded)
@@ -74,8 +93,8 @@ const Tasks = () => {
     const taskRef = doc(db, `tasks/${id}`)
     await deleteDoc(taskRef, id)
     console.log(`Task with id:${id} has been deleted!`)
-    const newTasksArray = tasks.filter(task => task.id !== id)
-    setTasks(newTasksArray)
+    //const newTasksArray = tasks.filter(task => task.id !== id)
+    //setTasks(newTasksArray)
   }
 
   return (
