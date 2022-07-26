@@ -27,26 +27,15 @@ const Tasks = () => {
       setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
       };
     getTasks()
-     const q = query(collection(db, "tasks"));
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  const tasks = [];
-   setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
- /*  querySnapshot.forEach((doc) => {
-      console.log((doc.data().title))
-  }); */
-  //console.log("Current cities in CA: ", cities.join(", "));
-});
+    onSnapshot(collection(db, "tasks"), (querySnapshot) => {
+    setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
+  });
 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 
-
-  /*     const unsub = onSnapshot(doc(db, "tasks", "64f5bNBtZDW6n5aYDdBO"), (doc) => {
-      const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-      console.log(source, " data: ", doc.data());
-      }); */
 
   const handleRetrieveUsers = async() => {
     const userRef = doc(db, "users", "Uu8m5sAOkjOCmkUAVfGs")
@@ -70,8 +59,8 @@ const Tasks = () => {
         }
         const addTask = await addDoc(tasksCollection, taskToBeAdded)
         taskToBeAdded.id = addTask.id
-        const newTasksArray = [...tasks,taskToBeAdded]
-        setTasks(newTasksArray)
+      /*   const newTasksArray = [...tasks,taskToBeAdded]
+        setTasks(newTasksArray) */
         } catch(e) {
           console.error("ERROR: ",e)
       }
