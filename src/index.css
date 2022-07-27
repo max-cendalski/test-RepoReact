@@ -34,3 +34,19 @@ code {
 .places-container {
   margin-top: 20px
 }
+
+.task-container {
+  border: 1px solid green;
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 80%;
+}
+
+.task-form {
+  width: 8rem;
+}
+
+.edit-task-container {
+  width: 50%;
+  margin: 1rem auto;
+}
