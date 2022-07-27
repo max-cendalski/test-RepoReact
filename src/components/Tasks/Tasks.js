@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import {collection, getDocs,getDoc, addDoc, doc,query, deleteDoc, onSnapshot} from 'firebase/firestore';
+import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 
 
@@ -20,17 +20,21 @@ const Tasks = () => {
  const usersDb = collection(db, 'users')
 
 
+  const getTasks = async() => {
+  const tasksData = await getDocs(tasksCollection);
+    setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
+  };
 
-  useEffect(()  => {
-    const getTasks = async() => {
-      const tasksData = await getDocs(tasksCollection);
-      setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
-      };
-    getTasks()
-    onSnapshot(collection(db, "tasks"), (querySnapshot) => {
+ /*  const checkTask = onSnapshot(collection(db, "tasks"), (querySnapshot) => {
     setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
-  });
+    }); */
+  useEffect(()  => {
+    getTasks()
+    //checkTask()
 
+   /*  onSnapshot(collection(db, "tasks"), (querySnapshot) => {
+    setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
+    }); */
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
@@ -68,6 +72,7 @@ const Tasks = () => {
     addTask()
     setTaskNote('')
     setTitle('')
+    getTasks()
   }
 
 
@@ -84,6 +89,7 @@ const Tasks = () => {
     console.log(`Task with id:${id} has been deleted!`)
     //const newTasksArray = tasks.filter(task => task.id !== id)
     //setTasks(newTasksArray)
+    getTasks()
   }
 
   return (

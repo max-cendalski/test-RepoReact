@@ -30,6 +30,7 @@ const EditTask = () => {
    const handleNoteChange = e => {
     setNote(e.target.value)
    }
+
    const handleAddEditedTask = e => {
     e.preventDefault()
      const editTask = async() => {
