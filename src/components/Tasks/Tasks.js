@@ -8,6 +8,9 @@ import {db} from '../../components/firebase/Firebase';
 const Tasks = () => {
  const [tasks, setTasks] = useState([])
  const [title, setTitle] = useState('')
+ const [note, setTaskNote] = useState('')
+ const addTaskVisible = [title,note].every(Boolean)
+
 
 
  // Temporary not needed user, users
@@ -15,7 +18,6 @@ const Tasks = () => {
  const [user, setUser] = useState([])
 
 
- const [note, setTaskNote] = useState('')
  const tasksCollection = collection(db, 'tasks')
  const usersDb = collection(db, 'users')
 
@@ -46,6 +48,7 @@ const Tasks = () => {
       console.log("No such document!");
     }
   }
+
 
   const handleAddTask = e => {
     e.preventDefault()
@@ -80,7 +83,7 @@ const Tasks = () => {
 
   const handleDeleteTask = async (id) => {
     const taskRef = doc(db, `tasks/${id}`)
-    await deleteDoc(taskRef, id)
+    await deleteDoc(taskRef)
     console.log(`Task with id:${id} has been deleted!`)
     getTasks()
   }
@@ -104,12 +107,16 @@ const Tasks = () => {
             onChange={handleNoteChange}
           ></textarea>
         </p>
-          <button onClick={handleAddTask}>Add Task</button>
+          <button
+            disabled={!addTaskVisible}
+            onClick={handleAddTask}
+            >Add Task</button>
         </form>
 
       <h1>Tasks</h1>
       <button onClick={handleRetrieveUsers}>Click to render user</button>
-      <button onClick={handleAddTask}>Click to Add Task</button>
+      <button
+      onClick={handleAddTask}>Click to Add Task</button>
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
       {

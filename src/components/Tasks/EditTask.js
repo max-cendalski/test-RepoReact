@@ -10,7 +10,7 @@ const EditTask = () => {
   const [title, setTitle] = useState('')
   const [note, setNote] = useState('')
   const [taskToEdit, setTaskToEdit]  = useState(null)
-
+  const submitChangesVisible = [title, note].every(Boolean)
 
   useEffect(() => {
     const getTask = async () => {
@@ -64,7 +64,10 @@ const EditTask = () => {
             onChange={handleNoteChange}
           ></textarea>
         </p>
-          <button onClick={handleAddEditedTask}>Submit changes</button>
+          <button
+          disabled={!submitChangesVisible}
+          onClick={handleAddEditedTask}
+          >Submit changes</button>
         </form>
     </article>
   )
