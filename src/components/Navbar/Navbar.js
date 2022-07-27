@@ -6,7 +6,6 @@ export default function Navbar(props) {
     return (
       <nav id='navbar'>
         <NavLink to="/" className={({isActive}) => (isActive ? "active-link" : 'none')}>Home</NavLink>
-        <NavLink to="/places" className={({isActive}) => (isActive ? "active-link" : 'none')}>Places</NavLink>
         <NavLink to="/games" className={({isActive}) => (isActive ? "active-link" : 'none')}>Games</NavLink>
         <NavLink to="/quotes" className={({isActive}) => (isActive ? "active-link" : 'none')}>Quotes</NavLink>
         <NavLink to="/carousel" className={({isActive}) => (isActive ? "active-link" : 'none')}>Carousel</NavLink>
@@ -19,3 +18,5 @@ export default function Navbar(props) {
       </nav>
     )
 }
+
+//     <NavLink to="/places" className={({isActive}) => (isActive ? "active-link" : 'none')}>Places</NavLink>
