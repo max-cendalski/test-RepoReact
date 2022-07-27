@@ -20,25 +20,20 @@ const Tasks = () => {
  const usersDb = collection(db, 'users')
 
 
-  const getTasks = async() => {
+ const getTasks = async() => {
   const tasksData = await getDocs(tasksCollection);
-    setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
-  };
+  setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
+ };
 
+  // For realtime  updates, working but not properly
  /*  const checkTask = onSnapshot(collection(db, "tasks"), (querySnapshot) => {
     setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
     }); */
-  useEffect(()  => {
+
+  useEffect(() => {
     getTasks()
-    //checkTask()
-
-   /*  onSnapshot(collection(db, "tasks"), (querySnapshot) => {
-    setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
-    }); */
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
 
 
   const handleRetrieveUsers = async() => {
@@ -87,8 +82,6 @@ const Tasks = () => {
     const taskRef = doc(db, `tasks/${id}`)
     await deleteDoc(taskRef, id)
     console.log(`Task with id:${id} has been deleted!`)
-    //const newTasksArray = tasks.filter(task => task.id !== id)
-    //setTasks(newTasksArray)
     getTasks()
   }
 
