@@ -1,23 +1,26 @@
 import './main.css'
 import Counter from '../../components/features/counter/Counter'
-import ThemeContext from '../../context/AuthContext'
 import { useSelector, } from 'react-redux'
+import { useEffect,useState } from 'react'
 import { useContext } from 'react'
-import {UserContextProvider}  from '../../context/AuthContext'
+import { UserAuth} from '../../context/AuthContext'
 
 
 
 
-export default function Main () {
-//console.log('this',UserContextProvider)
+const Main  = () => {
+
+  const {name, lastName} = UserAuth()
+
   return (
     <article id="main-container">
       <h1>Homepage</h1>
-      <h3></h3>
+      <h2>{name}</h2>
+      <h2>{lastName}</h2>
 
       <Counter />
     </article>
   )
 }
 
-Main.contextType = UserContextProvider;
+export default Main;

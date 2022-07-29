@@ -4,10 +4,11 @@ import { useContext, createContext, useEffect, useState } from 'react';
 const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
-  const myName = 'Maximilian'
+  const credentials = {name: 'Maximilian', lastName:'Cendalski'}
+
 
     return (
-      <AuthContext.Provider value = 'Max'>
+      <AuthContext.Provider value ={credentials}>
         {children}
       </AuthContext.Provider>
     )
