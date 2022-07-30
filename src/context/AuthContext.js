@@ -7,9 +7,7 @@ export const AuthContextProvider = ({children}) => {
   const credentials = {name:'Maximilian',lastName:'Cendalski'}
 
     return (
-      <AuthContext.Provider value ={
-        credentials
-      }>
+      <AuthContext.Provider value={credentials}>
         {children}
       </AuthContext.Provider>
     )
