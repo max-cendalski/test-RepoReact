@@ -12,7 +12,6 @@ const Tasks = () => {
  const addTaskVisible = [title,note].every(Boolean)
 
 
-
  // Temporary not needed user, users
  const [users, setUsers] = useState([])
  const [user, setUser] = useState([])
