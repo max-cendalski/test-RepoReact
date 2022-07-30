@@ -18,6 +18,7 @@ import Tasks from '../../components/Tasks/Tasks.js'
 import EditTaskPage from '../Tasks/EditTask.js'
 import { nanoid } from '@reduxjs/toolkit';
 import format from 'date-fns/format';
+import {AuthContextProvider } from '../../context/AuthContext';
 
 export default function App() {
   const data=[{
@@ -42,7 +43,8 @@ export default function App() {
   }]
 
   return (
-        <Routes>
+      <AuthContextProvider>
+         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element = {<Main data={data}/>} />
             <Route path="/postslist" element={<PostsList />} />
@@ -68,6 +70,7 @@ export default function App() {
             </Route>
           </Route>
         </Routes>
+      </AuthContextProvider>
   );
 }
 
