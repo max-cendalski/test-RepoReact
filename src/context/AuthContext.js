@@ -1,5 +1,5 @@
 import { useContext, createContext, useEffect, useState } from 'react';
-import {GoogleAuthProvider} from 'firebase/auth'
+import {GoogleAuthProvider} from 'firebase/auth';
 
 
 
@@ -16,4 +16,6 @@ export const AuthContextProvider = ({children}) => {
     )
   }
 
-  export default AuthContext;
+  export const UserAuth = () => {
+    return useContext(AuthContext)
+  }
