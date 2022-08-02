@@ -37,7 +37,8 @@ export const AuthContextProvider = ({children}) => {
             googleSignIn,
             signOut,
             credentials,
-            user
+            user,
+            logOut
           }
         }>
         {children}
