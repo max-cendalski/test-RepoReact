@@ -9,16 +9,35 @@ const AuthContext = createContext()
 export const AuthContextProvider = ({children}) => {
   const credentials = {name:'Maximilian',lastName:'Cendalski'}
 
+  const [user, setUser] = useState({})
+
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider()
     signInWithPopup(auth, provider)
+  };
+
+  const logOut = ()=> {
+    signOut(auth)
   }
+
+  useEffect(()=> {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+      console.log('user',user)
+      console.log('usecurrent',currentUser)
+    });
+    return () => {
+      unsubscribe()
+    }
+  },[])
 
     return (
       <AuthContext.Provider value={
           {
             googleSignIn,
-            credentials
+            signOut,
+            credentials,
+            user
           }
         }>
         {children}

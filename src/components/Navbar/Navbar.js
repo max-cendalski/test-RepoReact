@@ -1,8 +1,10 @@
 import './navbar.css'
 import {NavLink} from 'react-router-dom';
+import { UserAuth } from '../../context/AuthContext';
 
 
 export default function Navbar(props) {
+  const {user, logOut} = UserAuth()
     return (
       <nav id='navbar'>
         <NavLink to="/" className={({isActive}) => (isActive ? "active-link" : 'none')}>Home</NavLink>
