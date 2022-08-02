@@ -11,7 +11,11 @@ import { UserAuth } from '../../context/AuthContext'
 const Main  = () => {
   const {user, logOut} = UserAuth()
   const handleSignOut = async () => {
-    await logOut(user)
+    try {
+      await logOut()
+    } catch (error) {
+      console.log('ERROR: ', error)
+    }
   }
 
   return (
@@ -19,7 +23,12 @@ const Main  = () => {
       <h1>Homepage</h1>
       {
         user?.displayName ? (
-          <button onClick={handleSignOut}>Logout</button>
+          <section>
+            <button onClick={handleSignOut}>Logout</button>
+            <h2>Hello {user.displayName}</h2>
+            <img src={user.photoURL}></img>
+          </section>
+
         ) : (
           <SignIn />
         )
