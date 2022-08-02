@@ -1,11 +1,20 @@
 import React from 'react';
-import {UserAuth} from '../../context/AuthContext';
+import { UserAuth } from '../../context/AuthContext';
 
-cons SignIn = () => {
+const SignIn = () => {
+  const {googleSignIn, user} = UserAuth()
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn()
+    } catch(error) {
+      console.log('ERROR:',error)
+    }
+  };
   return (
     <article>
-      <h1>SignIN</h1>
-      <button>Sign With Google</button>
+      <h1>Sign in</h1>
+      <button onClick={handleGoogleSignIn}>Sign With Google</button>
     </article>
   )
 }
