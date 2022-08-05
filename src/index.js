@@ -24,7 +24,6 @@ ReactDOM.render(
             <Route path="/*" element={<App />} />
           </Routes>
         </AuthContextProvider>
-
       </Router>
     </Provider>
   </React.StrictMode>,

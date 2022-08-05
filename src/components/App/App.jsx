@@ -17,6 +17,7 @@ import Todos from '../features/todos/Todos';
 import Tasks from '../../components/Tasks/Tasks.js'
 import EditTaskPage from '../Tasks/EditTask.js'
 import Missing from '../Missing/Missing.js'
+import RequireAuth from '../RequireAuth/RequireAuth';
 import { nanoid } from '@reduxjs/toolkit';
 import format from 'date-fns/format';
 
@@ -58,6 +59,7 @@ export default function App() {
             <Route path="/todos" element={<Todos />} />
 
             {/*protected routes */}
+            <Route element={<RequireAuth />}>
             <Route path="/tasks">
               <Route index element={<Tasks />} />
               <Route path="edit/:taskId" element ={<EditTaskPage />} />
@@ -70,6 +72,7 @@ export default function App() {
             <Route path="notes">
               <Route index element={<Notes />} />
               <Route path="edit/:noteId" element={<EditNotePage />} />
+            </Route>
             </Route>
 
             {/* catch all */}
