@@ -16,6 +16,7 @@ import EditNotePage from '../features/notes/EditNotePage'
 import Todos from '../features/todos/Todos';
 import Tasks from '../../components/Tasks/Tasks.js'
 import EditTaskPage from '../Tasks/EditTask.js'
+import Missing from '../Missing/Missing.js'
 import { nanoid } from '@reduxjs/toolkit';
 import format from 'date-fns/format';
 
@@ -44,6 +45,8 @@ export default function App() {
   return (
          <Routes>
           <Route path="/" element={<Layout />}>
+
+            {/*public routes */}
             <Route index element = {<Main data={data}/>} />
             <Route path="/postslist" element={<PostsList />} />
             <Route path="/counter" element={<Counter />} />
@@ -53,6 +56,8 @@ export default function App() {
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/games" element={<Games />} />
             <Route path="/todos" element={<Todos />} />
+
+            {/*protected routes */}
             <Route path="/tasks">
               <Route index element={<Tasks />} />
               <Route path="edit/:taskId" element ={<EditTaskPage />} />
@@ -66,6 +71,9 @@ export default function App() {
               <Route index element={<Notes />} />
               <Route path="edit/:noteId" element={<EditNotePage />} />
             </Route>
+
+            {/* catch all */}
+            <Route path="*" element={<Missing />} />
           </Route>
         </Routes>
   );
