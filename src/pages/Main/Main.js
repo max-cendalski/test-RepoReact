@@ -1,7 +1,7 @@
 import './main.css'
 import Counter from '../../components/features/counter/Counter'
 import { useSelector, } from 'react-redux'
-import { useEffect,useState } from 'react'
+import { useEffect,useState, useContext } from 'react'
 import SignIn from '../SignIn/SignInPage'
 import {Link} from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext'
@@ -10,6 +10,7 @@ import { UserAuth } from '../../context/AuthContext'
 
 const Main  = () => {
   const {user, logOut} = UserAuth()
+
   const handleSignOut = async () => {
     try {
       await logOut()
@@ -26,9 +27,8 @@ const Main  = () => {
           <section>
             <button onClick={handleSignOut}>Logout</button>
             <h2>Hello {user.displayName}</h2>
-            <img src={user.photoURL}></img>
+            <img src={user.photoURL} alt="user photo" />
           </section>
-
         ) : (
           <SignIn />
         )
@@ -38,5 +38,3 @@ const Main  = () => {
 }
 
 export default Main;
-
-   //   <Counter />
