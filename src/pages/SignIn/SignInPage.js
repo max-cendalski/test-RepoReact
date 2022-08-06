@@ -1,18 +1,28 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { UserAuth } from '../../context/AuthContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const SignIn = () => {
   const {googleSignIn, user} = UserAuth()
 
+
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
+
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn()
+      navigate(from, {replace:true})
+      console.log('from',from)
     } catch(error) {
       console.log('ERROR:',error)
     }
   };
+
   return (
-    <article>
+    <article id="signin-page-container">
       <h1>Sign in</h1>
       <button onClick={handleGoogleSignIn}>Sign With Google</button>
     </article>

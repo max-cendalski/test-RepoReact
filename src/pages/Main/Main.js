@@ -1,4 +1,4 @@
-import './main.css'
+
 import Counter from '../../components/features/counter/Counter'
 import { useSelector, } from 'react-redux'
 import { useEffect,useState, useContext } from 'react'
