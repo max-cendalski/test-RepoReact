@@ -3,8 +3,7 @@ import {GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuth
 import {auth} from '../components/firebase/Firebase';
 
 
-
-const AuthContext = createContext()
+const AuthContext = createContext({})
 
 export const AuthContextProvider = ({children}) => {
   const credentials = {name:'Maximilian',lastName:'Cendalski'}

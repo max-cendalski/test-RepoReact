@@ -27,7 +27,6 @@ const Main  = () => {
           <section>
             <button onClick={handleSignOut}>Logout</button>
             <h2>Hello {user.displayName}</h2>
-            <img src={user.photoURL} alt="user photo" />
           </section>
         ) : (
           <SignIn />
