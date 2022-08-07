@@ -16,9 +16,11 @@ import EditNotePage from '../features/notes/EditNotePage'
 import Todos from '../features/todos/Todos';
 import Tasks from '../../components/Tasks/Tasks.js'
 import EditTaskPage from '../Tasks/EditTask.js'
+import Missing from '../Missing/Missing.js'
+import RequireAuth from '../RequireAuth/RequireAuth';
+import SignInPage from '../../pages/SignIn/SignInPage.js'
 import { nanoid } from '@reduxjs/toolkit';
 import format from 'date-fns/format';
-import {AuthContextProvider } from '../../context/AuthContext';
 
 export default function App() {
   const data=[{
@@ -43,9 +45,10 @@ export default function App() {
   }]
 
   return (
-      <AuthContextProvider>
          <Routes>
           <Route path="/" element={<Layout />}>
+
+            {/*public routes */}
             <Route index element = {<Main data={data}/>} />
             <Route path="/postslist" element={<PostsList />} />
             <Route path="/counter" element={<Counter />} />
@@ -55,6 +58,10 @@ export default function App() {
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/games" element={<Games />} />
             <Route path="/todos" element={<Todos />} />
+            <Route path="/signIn" element={<SignInPage />} />
+
+            {/*protected routes */}
+            <Route element={<RequireAuth />}>
             <Route path="/tasks">
               <Route index element={<Tasks />} />
               <Route path="edit/:taskId" element ={<EditTaskPage />} />
@@ -68,9 +75,12 @@ export default function App() {
               <Route index element={<Notes />} />
               <Route path="edit/:noteId" element={<EditNotePage />} />
             </Route>
+            </Route>
+
+            {/* catch all */}
+            <Route path="*" element={<Missing />} />
           </Route>
         </Routes>
-      </AuthContextProvider>
   );
 }
 

@@ -8,6 +8,8 @@ import {Provider} from 'react-redux';
 import { fetchPosts } from './components/features/posts/postsSlice';
 import {fetchUsers} from './components/features/users/usersSlice';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {AuthContextProvider } from '../src/context/AuthContext';
+
 
 store.dispatch(fetchPosts())
 store.dispatch(fetchUsers())
@@ -17,9 +19,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <Routes>
-          <Route path="/*" element={<App />} />
-        </Routes>
+        <AuthContextProvider>
+          <Routes>
+            <Route path="/*" element={<App />} />
+          </Routes>
+        </AuthContextProvider>
       </Router>
     </Provider>
   </React.StrictMode>,

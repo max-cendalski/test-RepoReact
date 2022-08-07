@@ -1,8 +1,10 @@
 import './navbar.css'
 import {NavLink} from 'react-router-dom';
+import { UserAuth } from '../../context/AuthContext';
 
 
 export default function Navbar(props) {
+  const {user, logOut} = UserAuth()
     return (
       <nav id='navbar'>
         <NavLink to="/" className={({isActive}) => (isActive ? "active-link" : 'none')}>Home</NavLink>
@@ -10,6 +12,12 @@ export default function Navbar(props) {
         <NavLink to ="/postslist" className={({isActive}) => (isActive ? "active-link" : 'none')}>Posts List</NavLink>
         <NavLink to ="/todos" className={({isActive}) => (isActive ? "active-link" : 'none')}>Todos</NavLink>
         <NavLink to ="/tasks" className={({isActive}) => (isActive ? "active-link" : 'none')}>Tasks</NavLink>
+        {
+          (user) ?
+          <NavLink to="/">Logout</NavLink>
+          :
+          <NavLink to="/signIn">SignIn</NavLink>
+        }
       </nav>
     )
 }

@@ -50,3 +50,13 @@ code {
   width: 50%;
   margin: 1rem auto;
 }
+
+#main-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#signin-page-container {
+  text-align: center;
+  padding-top: 2rem;
+}
