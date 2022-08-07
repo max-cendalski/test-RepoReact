@@ -13,7 +13,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (user != null) {
-      navigate('/tasks')
+      navigate(from)
     }
   },[user])
 

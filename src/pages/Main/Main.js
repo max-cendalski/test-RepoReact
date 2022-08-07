@@ -15,11 +15,6 @@ const Main  = () => {
   const location = useLocation()
   const from = location.state?.from?.pathname || "/";
 
-
-  const handleGo = () => {
-    navigate(-1)
-  }
-
   const handleSignOut = async () => {
     try {
       await logOut()
@@ -30,7 +25,6 @@ const Main  = () => {
 
   return (
     <article id="main-container">
-    <button onClick={handleGo}>Go where you came from</button>
       <h1>Homepage</h1>
       {
         user?.displayName ? (
