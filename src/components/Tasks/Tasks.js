@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
+import { UserAuth } from '../../context/AuthContext';
 
 
 
 const Tasks = () => {
+ const {user} = UserAuth()
  const [tasks, setTasks] = useState([])
  const [title, setTitle] = useState('')
  const [note, setTaskNote] = useState('')
@@ -13,8 +15,8 @@ const Tasks = () => {
 
 
  // Temporary not needed user, users
- const [users, setUsers] = useState([])
- const [user, setUser] = useState([])
+/*  const [users, setUsers] = useState([])
+ const [user, setUser] = useState([]) */
 
 
  const tasksCollection = collection(db, 'tasks')
@@ -37,7 +39,7 @@ const Tasks = () => {
   },[])
 
 
-  const handleRetrieveUsers = async() => {
+  /* const handleRetrieveUsers = async() => {
     const userRef = doc(db, "users", "Uu8m5sAOkjOCmkUAVfGs")
     const userSnap = await getDoc(userRef)
     if (userSnap.exists()) {
@@ -46,7 +48,7 @@ const Tasks = () => {
       } else {
       console.log("No such document!");
     }
-  }
+  } */
 
 
   const handleAddTask = e => {
@@ -87,8 +89,13 @@ const Tasks = () => {
     getTasks()
   }
 
+  const handleEditUserId = () => {
+    console.log('user',user.uid)
+  }
   return (
     <article>
+      <button onClick={handleEditUserId}>EDIT USER ID</button>
+
       <form>
         <p>
           <label htmlFor="title">Title</label>
@@ -113,9 +120,8 @@ const Tasks = () => {
         </form>
 
       <h1>Tasks</h1>
-      <button onClick={handleRetrieveUsers}>Click to render user</button>
-      <button
-      onClick={handleAddTask}>Click to Add Task</button>
+
+
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
       {
@@ -161,3 +167,10 @@ export default Tasks;
     getTasks() */
 
      //<button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
+
+
+     // USER BUTTON
+
+    /*<button onClick={handleRetrieveUsers}>Click to render user</button>
+      <button
+      onClick={handleAddTask}>Click to Add Task</button> */
