@@ -5,11 +5,20 @@ import { useEffect,useState, useContext } from 'react'
 import SignIn from '../SignIn/SignInPage'
 import {Link} from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext'
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 
 const Main  = () => {
   const {user, logOut} = UserAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
+
+
+  const handleGo = () => {
+    navigate(-1)
+  }
 
   const handleSignOut = async () => {
     try {
@@ -21,6 +30,7 @@ const Main  = () => {
 
   return (
     <article id="main-container">
+    <button onClick={handleGo}>Go where you came from</button>
       <h1>Homepage</h1>
       {
         user?.displayName ? (

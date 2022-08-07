@@ -1,21 +1,25 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { UserAuth } from '../../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const SignIn = () => {
   const {googleSignIn, user} = UserAuth()
-
+  const [loc, setLoc] = useState('')
 
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || "/";
 
+  useEffect(() => {
+    if (user != null) {
+      navigate('/tasks')
+    }
+  },[user])
+
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn()
-      navigate(from, {replace:true})
-      console.log('from',from)
     } catch(error) {
       console.log('ERROR:',error)
     }
