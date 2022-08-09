@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
+import {collection, getDocs,getDoc, addDoc,setDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 import { UserAuth } from '../../context/AuthContext';
 
@@ -20,7 +20,7 @@ const Tasks = () => {
 
 
  const tasksCollection = collection(db, 'tasks')
- const usersDb = collection(db, 'users')
+ const usersCollection = collection(db, 'users')
 
 
  const getTasks = async() => {
@@ -60,7 +60,7 @@ const Tasks = () => {
           note,
           title
         }
-        const addTask = await addDoc(tasksCollection, taskToBeAdded)
+        const addTask = await setDoc(usersCollection,user.uid, taskToBeAdded)
         taskToBeAdded.id = addTask.id
       /*   const newTasksArray = [...tasks,taskToBeAdded]
         setTasks(newTasksArray) */
@@ -92,9 +92,35 @@ const Tasks = () => {
   const handleEditUserId = () => {
     console.log('user',user.uid)
   }
+
+  const handleAddTaskWithAuth = e => {
+    e.preventDefault()
+   const usersCollection = collection(db, 'users')
+    console.log('users',usersCollection)
+    console.log("whee")
+    const addTask = async () => {
+      try {
+        const taskToBeAdded = {
+          date:'7/20',
+          note:'test',
+          title: 'test task'
+        }
+        const newTaskTestRef = doc(collection(db,'users'))
+        await addDoc(collection(usersCollection,user.uid,'tasks'), taskToBeAdded)
+        //taskToBeAdded.id = addTask.id
+      /*   const newTasksArray = [...tasks,taskToBeAdded]
+        setTasks(newTasksArray) */
+        } catch(e) {
+          console.error("ERROR: ",e)
+      }
+   }
+   addTask()
+  }
+
   return (
     <article>
       <button onClick={handleEditUserId}>EDIT USER ID</button>
+      <button onClick={handleAddTaskWithAuth}>Add Task With Auth</button>
 
       <form>
         <p>
@@ -120,7 +146,6 @@ const Tasks = () => {
         </form>
 
       <h1>Tasks</h1>
-
 
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
