@@ -109,6 +109,9 @@ const Tasks = () => {
       }
    }
    addTask()
+   setTitle('')
+   setTaskNote('')
+
   }
 
   return (
