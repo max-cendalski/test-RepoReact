@@ -95,21 +95,15 @@ const Tasks = () => {
 
   const handleAddTaskWithAuth = e => {
     e.preventDefault()
-   const usersCollection = collection(db, 'users')
-    console.log('users',usersCollection)
-    console.log("whee")
+    const userRef = collection(db,'users',user.uid,'tasks')
     const addTask = async () => {
       try {
         const taskToBeAdded = {
           date:'7/20',
-          note:'test',
-          title: 'test task'
+          note,
+          title
         }
-        const newTaskTestRef = doc(collection(db,'users'))
-        await addDoc(collection(usersCollection,user.uid,'tasks'), taskToBeAdded)
-        //taskToBeAdded.id = addTask.id
-      /*   const newTasksArray = [...tasks,taskToBeAdded]
-        setTasks(newTasksArray) */
+        await addDoc(userRef, taskToBeAdded)
         } catch(e) {
           console.error("ERROR: ",e)
       }
@@ -141,7 +135,7 @@ const Tasks = () => {
         </p>
           <button
             disabled={!addTaskVisible}
-            onClick={handleAddTask}
+            onClick={handleAddTaskWithAuth}
             >Add Task</button>
         </form>
 
