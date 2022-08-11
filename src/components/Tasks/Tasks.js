@@ -19,12 +19,13 @@ const Tasks = () => {
  const [user, setUser] = useState([]) */
 
 
- const tasksCollection = collection(db, 'tasks')
- const usersCollection = collection(db, 'users')
+ const tasksCollectionRef = collection(db, 'tasks')
+ const usersCollectionRef = collection(db, `users/${user.uid}`,'tasks')
+ console.log('userscol',usersCollectionRef)
 
 
  const getTasks = async() => {
-  const tasksData = await getDocs(tasksCollection);
+  const tasksData = await getDocs(usersCollectionRef);
   setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
  };
 
@@ -35,6 +36,7 @@ const Tasks = () => {
 
   useEffect(() => {
     getTasks()
+    console.log('tasks',tasks)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -51,6 +53,8 @@ const Tasks = () => {
   } */
 
 
+
+/*
   const handleAddTask = e => {
     e.preventDefault()
     const addTask = async () => {
@@ -60,10 +64,10 @@ const Tasks = () => {
           note,
           title
         }
-        const addTask = await setDoc(usersCollection,user.uid, taskToBeAdded)
+        const addTask = await setDoc(usersCollectionRef,user.uid, taskToBeAdded)
         taskToBeAdded.id = addTask.id
-      /*   const newTasksArray = [...tasks,taskToBeAdded]
-        setTasks(newTasksArray) */
+         const newTasksArray = [...tasks,taskToBeAdded]
+        setTasks(newTasksArray)
         } catch(e) {
           console.error("ERROR: ",e)
       }
@@ -72,7 +76,9 @@ const Tasks = () => {
     setTaskNote('')
     setTitle('')
     getTasks()
+    console.log('tasks from add', tasks)
   }
+  */
 
 
   const handleTitleChange = e => {
@@ -105,13 +111,13 @@ const Tasks = () => {
         }
         await addDoc(userRef, taskToBeAdded)
         } catch(e) {
-          console.error("ERROR: ",e)
+            console.error("ERROR: ",e)
       }
    }
    addTask()
    setTitle('')
    setTaskNote('')
-
+   getTasks()
   }
 
   return (
