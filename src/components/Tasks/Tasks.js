@@ -51,7 +51,7 @@ const Tasks = () => {
   }
 
   const handleDeleteTask = async (id) => {
-    const taskRef = doc(db, `tasks/${id}`)
+    const taskRef = doc(db,'users',user.uid,`tasks/${id}`)
     await deleteDoc(taskRef)
     console.log(`Task with id:${id} has been deleted!`)
     getTasks()
