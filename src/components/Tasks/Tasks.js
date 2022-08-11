@@ -41,44 +41,6 @@ const Tasks = () => {
   },[])
 
 
-  /* const handleRetrieveUsers = async() => {
-    const userRef = doc(db, "users", "Uu8m5sAOkjOCmkUAVfGs")
-    const userSnap = await getDoc(userRef)
-    if (userSnap.exists()) {
-      setUser(userSnap.data())
-      console.log("Document data:", userSnap.data());
-      } else {
-      console.log("No such document!");
-    }
-  } */
-
-
-
-/*
-  const handleAddTask = e => {
-    e.preventDefault()
-    const addTask = async () => {
-      try {
-        const taskToBeAdded = {
-          date:'7/20',
-          note,
-          title
-        }
-        const addTask = await setDoc(usersCollectionRef,user.uid, taskToBeAdded)
-        taskToBeAdded.id = addTask.id
-         const newTasksArray = [...tasks,taskToBeAdded]
-        setTasks(newTasksArray)
-        } catch(e) {
-          console.error("ERROR: ",e)
-      }
-   }
-    addTask()
-    setTaskNote('')
-    setTitle('')
-    getTasks()
-    console.log('tasks from add', tasks)
-  }
-  */
 
 
   const handleTitleChange = e => {
