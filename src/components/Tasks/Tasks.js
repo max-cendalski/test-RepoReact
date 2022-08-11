@@ -109,7 +109,10 @@ const Tasks = () => {
           note,
           title
         }
-        await addDoc(userRef, taskToBeAdded)
+          const addTask = await addDoc(userRef, taskToBeAdded)
+          taskToBeAdded.id = addTask.id
+          const newTasksArray = [...tasks,taskToBeAdded]
+          setTasks(newTasksArray)
         } catch(e) {
             console.error("ERROR: ",e)
       }
