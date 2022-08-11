@@ -14,17 +14,9 @@ const Tasks = () => {
  const addTaskVisible = [title,note].every(Boolean)
 
 
- // Temporary not needed user, users
-/*  const [users, setUsers] = useState([])
- const [user, setUser] = useState([]) */
-
-
- const tasksCollectionRef = collection(db, 'tasks')
- const usersCollectionRef = collection(db, `users/${user.uid}`,'tasks')
- console.log('userscol',usersCollectionRef)
-
 
  const getTasks = async() => {
+ const usersCollectionRef = collection(db, `users/${user.uid}`,'tasks')
   const tasksData = await getDocs(usersCollectionRef);
   setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
  };
@@ -36,7 +28,6 @@ const Tasks = () => {
 
   useEffect(() => {
     getTasks()
-    console.log('tasks',tasks)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
