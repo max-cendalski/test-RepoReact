@@ -126,35 +126,4 @@ const Tasks = () => {
 
 
 
-
-
 export default Tasks;
-
-
-// WORKING CODE
-/*  const addUser = async () => {
-      try {
-        const userRef = await addDoc(collection(db, "users"), {
-          name: 'Max',
-          lastName: 'Cendalski'
-        })
-        console.log("User added with ID: ", userRef.id)
-      } catch (e) {
-        console.error("Error adding user :", e)
-      }
-    }
-    const getTasks = async() => {
-      const tasksList = await getDocs(tasksDb)
-      console.log('tasksList',tasksList)
-    }
-    addUser()
-    getTasks() */
-
-     //<button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
-
-
-     // USER BUTTON
-
-    /*<button onClick={handleRetrieveUsers}>Click to render user</button>
-      <button
-      onClick={handleAddTask}>Click to Add Task</button> */
