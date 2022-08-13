@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import {collection, getDocs,getDoc, addDoc,setDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
+import {collection, getDocs,getDoc, addDoc,setDoc, doc, deleteDoc, onSnapshot, serverTimestamp} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 import { UserAuth } from '../../context/AuthContext';
 
@@ -19,6 +19,7 @@ const Tasks = () => {
  const usersCollectionRef = collection(db, `users/${user.uid}`,'tasks')
   const tasksData = await getDocs(usersCollectionRef);
   setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
+  console.log('tasks.data',tasks)
  };
 
   // For realtime  updates, working but not properly
@@ -29,6 +30,7 @@ const Tasks = () => {
   useEffect(() => {
     getTasks()
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log('tasks',tasks)
   },[])
 
 
@@ -58,11 +60,12 @@ const Tasks = () => {
     const addTask = async () => {
       try {
         const taskToBeAdded = {
-          date:'7/20',
+          date: serverTimestamp(),
           note,
           title
         }
           const addTask = await addDoc(userRef, taskToBeAdded)
+          console.log('tasktobe',taskToBeAdded.date)
           taskToBeAdded.id = addTask.id
           const newTasksArray = [...tasks,taskToBeAdded]
           setTasks(newTasksArray)
@@ -113,7 +116,7 @@ const Tasks = () => {
            <section className="task-container" key={task.id}>
             <h3>Title: {task.title}</h3>
             <h3>When: {task.note}</h3>
-
+            <h4>Date: {task.seconds}</h4>
             <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
             <Link to = {`/tasks/edit/${task.id}`} className="edit-link">Edit</Link>
           </section>
