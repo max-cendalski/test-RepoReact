@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import {collection, getDocs,getDoc, addDoc,setDoc, doc, deleteDoc, onSnapshot, serverTimestamp} from 'firebase/firestore';
+import {collection, getDocs, addDoc, doc, deleteDoc, serverTimestamp} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 import { UserAuth } from '../../context/AuthContext';
 
@@ -50,9 +50,6 @@ const Tasks = () => {
     getTasks()
   }
 
-  const handleEditUserId = () => {
-    console.log('user',user.uid)
-  }
 
   const handleAddTaskWithAuth = e => {
     e.preventDefault()
@@ -81,9 +78,6 @@ const Tasks = () => {
 
   return (
     <article>
-      <button onClick={handleEditUserId}>EDIT USER ID</button>
-      <button onClick={handleAddTaskWithAuth}>Add Task With Auth</button>
-
       <form>
         <p>
           <label htmlFor="title">Title</label>
