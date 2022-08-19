@@ -2,8 +2,11 @@ import {useEffect, useState} from 'react'
 import {useParams, useNavigate} from 'react-router-dom';
 import {db} from '../../components/firebase/Firebase';
 import {doc, getDoc, updateDoc} from 'firebase/firestore';
+import { UserAuth } from '../../context/AuthContext';
+
 
 const EditTask = () => {
+  const {user} = UserAuth()
   const navigate = useNavigate()
   const {taskId} = useParams()
 
@@ -14,7 +17,7 @@ const EditTask = () => {
 
   useEffect(() => {
     const getTask = async () => {
-      const taskRef = doc(db, 'tasks',taskId)
+      const taskRef =  doc(db,'users',user.uid,`tasks/${taskId}`)
       const taskSnap = await getDoc(taskRef)
       setTaskToEdit(taskSnap.data())
       setTitle(taskSnap.data().title)
@@ -34,7 +37,7 @@ const EditTask = () => {
    const handleAddEditedTask = e => {
     e.preventDefault()
      const editTask = async() => {
-      const taskToUpdateRef = doc(db, `tasks/${taskId}`)
+      const taskToUpdateRef = doc(db,'users',user.uid,`tasks/${taskId}`)
       await updateDoc(taskToUpdateRef, {
       title,
       note

@@ -1,28 +1,23 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
+import {collection, getDocs, addDoc, doc, deleteDoc, serverTimestamp} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
+import { UserAuth } from '../../context/AuthContext';
 
 
 
 const Tasks = () => {
+ const {user} = UserAuth()
  const [tasks, setTasks] = useState([])
  const [title, setTitle] = useState('')
  const [note, setTaskNote] = useState('')
  const addTaskVisible = [title,note].every(Boolean)
 
 
- // Temporary not needed user, users
- const [users, setUsers] = useState([])
- const [user, setUser] = useState([])
-
-
- const tasksCollection = collection(db, 'tasks')
- const usersDb = collection(db, 'users')
-
 
  const getTasks = async() => {
-  const tasksData = await getDocs(tasksCollection);
+ const usersCollectionRef = collection(db, `users/${user.uid}`,'tasks')
+  const tasksData = await getDocs(usersCollectionRef);
   setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
  };
 
@@ -37,40 +32,6 @@ const Tasks = () => {
   },[])
 
 
-  const handleRetrieveUsers = async() => {
-    const userRef = doc(db, "users", "Uu8m5sAOkjOCmkUAVfGs")
-    const userSnap = await getDoc(userRef)
-    if (userSnap.exists()) {
-      setUser(userSnap.data())
-      console.log("Document data:", userSnap.data());
-      } else {
-      console.log("No such document!");
-    }
-  }
-
-
-  const handleAddTask = e => {
-    e.preventDefault()
-    const addTask = async () => {
-      try {
-        const taskToBeAdded = {
-          date:'7/20',
-          note,
-          title
-        }
-        const addTask = await addDoc(tasksCollection, taskToBeAdded)
-        taskToBeAdded.id = addTask.id
-      /*   const newTasksArray = [...tasks,taskToBeAdded]
-        setTasks(newTasksArray) */
-        } catch(e) {
-          console.error("ERROR: ",e)
-      }
-   }
-    addTask()
-    setTaskNote('')
-    setTitle('')
-    getTasks()
-  }
 
 
   const handleTitleChange = e => {
@@ -81,10 +42,35 @@ const Tasks = () => {
   }
 
   const handleDeleteTask = async (id) => {
-    const taskRef = doc(db, `tasks/${id}`)
+    const taskRef = doc(db,'users',user.uid,`tasks/${id}`)
     await deleteDoc(taskRef)
     console.log(`Task with id:${id} has been deleted!`)
     getTasks()
+  }
+
+
+  const handleAddTaskWithAuth = e => {
+    e.preventDefault()
+    const userRef = collection(db,'users',user.uid,'tasks')
+    const addTask = async () => {
+      try {
+        const taskToBeAdded = {
+          date: serverTimestamp(),
+          note,
+          title
+        }
+          const addTask = await addDoc(userRef, taskToBeAdded)
+          taskToBeAdded.id = addTask.id
+          const newTasksArray = [...tasks,taskToBeAdded]
+          setTasks(newTasksArray)
+        } catch(e) {
+            console.error("ERROR: ",e)
+      }
+   }
+   addTask()
+   setTitle('')
+   setTaskNote('')
+   getTasks()
   }
 
   return (
@@ -108,14 +94,12 @@ const Tasks = () => {
         </p>
           <button
             disabled={!addTaskVisible}
-            onClick={handleAddTask}
+            onClick={handleAddTaskWithAuth}
             >Add Task</button>
         </form>
 
       <h1>Tasks</h1>
-      <button onClick={handleRetrieveUsers}>Click to render user</button>
-      <button
-      onClick={handleAddTask}>Click to Add Task</button>
+
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
       {
@@ -123,7 +107,7 @@ const Tasks = () => {
            <section className="task-container" key={task.id}>
             <h3>Title: {task.title}</h3>
             <h3>When: {task.note}</h3>
-
+            <h4>Date: {task.seconds}</h4>
             <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
             <Link to = {`/tasks/edit/${task.id}`} className="edit-link">Edit</Link>
           </section>
@@ -136,28 +120,4 @@ const Tasks = () => {
 
 
 
-
-
 export default Tasks;
-
-
-// WORKING CODE
-/*  const addUser = async () => {
-      try {
-        const userRef = await addDoc(collection(db, "users"), {
-          name: 'Max',
-          lastName: 'Cendalski'
-        })
-        console.log("User added with ID: ", userRef.id)
-      } catch (e) {
-        console.error("Error adding user :", e)
-      }
-    }
-    const getTasks = async() => {
-      const tasksList = await getDocs(tasksDb)
-      console.log('tasksList',tasksList)
-    }
-    addUser()
-    getTasks() */
-
-     //<button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
