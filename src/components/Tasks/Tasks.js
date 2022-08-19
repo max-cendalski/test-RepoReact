@@ -19,7 +19,6 @@ const Tasks = () => {
  const usersCollectionRef = collection(db, `users/${user.uid}`,'tasks')
   const tasksData = await getDocs(usersCollectionRef);
   setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
-  console.log('tasks.data',tasks)
  };
 
   // For realtime  updates, working but not properly
@@ -30,7 +29,6 @@ const Tasks = () => {
   useEffect(() => {
     getTasks()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    console.log('tasks',tasks)
   },[])
 
 
@@ -62,7 +60,6 @@ const Tasks = () => {
           title
         }
           const addTask = await addDoc(userRef, taskToBeAdded)
-          console.log('tasktobe',taskToBeAdded.date)
           taskToBeAdded.id = addTask.id
           const newTasksArray = [...tasks,taskToBeAdded]
           setTasks(newTasksArray)
