@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 
+import TasksList from '../features/tasks/TasksList';
+
+
 
 
 const Tasks = () => {
@@ -31,11 +34,11 @@ const Tasks = () => {
     setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
     }); */
 
-  useEffect(() => {
+/*   useEffect(() => {
     getTasks()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
+ */
 
   const handleRetrieveUsers = async() => {
     const userRef = doc(db, "users", "Uu8m5sAOkjOCmkUAVfGs")
@@ -129,6 +132,7 @@ const Tasks = () => {
           </section>
         ))
       }
+      <TasksList />
     </article>
   )
 }
