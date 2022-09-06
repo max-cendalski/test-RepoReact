@@ -72,7 +72,6 @@ const Tasks = () => {
     addTask()
     setTaskNote('')
     setTitle('')
-    getTasks()
   }
 
 
