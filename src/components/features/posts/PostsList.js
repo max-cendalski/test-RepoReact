@@ -6,8 +6,6 @@ import AddPostForm from './AddPostForm';
 
 
 
-
-
 const PostsList = () => {
 
   const posts = useSelector(selectAllPosts)
