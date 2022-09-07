@@ -14,7 +14,6 @@ const PostsList = () => {
   const postStatus = useSelector(getPostsStatus)
   const error = useSelector(getPostsError);
 
-
   let content;
 
   if (postStatus === 'loading')  {

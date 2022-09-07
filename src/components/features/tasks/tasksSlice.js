@@ -21,13 +21,6 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
 })
 
  */
-
-const getUser = () => {
-  //const {user} = UserAuth()
-  console.log('ussss')
-}
-
-getUser()
 const initialState = []
 
 /*  const tasksCollection = collection(db, 'tasks')
