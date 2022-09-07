@@ -21,6 +21,8 @@ import RequireAuth from '../RequireAuth/RequireAuth';
 import SignInPage from '../../pages/SignIn/SignInPage.js'
 import { nanoid } from '@reduxjs/toolkit';
 import format from 'date-fns/format';
+import { UserAuth } from '../../context/AuthContext';
+
 
 export default function App() {
   const data=[{

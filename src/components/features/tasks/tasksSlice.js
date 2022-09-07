@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useState } from "react";
-import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
+import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
 import {db} from '../../../components/firebase/Firebase'
 import axios  from "axios";
-
-
+import { UserAuth } from "../../../context/AuthContext";
 
 
 /*
@@ -21,15 +20,32 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
   }
 })
 
-
  */
+
+const getUser = () => {
+  //const {user} = UserAuth()
+  console.log('ussss')
+}
+
+getUser()
 const initialState = []
 
- export const fetchTasks = createAsyncThunk('tasks/fetchPosts', async() => {
-  const tasksCollection = collection(db, 'tasks')
+/*  const tasksCollection = collection(db, 'tasks')
+ const usersDb = collection(db, 'users')
+
+
+ const getTasks = async() => {
+  const tasksData = await getDocs(tasksCollection);
+  setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
+ };
+ */
+ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async() => {
+  const tasksCollection = collection(db, 'users')
+  console.log('task',tasksCollection)
+
   try {
     const response = await getDocs(tasksCollection)
-    const data = response.docs.map((doc) => ({...doc.data(), id: doc.id}))
+    const data = await response.docs.map((doc) => ({...doc.data(), id: doc.id}))
     return data
   } catch(err) {
       return err.message
