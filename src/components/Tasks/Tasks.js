@@ -21,7 +21,7 @@ const Tasks = () => {
 
 
  const tasksCollection = collection(db, 'tasks')
- const usersDb = collection(db, 'users')
+ //const usersDb = collection(db, 'users')
 
 
  const getTasks = async() => {

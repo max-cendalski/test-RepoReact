@@ -34,8 +34,6 @@ const initialState = []
  */
  export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async() => {
   const tasksCollection = collection(db, 'users')
-  console.log('task',tasksCollection)
-
   try {
     const response = await getDocs(tasksCollection)
     const data = await response.docs.map((doc) => ({...doc.data(), id: doc.id}))

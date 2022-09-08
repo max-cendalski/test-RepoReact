@@ -1,13 +1,42 @@
 
 import { useSelector } from "react-redux";
 import { selectAllTasks} from "./tasksSlice"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import {UserAuth} from '../../../context/AuthContext'
+import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
+import {db} from '../../../components/firebase/Firebase'
+
+/*
+ const tasksCollection = collection(db, 'tasks')
+ const usersDb = collection(db, 'users')
+
+
+ const getTasks = async() => {
+  const tasksData = await getDocs(tasksCollection);
+  setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
+ }; */
+
 
 const TasksList = () => {
-  const tasks = useSelector(selectAllTasks)
-  console.log('tasks',tasks)
+  const {user} = UserAuth()
+  const tasksRef = collection(db,"users",`${user.uid}`,"tasks" )
+
+  const [tasks, setTasks] = useState([])
+
+
+  //const tasks = useSelector(selectAllTasks)
+  //console.log('tasks',tasks)
+
+
+  const getTasks = async() => {
+     const tasksFromFB = await getDocs(tasksRef)
+     setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
+  }
+  useEffect(() => {
+    getTasks()
+  },[])
+  console.log('tasssss',tasks)
     const handleDeleteTask = async (id) => {
       console.log('whe')
  /*    const taskRef = doc(db, `tasks/${id}`)
