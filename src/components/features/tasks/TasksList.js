@@ -25,12 +25,11 @@ const TasksList = () => {
   },[])
 
     const handleDeleteTask = async (id) => {
-      console.log('whe',id)
       const taskRef = doc(db,"users",`${user.uid}/tasks`, `${id}`)
       await deleteDoc(taskRef)
       console.log(`Task with id:${id} has been deleted!`)
       getTasks()
-  }
+    }
 
   return (
     <section>
@@ -45,7 +44,6 @@ const TasksList = () => {
             </section>
           ))
         }
-
     </section>
   )
 }
