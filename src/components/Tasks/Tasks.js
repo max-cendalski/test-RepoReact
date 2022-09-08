@@ -35,7 +35,7 @@ const Tasks = () => {
           note,
           title
         }
-        const addTask = await addDoc(collection(db, "users", `${user.uid}/tasks`), taskToBeAdded)
+        await addDoc(tasksRef, taskToBeAdded)
         } catch(e) {
           console.error("ERROR: ",e)
       }
