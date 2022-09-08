@@ -29,14 +29,14 @@ const TasksList = () => {
   //console.log('tasks',tasks)
 
 
-  const getTasks = async() => {
+
+  useEffect(() => {
+     const getTasks = async() => {
      const tasksFromFB = await getDocs(tasksRef)
      setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
   }
-  useEffect(() => {
     getTasks()
   },[])
-  console.log('tasssss',tasks)
     const handleDeleteTask = async (id) => {
       console.log('whe')
  /*    const taskRef = doc(db, `tasks/${id}`)
