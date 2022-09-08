@@ -7,15 +7,7 @@ import {UserAuth} from '../../../context/AuthContext'
 import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore'
 import {db} from '../../../components/firebase/Firebase'
 
-/*
- const tasksCollection = collection(db, 'tasks')
- const usersDb = collection(db, 'users')
 
-
- const getTasks = async() => {
-  const tasksData = await getDocs(tasksCollection);
-  setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
- }; */
 
 
 const TasksList = () => {
@@ -33,12 +25,13 @@ const TasksList = () => {
   },[])
 
     const handleDeleteTask = async (id) => {
-      console.log('whe')
- /*    const taskRef = doc(db, `tasks/${id}`)
-    await deleteDoc(taskRef)
-    console.log(`Task with id:${id} has been deleted!`)
-    getTasks() */
+      console.log('whe',id)
+      const taskRef = doc(db,"users",`${user.uid}/tasks`, `${id}`)
+      await deleteDoc(taskRef)
+      console.log(`Task with id:${id} has been deleted!`)
+      getTasks()
   }
+
   return (
     <section>
       <h1>Tasks</h1>
