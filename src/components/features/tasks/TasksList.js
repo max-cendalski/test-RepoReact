@@ -8,28 +8,15 @@ import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'fi
 import {db} from '../../../components/firebase/Firebase'
 
 
-
-
-const TasksList = () => {
+const TasksList = ({tasks, getTasks}) => {
   const {user} = UserAuth()
-  const tasksRef = collection(db,"users",`${user.uid}`,"tasks" )
-  const [tasks, setTasks] = useState([])
 
-  const getTasks = async() => {
-    const tasksFromFB = await getDocs(tasksRef)
-    setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
-  }
-
-  useEffect(() => {
+  const handleDeleteTask = async (id) => {
+    const taskRef = doc(db,"users",`${user.uid}/tasks`, `${id}`)
+    await deleteDoc(taskRef)
+    console.log(`Task with id:${id} has been deleted!`)
     getTasks()
-  },[])
-
-    const handleDeleteTask = async (id) => {
-      const taskRef = doc(db,"users",`${user.uid}/tasks`, `${id}`)
-      await deleteDoc(taskRef)
-      console.log(`Task with id:${id} has been deleted!`)
-      getTasks()
-    }
+  }
 
   return (
     <section>

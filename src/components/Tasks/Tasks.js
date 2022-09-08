@@ -15,22 +15,17 @@ const Tasks = () => {
   const [title, setTitle] = useState('')
   const [note, setTaskNote] = useState('')
   const addTaskVisible = [title,note].every(Boolean)
-  const tasksCollection = collection(db, 'tasks')
-
-
+  const tasksRef = collection(db,"users",`${user.uid}`,"tasks" )
 
   const getTasks = async() => {
-    const tasksData = await getDocs(tasksCollection);
-    setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
-  };
-
+    const tasksFromFB = await getDocs(tasksRef)
+    setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
+  }
 
   useEffect(() => {
     getTasks()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
-
 
   const handleAddTask = e => {
     e.preventDefault()
@@ -98,13 +93,12 @@ const Tasks = () => {
         </button>
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
-      <TasksList />
+      <TasksList tasks={tasks}
+                 getTasks={getTasks}
+                />
     </article>
   )
 }
-
-
-
 
 
 
