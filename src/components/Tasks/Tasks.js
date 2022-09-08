@@ -34,11 +34,11 @@ const Tasks = () => {
     setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
     }); */
 
-/*   useEffect(() => {
+  useEffect(() => {
     getTasks()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
- */
+
 
   const handleRetrieveUsers = async() => {
     const userRef = doc(db, "users", "Uu8m5sAOkjOCmkUAVfGs")
@@ -57,7 +57,6 @@ const Tasks = () => {
     const addTask = async () => {
       try {
         const taskToBeAdded = {
-          date:'7/20',
           note,
           title
         }
@@ -91,7 +90,7 @@ const Tasks = () => {
 
   return (
     <article>
-      <form>
+      <form onSubmit={handleAddTask}>
         <p>
           <label htmlFor="title">Title</label>
           <input
@@ -120,17 +119,7 @@ const Tasks = () => {
       onClick={handleAddTask}>Click to Add Task</button>
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
-      {
-        tasks.map((task) => (
-           <section className="task-container" key={task.id}>
-            <h3>Title: {task.title}</h3>
-            <h3>When: {task.note}</h3>
 
-            <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
-            <Link to = {`/tasks/edit/${task.id}`} className="edit-link">Edit</Link>
-          </section>
-        ))
-      }
       <TasksList />
     </article>
   )
@@ -164,3 +153,16 @@ export default Tasks;
     getTasks() */
 
      //<button onClick={()=> handleEditTask(task.id)}>Edit Task</button>
+
+
+/*        {
+        tasks.map((task) => (
+           <section className="task-container" key={task.id}>
+            <h3>Title: {task.title}</h3>
+            <h3>When: {task.note}</h3>
+
+            <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
+            <Link to = {`/tasks/edit/${task.id}`} className="edit-link">Edit</Link>
+          </section>
+        ))
+      } */

@@ -21,22 +21,17 @@ import {db} from '../../../components/firebase/Firebase'
 const TasksList = () => {
   const {user} = UserAuth()
   const tasksRef = collection(db,"users",`${user.uid}`,"tasks" )
-
   const [tasks, setTasks] = useState([])
 
-
-  //const tasks = useSelector(selectAllTasks)
-  //console.log('tasks',tasks)
-
-
+  const getTasks = async() => {
+    const tasksFromFB = await getDocs(tasksRef)
+    setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
+  }
 
   useEffect(() => {
-     const getTasks = async() => {
-     const tasksFromFB = await getDocs(tasksRef)
-     setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
-  }
     getTasks()
   },[])
+
     const handleDeleteTask = async (id) => {
       console.log('whe')
  /*    const taskRef = doc(db, `tasks/${id}`)
@@ -52,7 +47,6 @@ const TasksList = () => {
             <section className="task-container" key={task.id}>
               <h3>Title: {task.title}</h3>
               <h3>When: {task.note}</h3>
-
               <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
               <Link to = {`/tasks/edit/${task.id}`} className="edit-link">Edit</Link>
             </section>
