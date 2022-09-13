@@ -6,7 +6,6 @@ import {auth} from '../components/firebase/Firebase';
 const AuthContext = createContext({})
 
 export const AuthContextProvider = ({children}) => {
-  const credentials = {name:'Maximilian',lastName:'Cendalski'}
 
   const [user, setUser] = useState({})
 
@@ -33,7 +32,6 @@ export const AuthContextProvider = ({children}) => {
           {
             googleSignIn,
             signOut,
-            credentials,
             user,
             logOut
           }

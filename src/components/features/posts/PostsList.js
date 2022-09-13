@@ -6,14 +6,11 @@ import AddPostForm from './AddPostForm';
 
 
 
-
-
 const PostsList = () => {
 
   const posts = useSelector(selectAllPosts)
   const postStatus = useSelector(getPostsStatus)
   const error = useSelector(getPostsError);
-
 
   let content;
 

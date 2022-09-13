@@ -20,8 +20,9 @@ const usersSlice = createSlice({
   reducers:{},
   // because it's async and happens outside of Thunk we need to supply something to handle it
   extraReducers(builder) {
-    builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      return action.payload
+    builder
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        return action.payload
     })
   }
 })

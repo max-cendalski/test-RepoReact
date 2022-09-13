@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {Link} from 'react-router-dom';
 import {collection, getDocs, addDoc, doc, deleteDoc, serverTimestamp} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
-import { UserAuth } from '../../context/AuthContext';
-
-
+import {UserAuth} from '../../context/AuthContext'
+import TasksList from '../features/tasks/TasksList';
 
 const Tasks = () => {
  const {user} = UserAuth()
@@ -13,25 +12,38 @@ const Tasks = () => {
  const [note, setTaskNote] = useState('')
  const addTaskVisible = [title,note].every(Boolean)
 
-
-
- const getTasks = async() => {
- const usersCollectionRef = collection(db, `users/${user.uid}`,'tasks')
-  const tasksData = await getDocs(usersCollectionRef);
-  setTasks(tasksData.docs.map((doc) =>({...doc.data(), id: doc.id})))
- };
-
-  // For realtime  updates, working but not properly
- /*  const checkTask = onSnapshot(collection(db, "tasks"), (querySnapshot) => {
-    setTasks(querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id})))
-    }); */
+  const getTasks = async() => {
+    try {
+      const tasksFromFB = await getDocs(tasksRef)
+      setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
+    } catch(err) {
+      console.error('ERROR:',err)
+    }
+  }
 
   useEffect(() => {
     getTasks()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
-
+  const handleAddTask = e => {
+    e.preventDefault()
+    const addTask = async () => {
+      try {
+        const taskToBeAdded = {
+          note,
+          title
+        }
+        await addDoc(tasksRef, taskToBeAdded)
+        } catch(e) {
+          console.error("ERROR: ",e)
+      }
+   }
+    addTask()
+    getTasks()
+    setTaskNote('')
+    setTitle('')
+  }
 
 
   const handleTitleChange = e => {
@@ -48,34 +60,9 @@ const Tasks = () => {
     getTasks()
   }
 
-
-  const handleAddTaskWithAuth = e => {
-    e.preventDefault()
-    const userRef = collection(db,'users',user.uid,'tasks')
-    const addTask = async () => {
-      try {
-        const taskToBeAdded = {
-          date: serverTimestamp(),
-          note,
-          title
-        }
-          const addTask = await addDoc(userRef, taskToBeAdded)
-          taskToBeAdded.id = addTask.id
-          const newTasksArray = [...tasks,taskToBeAdded]
-          setTasks(newTasksArray)
-        } catch(e) {
-            console.error("ERROR: ",e)
-      }
-   }
-   addTask()
-   setTitle('')
-   setTaskNote('')
-   getTasks()
-  }
-
   return (
     <article>
-      <form>
+      <form onSubmit={handleAddTask}>
         <p>
           <label htmlFor="title">Title</label>
           <input
@@ -99,25 +86,21 @@ const Tasks = () => {
         </form>
 
       <h1>Tasks</h1>
-
+      <button
+        onClick={handleAddTask}>
+        Click to Add Task
+        </button>
       <h2>{user.name}</h2>
       <h2>{user.lastName}</h2>
-      {
-        tasks.map((task) => (
-           <section className="task-container" key={task.id}>
-            <h3>Title: {task.title}</h3>
-            <h3>When: {task.note}</h3>
-            <h4>Date: {task.seconds}</h4>
-            <button onClick={()=> handleDeleteTask(task.id)}>Delete Task</button>
-            <Link to = {`/tasks/edit/${task.id}`} className="edit-link">Edit</Link>
-          </section>
-        ))
-      }
+      <TasksList tasks={tasks}
+                 getTasks={getTasks}
+                />
     </article>
   )
 }
 
 
-
-
 export default Tasks;
+
+
+
