@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {Link} from 'react-router-dom';
 import {collection, getDocs,getDoc, addDoc, doc, deleteDoc, onSnapshot} from 'firebase/firestore';
 import {db} from '../../components/firebase/Firebase';
 import {UserAuth} from '../../context/AuthContext'
-
 import TasksList from '../features/tasks/TasksList';
 
 
@@ -17,9 +16,14 @@ const Tasks = () => {
   const addTaskVisible = [title,note].every(Boolean)
   const tasksRef = collection(db,"users",`${user.uid}`,"tasks" )
 
+
   const getTasks = async() => {
-    const tasksFromFB = await getDocs(tasksRef)
-    setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
+    try {
+      const tasksFromFB = await getDocs(tasksRef)
+      setTasks(tasksFromFB.docs.map((doc) => ({...doc.data(), id: doc.id})))
+    } catch(err) {
+      console.error('ERROR:',err)
+    }
   }
 
   useEffect(() => {
