@@ -6,7 +6,7 @@ import { UserAuth } from '../../context/AuthContext';
 
 const EditTask = () => {
   const {user} = UserAuth()
-
+  
   const navigate = useNavigate()
   const {taskId} = useParams()
 
@@ -14,7 +14,6 @@ const EditTask = () => {
   const [note, setNote] = useState('')
   const [taskToEdit, setTaskToEdit]  = useState(null)
   const submitChangesVisible = [title, note].every(Boolean)
-
 
   const getTask = async () => {
       const tasksRef = collection(db,'users',`${user.uid}/tasks`)
@@ -29,10 +28,8 @@ const EditTask = () => {
     getTask()
   },[])
 
-
    const handleTitleChange = e => setTitle(e.target.value)
    const handleNoteChange = e => setNote(e.target.value)
-
 
    const handleAddEditedTask = e => {
     e.preventDefault()
@@ -46,7 +43,6 @@ const EditTask = () => {
     editTask()
     navigate('/tasks')
   }
-
 
 
   if (!taskToEdit) return <p>Loading...</p>
